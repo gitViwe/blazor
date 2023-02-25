@@ -1,6 +1,6 @@
 ﻿namespace WebAssembly.Infrastructure.Configuration;
 
-internal class DefaultTheme : MudTheme
+public class DefaultTheme : MudTheme
 {
     public DefaultTheme()
     {

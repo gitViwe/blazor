@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using gitViwe.ProblemDetail.Base;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using Toolbelt.Blazor;
 using WebAssembly.Infrastructure.Authentication;
 
@@ -53,7 +56,7 @@ internal class InterceptorService : IInterceptorService
 
         // request should not be the one we use for the refresh token or login/logout action
         if (string.IsNullOrWhiteSpace(absPath) == false
-            && Shared.Route.AuthAPI.AcccountEndpoint.IsAnonymousEndpoint(absPath!) == false)
+            && Shared.Route.AuthenticationAPI.AcccountEndpoint.IsAnonymousEndpoint(absPath!) == false)
         {
             var claims = await _stateProvider.GetAuthenticationStateUserAsync();
 
@@ -82,30 +85,29 @@ internal class InterceptorService : IInterceptorService
     {
         if (e.Response.IsSuccessStatusCode == false)
         {
-            // handle status codes
+            // Don't reference "e.Response.Content" directly to read the content
+            var capturedContent = await e.GetCapturedContentAsync();
             var statusCode = e.Response.StatusCode;
+            string response;
 
             switch (statusCode)
             {
-                case HttpStatusCode.Unauthorized:
-                    // notify
-                    break;
-                case HttpStatusCode.Forbidden:
-                    // notify
-                    break;
                 case HttpStatusCode.BadRequest:
                     // notify
+                    var validationProblem = await capturedContent.ReadFromJsonAsync<ValidationProblemDetails>();
+                    response = validationProblem!.ToString()!;
+                    _snackbar.Add(validationProblem!.Detail, Severity.Warning);
                     break;
                 default:
                     // notify
+                    var problem = await capturedContent.ReadFromJsonAsync<DefaultProblemDetails>();
+                    response = problem!.ToString()!;
+                    _snackbar.Add(problem!.Detail, Severity.Warning);
                     break;
             }
 
-            // Don't reference "e.Response.Content" directly to read the content
-            var capturedContent = await e.GetCapturedContentAsync();
             // log errors
-            string errorMessage = await capturedContent.ReadAsStringAsync();
-            _logger.LogError(e.Exception, errorMessage);
+            _logger.LogError(e.Exception, "An error occured while making a request to the API.\n{response}", response);
 
             e.Response.Content = null;
         }

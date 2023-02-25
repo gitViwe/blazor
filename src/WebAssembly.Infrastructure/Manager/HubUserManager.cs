@@ -28,7 +28,7 @@ internal class HubUserManager : IHubUserManager
 
     public async Task<IResponse> LoginAsync(ILoginRequest request)
     {
-        var result = await _httpClient.PostAsJsonAsync(Shared.Route.AuthAPI.AcccountEndpoint.Login, request);
+        var result = await _httpClient.PostAsJsonAsync(Shared.Route.AuthenticationAPI.AcccountEndpoint.Login, request);
 
         if (result.IsSuccessStatusCode)
         {
@@ -47,7 +47,7 @@ internal class HubUserManager : IHubUserManager
 
     public async Task LogoutAsync()
     {
-        await _httpClient.PostAsync(Shared.Route.AuthAPI.AcccountEndpoint.Logout, null);
+        await _httpClient.PostAsync(Shared.Route.AuthenticationAPI.AcccountEndpoint.Logout, null);
 
         // remove stored tokens
         await _storageService.RemoveAsync(StorageKey.Local.AuthToken);
@@ -68,7 +68,7 @@ internal class HubUserManager : IHubUserManager
             RefreshToken = refreshToken
         };
 
-        var result = await _httpClient.PostAsJsonAsync(Shared.Route.AuthAPI.AcccountEndpoint.RefreshToken, request);
+        var result = await _httpClient.PostAsJsonAsync(Shared.Route.AuthenticationAPI.AcccountEndpoint.RefreshToken, request);
 
         if (result.IsSuccessStatusCode)
         {
@@ -87,7 +87,7 @@ internal class HubUserManager : IHubUserManager
 
     public async Task<IResponse> RegisterAsync(IRegisterRequest request)
     {
-        var result = await _httpClient.PostAsJsonAsync(Shared.Route.AuthAPI.AcccountEndpoint.Register, request);
+        var result = await _httpClient.PostAsJsonAsync(Shared.Route.AuthenticationAPI.AcccountEndpoint.Register, request);
 
         if (result.IsSuccessStatusCode)
         {

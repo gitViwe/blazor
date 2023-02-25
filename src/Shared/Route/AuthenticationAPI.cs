@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides the URLs for the API Endpoints
 /// </summary>
-public static class AuthAPI
+public static class AuthenticationAPI
 {
     /// <summary>
     /// The endpoint routes for account endpoint
