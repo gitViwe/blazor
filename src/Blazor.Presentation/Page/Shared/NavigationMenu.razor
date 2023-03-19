@@ -1,0 +1,99 @@
+<Avatar Style="background-color: var(--mud-palette-drawer-background);color: var(--mud-palette-drawer-text);"
+        UserName="Viwe Nkepu" />
+
+<MudNavMenu Color="Color.Primary" Bordered=true>
+
+    <MudText Typo="Typo.subtitle2"
+             Color="Color.Inherit"
+             Class="ml-4 my-3">
+        Default Examples
+    </MudText>
+
+    <MudNavLink Match="NavLinkMatch.All"
+                Href="/"
+                Icon="@Icons.Material.Filled.Home">
+        Home
+    </MudNavLink>
+
+    <MudNavLink Match="NavLinkMatch.All"
+                Href="counter"
+                Icon="@Icons.Material.Filled.Watch">
+        Counter
+    </MudNavLink>
+
+    <MudNavLink Match="NavLinkMatch.All"
+                Href="fetchdata"
+                Icon="@Icons.Material.Filled.DataUsage">
+        Fetch data
+    </MudNavLink>
+
+    <MudText Typo="Typo.subtitle2"
+             Color="Color.Inherit"
+             Class="ml-4 my-3">
+        API Documentation
+    </MudText>
+
+    <MudNavLink Match="NavLinkMatch.All"
+                Icon="@CustomIcon.SwaggerUI"
+                Target="_blank"
+                Href="">
+        Swagger
+    </MudNavLink>
+
+    <MudNavLink Match="NavLinkMatch.All"
+                Icon="@CustomIcon.GraphQL"
+                Target="_blank"
+                Href="">
+        GraphQL
+    </MudNavLink>
+
+    <MudText Typo="Typo.subtitle2"
+             Color="Color.Inherit"
+             Class="ml-4 my-3">
+        Application Security
+    </MudText>
+
+    <MudNavGroup Title="Authentication"
+                 Icon="@Icons.Material.Filled.AccountBox"
+                 HideExpandIcon="true">
+
+        <MudNavLink Href="/authentication/register"
+                    Icon="@Icons.Material.Filled.Assignment">
+            Register
+        </MudNavLink>
+
+        <MudNavLink Href="/authentication/login"
+                    Icon="@Icons.Material.Filled.LockOpen">
+            Login
+        </MudNavLink>
+
+        <MudNavLink Href="/authentication/account"
+                    Icon="@Icons.Material.Filled.AccountCircle">
+            User details
+        </MudNavLink>
+
+    </MudNavGroup>
+
+    <MudNavGroup Title="Authorization"
+                 Icon="@Icons.Material.Filled.SupervisedUserCircle"
+                 HideExpandIcon="true">
+
+        <MudNavLink Disabled=true
+                    Icon="@Icons.Material.Filled.SafetyDivider">
+            Manage Roles
+        </MudNavLink>
+
+        <MudNavLink Disabled=true
+                    Icon="@Icons.Material.Filled.ManageAccounts">
+            Manage User Roles
+        </MudNavLink>
+
+        <MudNavLink Href="#"
+                    Icon="@Icons.Material.Filled.AdminPanelSettings"
+                    Disabled="true">
+            Role permissions
+        </MudNavLink>
+
+    </MudNavGroup>
+
+</MudNavMenu>

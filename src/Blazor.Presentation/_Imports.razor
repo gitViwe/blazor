@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+
+@*Add references to libraries*@
+@using MudBlazor
+@using MudBlazor.ThemeManager
+
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+
+@*Add references to pages*@
+@using Blazor.Infrastructure.Extension
+@using Blazor.Infrastructure.Configuration
+@using Blazor.Presentation.Component
+@using Blazor.Presentation.Layout
+@using Blazor.Presentation.Constant
+
+@*Inject services and managers*@
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+@inject IHubUserManager UserManager
+@inject HubToggleVisibility ToggleVisibility

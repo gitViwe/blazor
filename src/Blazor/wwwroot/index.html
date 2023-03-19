@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Blazor</title>
+    <base href="/" />
+    <!-- Style sheets for MudBlazor -->
+    <link href="css/googleapis/font/css/Ubuntu.css" rel="stylesheet" />
+    <link href="css/googleapis/font/css/Montserrat.css" rel="stylesheet" />
+    <link href="css/googleapis/font/css/Roboto.css" rel="stylesheet" />
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <link href="_content/MudBlazor.ThemeManager/MudBlazorThemeManager.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!--<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />-->
+    <link href="Blazor.styles.css" rel="stylesheet" />
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+</head>
+
+<body>
+    <div id="app">
+        <style>
+            @keyframes slide {
+                0% {
+                    transform: translateX(-25%);
+                }
+
+                100% {
+                    transform: translateX(25%);
+                }
+            }
+
+            .mud-wasm {
+                animation: slide 3s ease-in-out infinite alternate;
+                background-image: linear-gradient(-60deg,#895aff 50%,#733bff 50%);
+                bottom: 0;
+                left: -50%;
+                opacity: .5;
+                position: fixed;
+                right: -50%;
+                top: 0;
+                z-index: -1
+            }
+
+            .mud-wasm-cont {
+                left: 50%;
+                padding: 10vmin;
+                position: fixed;
+                text-align: center;
+                top: 50%;
+                transform: translate(-50%,-50%)
+            }
+        </style>
+        <div style="height:100%;width:100%;margin:0;position:fixed;">
+            <div class="mud-wasm"></div>
+            <div class="mud-wasm" style="animation-direction:alternate;animation-duration:6s;"></div>
+            <div class="mud-wasm" style="animation-direction:alternate-reverse;animation-duration:4s;"></div>
+            <div class="mud-wasm" style="animation-duration:5s;"></div>
+            <div class="mud-wasm-cont ">
+                <svg width="463" height="314" viewBox="0 0 363 214" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M152.5 40L112 63.5V213L152.5 190V40Z" fill="#673AB7" />
+                    <path d="M0 48L40 25L111.5 131.5V213L0 48Z" fill="#673AB7" />
+                    <path d="M192.5 159.5L233.5 135.5V174.5L192.5 198V159.5Z" fill="#673AB7" />
+                    <path d="M192.5 150.5L233.5 126.5V83L321.5 213.5L362.5 190V0.5L321.5 24V131.5L233.5 0.5L192.5 24V150.5Z" fill="#673AB7" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <!-- Scripts for MudBlazor -->
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="lib/facebook/SDK.js"></script>
+</body>
+
+</html>

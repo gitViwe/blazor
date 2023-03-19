@@ -1,0 +1,62 @@
+﻿@page "/"
+
+<MudContainer>
+
+    <MudGrid Justify="Justify.Center" >
+
+        <MudItem xs="12" sm="12" md="12">
+            <div class="d-flex justify-center">
+                <MudIcon Icon="@CustomIcon.ViweNkepu" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 362.5 213" Style="width: 380px; height: 250px;" />
+            </div>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Align="Align.Center" Typo="Typo.h2">Viwe Nkepu</MudText>
+            <MudText Align="Align.Center" Typo="Typo.h5">Fullstack Developer</MudText>
+            <MudText Align="Align.Center" Typo="Typo.body2">Welcome to my playground. Please explore and stay tuned for more!</MudText>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <MudStack>
+                    <HubCardHover
+                        BackgroundImageUrl="@Asset.Image.GitHub"
+                        Title="Github"
+                        Description="The best home for code. Check out some of my repos!"
+                        ButtonLink="https://github.com/gitViwe"
+                        ButtonText="Show" />
+
+                    <HubCardHover
+                        BackgroundImageUrl="@Asset.Image.PortfolioShowcase"
+                        Title="Young Designer's Portfolio Showcase"
+                        Description="My first dabble at web design using 3D assets I created in Autodesk Maya. Take a peak!"
+                        ButtonLink="http://portfolioshowcase.co.za/2015/portfolio.html"
+                        ButtonText="Show" />
+                </MudStack>
+            </MudHidden>
+            <MudHidden Breakpoint="Breakpoint.SmAndDown">
+
+                <MudStack Justify=Justify.Center Row="true">
+                    <HubCardHover
+                        BackgroundImageUrl="@Asset.Image.GitHub"
+                        Title="Github"
+                        Description="The best home for code. Check out some of my repos!"
+                        ButtonLink="https://github.com/gitViwe"
+                        ButtonText="Show" />
+
+                    <HubCardHover
+                        BackgroundImageUrl="@Asset.Image.PortfolioShowcase"
+                        Title="Young Designer's Portfolio Showcase"
+                        Description="My first dabble at web design using 3D assets I created in Autodesk Maya. Take a peak!"
+                        ButtonLink="http://portfolioshowcase.co.za/2015/portfolio.html"
+                        ButtonText="Show" />
+                </MudStack>
+            </MudHidden>
+
+
+        </MudItem>
+
+    </MudGrid>
+
+</MudContainer>

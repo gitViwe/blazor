@@ -1,0 +1,59 @@
+@inherits LayoutComponentBase
+
+<!-- Use custom theme -->
+<MudThemeProvider Theme="_themeManager.Theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<PageTitle>Viwe Nkepu</PageTitle>
+
+<MudLayout>
+    <MudAppBar Elevation="_themeManager.DrawerElevation">
+        <!-- BRAND BREAKPOINTS START -->
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudIcon Icon="@CustomIcon.ViweNkepu" Color="Color.Inherit" Size="Size.Large" ViewBox="0 0 362.5 213" />
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.MdAndUp">
+            <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.Xs">
+            <MudText Typo="Typo.h6" Class="ml-4">Viwe Nkepu</MudText>
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+            <MudText Typo="Typo.subtitle2">Viwe Nkepu</MudText>
+        </MudHidden>
+        <MudSpacer />
+        <!-- BRAND BREAKPOINTS END -->
+        <!-- NAVBAR LINKS START -->
+        <MudTooltip Text="Go to Github Repository">
+            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Href="https://github.com/gitViwe" Target="_blank" />
+        </MudTooltip>
+        <MudMenu TransformOrigin="Origin.TopLeft" AnchorOrigin="Origin.TopLeft" Dense="true" Class="mt-1 ml-4">
+            <ActivatorContent>
+                <MudAvatar Color="Color.Tertiary">V</MudAvatar>
+            </ActivatorContent>
+            <ChildContent>
+                <Avatar Class="mt-n2" UserName="Viwe Nkepu" />
+                <MudDivider Class="mb-2" />
+                <MudListItem Text="Account" Icon="@Icons.Material.Outlined.Person" Href="/account" />
+                <MudListItem Text="Logout" Icon="@Icons.Material.Outlined.Login" Disabled=true />
+            </ChildContent>
+        </MudMenu>
+        <!-- NAVBAR LINKS END -->
+    </MudAppBar>
+    <!-- SIDEBAR START -->
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="_themeManager.DrawerElevation" ClipMode="_themeManager.DrawerClipMode" Height="100%">
+        <NavigationMenu />
+    </MudDrawer>
+    <!-- SIDEBAR END -->
+    <MudMainContent>
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudToolBar DisableGutters="true">
+                <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+            </MudToolBar>
+        </MudHidden>
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>

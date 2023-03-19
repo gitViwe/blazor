@@ -1,4 +1,4 @@
-﻿using gitViwe.Shared;
+﻿using Shared.Contract.Identity;
 using System.Security.Claims;
 
 namespace Shared.Manager;
@@ -16,7 +16,7 @@ public interface IHubUserManager
     /// </summary>
     /// <param name="request">The user details required for login</param>
     /// <returns>The response message</returns>
-    Task<IResponse> LoginAsync(ILoginRequest request);
+    Task<IResponse> LoginAsync(LoginRequest request);
 
     /// <summary>
     /// Clears all credentials on the client
@@ -34,5 +34,5 @@ public interface IHubUserManager
     /// </summary>
     /// <param name="request">The user details required for registration</param>
     /// <returns>The response message</returns>
-    Task<IResponse> RegisterAsync(IRegisterRequest request);
+    Task<IResponse> RegisterAsync(RegisterRequest request);
 }
