@@ -29,11 +29,16 @@ internal static class ServiceCollectionExtension
         services.AddScoped<AuthenticationMessageHandler>();
         services.AddScoped<StatusCodeMessageHandler>();
 
+        services.AddHttpClient<AuthenticationTokenManager>((provider, client) =>
+        {
+            client.BaseAddress = new Uri(configuration[ConfigurationKey.API.ServerUrl]!.TrimEnd('/'));
+        });
+
         services.AddHttpClient<IHubUserManager, HubUserManager>((provider, client) =>
         {
             client.BaseAddress = new Uri(configuration[ConfigurationKey.API.ServerUrl]!.TrimEnd('/'));
         })
-        /*.AddHttpMessageHandler<AuthenticationMessageHandler>()*/
+        .AddHttpMessageHandler<AuthenticationMessageHandler>()
         .AddHttpMessageHandler<StatusCodeMessageHandler>();
 
         return services;

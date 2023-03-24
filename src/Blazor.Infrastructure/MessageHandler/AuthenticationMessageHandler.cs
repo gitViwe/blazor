@@ -1,23 +1,24 @@
-﻿using System.Net.Http.Headers;
+﻿using Blazor.Infrastructure.Manager;
+using System.Net.Http.Headers;
 
 namespace Blazor.Infrastructure.MessageHandler;
 
 internal class AuthenticationMessageHandler : DelegatingHandler
 {
-    private readonly IHubUserManager _userManager;
     private readonly IStorageService _storageService;
     private readonly HubAuthenticationStateProvider _stateProvider;
+    private readonly AuthenticationTokenManager _tokenManager;
     private readonly ISnackbar _snackbar;
 
     public AuthenticationMessageHandler(
-        IHubUserManager userManager,
         IStorageService storageService,
         HubAuthenticationStateProvider stateProvider,
+        AuthenticationTokenManager tokenManager,
         ISnackbar snackbar)
     {
-        _userManager = userManager;
         _storageService = storageService;
         _stateProvider = stateProvider;
+        _tokenManager = tokenManager;
         _snackbar = snackbar;
     }
 
@@ -47,12 +48,18 @@ internal class AuthenticationMessageHandler : DelegatingHandler
                 // only attempt refresh if claims are about to expire
                 if (claims is not null && claims.HasExpiredClaims(2))
                 {
-                    var result = await _userManager.RefreshTokenAsync();
+                    var result = await _tokenManager.RefreshTokenAsync();
 
                     if (result.Succeeded())
                     {
                         // notify
                         _snackbar.Add(result.Message, Severity.Info);
+                    }
+                    else
+                    {
+                        // notify
+                        _snackbar.Add(result.Message, Severity.Warning);
+                        await _tokenManager.LogoutAsync();
                     }
                 }
 
