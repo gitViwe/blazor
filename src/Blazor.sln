@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Infrastructure", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Presentation", "Blazor.Presentation\Blazor.Presentation.csproj", "{07D40D9D-3FCB-46E3-B725-8716EE1B36EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csproj", "{BDB63290-E093-4E2D-A44C-E3426393F407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor", "Blazor\Blazor.csproj", "{BDB63290-E093-4E2D-A44C-E3426393F407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
