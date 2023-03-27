@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+
+  blazor-wasm:
+    image: hubviwe/blazor.wasm:1.0.0
+    container_name: blazor-wasm
+    build:
+        context: src/
+        dockerfile: Blazor/Dockerfile
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - 5086:80
