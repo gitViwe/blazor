@@ -26,8 +26,7 @@ internal static class ServiceCollectionExtension
     /// </summary>
     internal static IServiceCollection RegisterHttpClient(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<AuthenticationMessageHandler>();
-        services.AddScoped<StatusCodeMessageHandler>();
+        services.AddScoped<AuthenticatedRequestMessageHandler>();
 
         services.AddHttpClient<AuthenticationTokenManager>((provider, client) =>
         {
@@ -38,8 +37,13 @@ internal static class ServiceCollectionExtension
         {
             client.BaseAddress = new Uri(configuration[ConfigurationKey.API.ServerUrl]!.TrimEnd('/'));
         })
-        .AddHttpMessageHandler<AuthenticationMessageHandler>()
-        .AddHttpMessageHandler<StatusCodeMessageHandler>();
+        .AddHttpMessageHandler<AuthenticatedRequestMessageHandler>();
+
+        services.AddHttpClient<IFetchDataManager, FetchDataManager>((provider, client) =>
+        {
+            client.BaseAddress = new Uri(configuration[ConfigurationKey.API.ServerUrl]!.TrimEnd('/'));
+        })
+        .AddHttpMessageHandler<AuthenticatedRequestMessageHandler>();
 
         return services;
     }
@@ -54,7 +58,7 @@ internal static class ServiceCollectionExtension
 
         services.AddScoped<HubAuthenticationStateProvider>();
         // use 'HubAuthenticationStateProvider' when system requests 'AuthenticationStateProvider'
-        services.AddScoped<AuthenticationStateProvider, HubAuthenticationStateProvider>();
+        services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<HubAuthenticationStateProvider>());
 
         return services;
     }

@@ -14,7 +14,7 @@ internal class FetchDataManager : IFetchDataManager
 
     public async Task<PaginatedResponse<SuperHeroResponse>> GetHeroesAsync(PaginatedRequest request)
     {
-        var result = await _httpClient.GetAsync(Shared.Route.AuthenticationAPI.AccountEndpoint.Login + request.ToQueryParameterString());
+        var result = await _httpClient.GetAsync(Shared.Route.AuthenticationAPI.AccountEndpoint.SuperHero + request.ToQueryParameterString());
 
         if (result.IsSuccessStatusCode)
         {
