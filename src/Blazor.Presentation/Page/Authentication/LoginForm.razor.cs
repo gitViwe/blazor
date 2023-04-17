@@ -22,9 +22,9 @@ public partial class LoginForm
         var response = await UserManager.LoginAsync(LoginRequest);
 
         // display response messages
-        Snackbar.Add(response.Message, response.Succeeded() ? Severity.Success : Severity.Error);
+        Snackbar.Add(response.Message, response.Succeeded ? Severity.Success : Severity.Error);
 
-        if (response.Succeeded())
+        if (response.Succeeded)
         {
             // redirect user to the home page
             NavigationManager.NavigateTo("/");

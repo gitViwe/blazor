@@ -51,21 +51,6 @@ internal class HubAuthenticationStateProvider : AuthenticationStateProvider
     }
 
     /// <summary>
-    /// Change the authentication state when user logs out
-    /// </summary>
-    public void MarkUserAsLoggedOut()
-    {
-        // create blank user claims principal
-        var anonymousUser = new ClaimsPrincipal(new ClaimsIdentity());
-
-        // create authentication state using blank user
-        var authState = Task.FromResult(new AuthenticationState(anonymousUser));
-
-        // update the authentication state
-        base.NotifyAuthenticationStateChanged(authState);
-    }
-
-    /// <summary>
     /// Change the authentication state
     /// </summary>
     public async Task StateChangedAsync()

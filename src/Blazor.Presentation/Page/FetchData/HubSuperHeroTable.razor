@@ -1,0 +1,107 @@
+
+<MudPaper Outlined="true">
+
+    <MudTable ServerData="(state => GetHeroesToTableDataAsync(state))"
+              Hover="true"
+              Dense="_dense"
+              Striped="_striped"
+              Bordered="_bordered"
+              SortLabel="Sort By"
+              Elevation="0"
+              RowsPerPage="7">
+
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            <MudTh>Avatar</MudTh>
+            <MudTh>Intelligence</MudTh>
+            <MudTh>Strength</MudTh>
+            <MudTh>Speed</MudTh>
+            <MudTh>Durability</MudTh>
+            <MudTh>Power</MudTh>
+            <MudTh>Combat</MudTh>
+        </HeaderContent>
+
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Avatar" Style="width: 30%">
+                <div class="d-flex flex-row">
+                    <MudAvatar Elevation="25">
+                        <MudImage Src="@context.Images.Sm" />
+                    </MudAvatar>
+                    <div class="ml-6">
+                        <MudText Typo="Typo.subtitle2">@context.Biography.FullName </MudText>
+                        <MudText Typo="Typo.body2">@context.Biography.AlterEgos </MudText>
+                    </div>
+                </div>
+            </MudTd>
+            <MudTd DataLabel="Intelligence">
+                <MudChip Label=true
+                         Size="Size.Small"
+                         Color="GetColor(context.Powerstats.Intelligence)"
+                         Style="width: 50px">
+                    @context.Powerstats.Intelligence
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Strength">
+                <MudChip Label=true
+                         Size="Size.Small"
+                         Color="GetColor(context.Powerstats.Strength)"
+                         Style="width: 50px">
+                    @context.Powerstats.Strength
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Speed">
+                <MudChip Label=true
+                         Size="Size.Small"
+                         Color="GetColor(context.Powerstats.Speed)"
+                         Style="width: 50px">
+                    @context.Powerstats.Speed
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Durability">
+                <MudChip Label=true
+                         Size="Size.Small"
+                         Color="GetColor(context.Powerstats.Durability)"
+                         Style="width: 50px">
+                    @context.Powerstats.Durability
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Power">
+                <MudChip Label=true
+                         Size="Size.Small"
+                         Color="GetColor(context.Powerstats.Power)"
+                         Style="width: 50px">
+                    @context.Powerstats.Power
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Combat">
+                <MudChip Label=true
+                         Size="Size.Small"
+                         Color="GetColor(context.Powerstats.Combat)"
+                         Style="width: 50px">
+                    @context.Powerstats.Combat
+                </MudChip>
+            </MudTd>
+        </RowTemplate>
+
+        <NoRecordsContent>
+            <MudText>No matching records found</MudText>
+        </NoRecordsContent>
+
+        <LoadingContent>
+            <MudText>Loading...</MudText>
+        </LoadingContent>
+
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[] { 5, 7, 10 }" />
+        </PagerContent>
+    </MudTable>
+</MudPaper>
+
+<MudPaper Class="mt-1" Outlined="true">
+    <MudToolBar>
+        <MudSwitch @bind-Checked="@_dense" Color="Color.Primary">Dense</MudSwitch>
+        <MudSwitch @bind-Checked="@_striped" Color="Color.Primary">Striped</MudSwitch>
+        <MudSwitch @bind-Checked="@_bordered" Color="Color.Primary">Bordered</MudSwitch>
+    </MudToolBar>
+</MudPaper>

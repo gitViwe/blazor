@@ -20,9 +20,10 @@ public static class AuthenticationAPI
         public const string Login = "api/account/login";
         public const string Logout = "api/account/logout";
         public const string RefreshToken = "api/account/refresh-token";
+        public const string SuperHero = "api/superhero";
         internal static bool IsAuthenticatedEndpoint(string endpoint)
         {
-            string[] authenticated = new string[] { Logout };
+            string[] authenticated = new string[] { Logout, SuperHero };
             return authenticated.Any(endpoint.Contains);
         }
     }
