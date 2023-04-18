@@ -1,4 +1,5 @@
-﻿using Shared.Contract.Identity;
+﻿using Shared.Contract;
+using Shared.Contract.Identity;
 using System.Net.Http.Json;
 
 namespace Blazor.Infrastructure.Manager;
@@ -23,6 +24,30 @@ internal class HubUserManager : IHubUserManager
     {
         var state = await _authenticationStateProvider.GetAuthenticationStateAsync();
         return state.User;
+    }
+
+    public async Task<IBlazorResponse> GetQrCodeAsync()
+    {
+        var result = await _httpClient.GetAsync(Shared.Route.AuthenticationAPI.AccountEndpoint.QrCode);
+
+        if (result.IsSuccessStatusCode)
+        {
+            byte[] fileBytes = await _httpClient.GetByteArrayAsync(Shared.Route.AuthenticationAPI.AccountEndpoint.QrCode);
+            string fileBase64String = $"data:{result.Content?.Headers?.ContentType?.MediaType};base64," + Convert.ToBase64String(fileBytes);
+            return new BlazorResponse()
+            {
+                Message = "Qr Code created.",
+                StatusCode = (int)result.StatusCode,
+                Data = fileBase64String,
+            };
+        }
+
+        return new BlazorResponse()
+        {
+            Message = "Unable to get Qr Code.",
+            StatusCode = (int)result.StatusCode,
+            Data = string.Empty,
+        };
     }
 
     public async Task<IResponse> LoginAsync(LoginRequest request)

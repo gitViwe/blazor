@@ -1,4 +1,5 @@
-﻿using Shared.Contract.Identity;
+﻿using Shared.Contract;
+using Shared.Contract.Identity;
 using System.Security.Claims;
 
 namespace Shared.Manager;
@@ -35,4 +36,10 @@ public interface IHubUserManager
     /// <param name="request">The user details required for registration</param>
     /// <returns>The response message</returns>
     Task<IResponse> RegisterAsync(RegisterRequest request);
+
+    /// <summary>
+    /// Gets a QR code image to set up TOTP and stores it in local storage using the key <seealso cref="Constant.StorageKey.Local.QrCodeImage"/>
+    /// </summary>
+    /// <returns>The response message</returns>
+    Task<IBlazorResponse> GetQrCodeAsync();
 }

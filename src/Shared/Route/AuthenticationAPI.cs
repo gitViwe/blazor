@@ -21,9 +21,10 @@ public static class AuthenticationAPI
         public const string Logout = "api/account/logout";
         public const string RefreshToken = "api/account/refresh-token";
         public const string SuperHero = "api/superhero";
+        public const string QrCode = "/api/account/qrcode";
         internal static bool IsAuthenticatedEndpoint(string endpoint)
         {
-            string[] authenticated = new string[] { Logout, SuperHero };
+            string[] authenticated = new string[] { Logout, SuperHero, QrCode };
             return authenticated.Any(endpoint.Contains);
         }
     }

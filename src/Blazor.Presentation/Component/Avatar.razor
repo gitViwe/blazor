@@ -3,7 +3,9 @@
         <CardHeaderAvatar>
             @if (!string.IsNullOrWhiteSpace(AvatarImage))
             {
-                <MudAvatar Color="Color.Tertiary" Image="@AvatarImage" />
+                <MudAvatar Color="Color.Tertiary">
+                    <MudImage Src="@AvatarImage" />
+                </MudAvatar>
             }
             else
             {

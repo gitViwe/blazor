@@ -1,0 +1,79 @@
+﻿
+<MudItem xs="12" sm="4" md="3">
+    <MudPaper Outlined="true" Style="height: 100%">
+        <MudCard Style="height: 100%">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Align="Align.Center">Public Profile</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <div class="d-flex justify-center">
+                    <MudAvatar Style="height:150px; width:150px;">
+                        @if (!string.IsNullOrWhiteSpace(AvatarImage))
+                        {
+                            <MudImage Src="@AvatarImage" />
+                        }
+                        else
+                        {
+                            @UserName[0]
+                        }
+                    </MudAvatar>
+                </div>
+                <MudText Align="Align.Center">@FirstName @LastName</MudText>
+            </MudCardContent>
+            <MudCardActions Class="d-flex justify-center">
+                <MudFileUpload T="IBrowserFile" Accept=".jpg" FilesChanged="UploadFileAsync">
+                    <ButtonTemplate>
+                        <MudButton HtmlTag="label"
+                                    Variant="Variant.Filled"
+                                    Color="Color.Primary"
+                                    StartIcon="@Icons.Material.Filled.CloudUpload"
+                                    for="@context">
+                            Select Image
+                        </MudButton>
+                    </ButtonTemplate>
+                </MudFileUpload>
+            </MudCardActions>
+        </MudCard>
+    </MudPaper>
+</MudItem>
+
+<MudItem xs="12" sm="8" md="9">
+    <MudPaper Outlined="true">
+        <MudCard >
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText>Profile Details</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="FirstName" Label="First Name" Variant="Variant.Outlined" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="LastName" Label="Last Name" Variant="Variant.Outlined" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField Label="Username"
+                                      @bind-Value="UserName"
+                                      Disabled=true
+                                      For="@(() => UserName)"
+                                      Variant="Variant.Outlined" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField Label="Email"
+                                      @bind-Value="Email"
+                                      Disabled=true
+                                      For="@(() => Email)"
+                                      Variant="Variant.Outlined" />
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+            <MudCardActions Class="pb-4 pl-4">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save Changes</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudPaper>
+</MudItem>

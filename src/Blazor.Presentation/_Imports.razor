@@ -5,6 +5,7 @@
 @using MudBlazor.ThemeManager
 
 @using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 
@@ -21,3 +22,5 @@
 @inject IHubUserManager UserManager
 @inject IFetchDataManager FetchDataManager
 @inject HubToggleVisibility ToggleVisibility
+@inject IStorageService StorageService
+@inject AuthenticationStateProvider AuthenticationState

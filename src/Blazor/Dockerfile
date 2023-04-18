@@ -24,3 +24,6 @@ FROM nginx:alpine AS final
 WORKDIR /usr/share/nginx/html
 COPY --from=publish /published/wwwroot .
 COPY --from=publish /published/nginx.conf /etc/nginx/nginx.conf
+
+RUN rm appsettings.json # remove the default 'appsettings.json' file
+RUN mv appsettings.Docker.json appsettings.json # rename 'appsettings.Docker.json' to 'appsettings.json'
