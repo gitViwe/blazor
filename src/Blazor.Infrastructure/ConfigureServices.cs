@@ -10,6 +10,7 @@ public static class ConfigureServices
     {
         return services.RegisterClientServices()
             .RegisterHttpClient(configuration)
-            .RegisterClientAuthorization();
+            .RegisterClientAuthorization()
+            .RegisterFluentValidator();
     }
 }

@@ -2,9 +2,11 @@
 using Blazor.Infrastructure.Manager;
 using Blazor.Infrastructure.MessageHandler;
 using Blazor.Infrastructure.Service;
+using FluentValidation;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Blazor.Infrastructure.Extension;
 
@@ -57,9 +59,13 @@ internal static class ServiceCollectionExtension
         services.AddAuthorizationCore();
 
         services.AddScoped<HubAuthenticationStateProvider>();
-        // use 'HubAuthenticationStateProvider' when system requests 'AuthenticationStateProvider'
         services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<HubAuthenticationStateProvider>());
 
         return services;
+    }
+
+    internal static IServiceCollection RegisterFluentValidator(this IServiceCollection services)
+    {
+        return services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

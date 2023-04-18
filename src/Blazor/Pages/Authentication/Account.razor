@@ -1,5 +1,21 @@
-﻿<h3>Account</h3>
+﻿@page "/authentication/account"
+@inject ISnackbar Snackbar
 
-@code {
+<PageTitle>Account</PageTitle>
 
-}
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">Account</MudText>
+<MudTabs Elevation="25" Color="Color.Transparent" Rounded="true" PanelClass="mt-6">
+
+    <MudTabPanel Text="General">
+        <MudGrid>
+            <UserAccountTab />
+        </MudGrid>
+    </MudTabPanel>
+
+    <MudTabPanel Text="TOTP">
+        <UserAccountTOTPTab />
+    </MudTabPanel>
+
+</MudTabs>
+
+<MudAlert Severity="Severity.Info" Class="mt-1">Managin profile details... still in progress.</MudAlert>

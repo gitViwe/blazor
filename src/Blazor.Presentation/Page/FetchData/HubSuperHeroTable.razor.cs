@@ -1,5 +1,4 @@
-﻿using Shared.Contract;
-using Shared.Contract.FetchData;
+﻿using Shared.Contract.FetchData;
 
 namespace Blazor.Presentation.Page.FetchData;
 
