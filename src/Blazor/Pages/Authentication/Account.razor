@@ -1,5 +1,5 @@
 ﻿@page "/authentication/account"
-@inject ISnackbar Snackbar
+@attribute [Authorize]
 
 <PageTitle>Account</PageTitle>
 
@@ -12,7 +12,7 @@
         </MudGrid>
     </MudTabPanel>
 
-    <MudTabPanel Text="TOTP">
+    <MudTabPanel Text="Time-based OTP">
         <UserAccountTOTPTab />
     </MudTabPanel>
 

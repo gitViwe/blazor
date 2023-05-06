@@ -1,36 +1,36 @@
 ﻿
-<MudItem xs="12" sm="4" md="3">
+<MudItem sm="12" md="4" lg="3">
     <MudPaper Outlined="true" Style="height: 100%">
         <MudCard Style="height: 100%">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Align="Align.Center">Public Profile</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
             <MudCardContent>
                 <div class="d-flex justify-center">
-                    <MudAvatar Style="height:150px; width:150px;">
-                        @if (!string.IsNullOrWhiteSpace(AvatarImage))
-                        {
-                            <MudImage Src="@AvatarImage" />
-                        }
-                        else
-                        {
-                            @UserName[0]
-                        }
-                    </MudAvatar>
+                    <AvatarImage
+                        Avatar="@AvatarImage"
+                        UserName="@UserName"
+                        Style="height:200px; width:200px;" />
                 </div>
-                <MudText Align="Align.Center">@FirstName @LastName</MudText>
+                <MudText Class="mt-2" Align="Align.Center">@FirstName @LastName</MudText>
             </MudCardContent>
-            <MudCardActions Class="d-flex justify-center">
-                <MudFileUpload T="IBrowserFile" Accept=".jpg" FilesChanged="UploadFileAsync">
+            <MudCardActions  Class="d-flex justify-center">
+                <MudFileUpload T="IBrowserFile" Accept=".jpg,.jpeg,.png" FilesChanged="UploadFileAsync">
                     <ButtonTemplate>
                         <MudButton HtmlTag="label"
-                                    Variant="Variant.Filled"
-                                    Color="Color.Primary"
-                                    StartIcon="@Icons.Material.Filled.CloudUpload"
-                                    for="@context">
-                            Select Image
+                                   Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Filled.CloudUpload"
+                                   Disabled="IsProcessing"
+                                   for="@context">
+                            @if (IsProcessing)
+                            {
+                                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                                <MudText Class="ms-2">Processing</MudText>
+                            }
+                            else
+                            {
+                                <MudText>
+                                    Select Image
+                                </MudText>
+                            }
                         </MudButton>
                     </ButtonTemplate>
                 </MudFileUpload>
@@ -39,41 +39,70 @@
     </MudPaper>
 </MudItem>
 
-<MudItem xs="12" sm="8" md="9">
+<MudItem sm="12" md="8" lg="9">
     <MudPaper Outlined="true">
-        <MudCard >
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText>Profile Details</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                <MudGrid>
-                    <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="FirstName" Label="First Name" Variant="Variant.Outlined" />
-                    </MudItem>
-                    <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="LastName" Label="Last Name" Variant="Variant.Outlined" />
-                    </MudItem>
-                    <MudItem xs="12" md="6">
-                        <MudTextField Label="Username"
-                                      @bind-Value="UserName"
-                                      Disabled=true
-                                      For="@(() => UserName)"
-                                      Variant="Variant.Outlined" />
-                    </MudItem>
-                    <MudItem xs="12" md="6">
-                        <MudTextField Label="Email"
-                                      @bind-Value="Email"
-                                      Disabled=true
-                                      For="@(() => Email)"
-                                      Variant="Variant.Outlined" />
-                    </MudItem>
-                </MudGrid>
-            </MudCardContent>
-            <MudCardActions Class="pb-4 pl-4">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save Changes</MudButton>
-            </MudCardActions>
-        </MudCard>
+        <EditForm Model="@UpdateUserModel" OnValidSubmit="SubmitAsync">
+            <FluentValidationValidator />
+
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText>Profile Details</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudGrid>
+                        <MudItem xs="12" md="6">
+                            <MudTextField Label="First Name"
+                                          @bind-Value="UpdateUserModel.FirstName"
+                                          For="@(() => UpdateUserModel.FirstName)"
+                                          Variant="Variant.Outlined" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField Label="Last Name"
+                                          @bind-Value="UpdateUserModel.LastName"
+                                          For="@(() => UpdateUserModel.LastName)"
+                                          Variant="Variant.Outlined" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField Label="Username"
+                                          @bind-Value="UserName"
+                                          Disabled=true
+                                          For="@(() => UserName)"
+                                          Variant="Variant.Outlined" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField Label="Email"
+                                          @bind-Value="Email"
+                                          Disabled=true
+                                          For="@(() => Email)"
+                                          Variant="Variant.Outlined" />
+                        </MudItem>
+                    </MudGrid>
+                </MudCardContent>
+                <MudCardActions Class="pb-4 pl-4">
+                    <MudButton ButtonType="ButtonType.Submit"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               Size="Size.Large"
+                               Disabled="IsProcessing"
+                               FullWidth="true">
+                        @if (IsProcessing)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">Processing</MudText>
+                        }
+                        else
+                        {
+                            <MudText>
+                                Save Changes
+                            </MudText>
+                        }
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+            
+        </EditForm>
+        
     </MudPaper>
 </MudItem>

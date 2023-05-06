@@ -1,16 +1,10 @@
 <MudCard Elevation="0" Square="true" Class="@Class" Style="@Style">
     <MudCardHeader>
         <CardHeaderAvatar>
-            @if (!string.IsNullOrWhiteSpace(AvatarImage))
-            {
-                <MudAvatar Color="Color.Tertiary">
-                    <MudImage Src="@AvatarImage" />
-                </MudAvatar>
-            }
-            else
-            {
-                <MudAvatar Color="Color.Tertiary">@UserName[0]</MudAvatar>
-            }
+            <AvatarImage
+                Avatar="@AvatarSrc"
+                UserName="@UserName"
+                Style="height:50px; width:50px;" />
         </CardHeaderAvatar>
         <CardHeaderContent>
             <MudText Typo="Typo.body2">@UserName</MudText>

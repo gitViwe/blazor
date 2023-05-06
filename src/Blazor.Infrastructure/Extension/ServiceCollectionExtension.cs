@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace Blazor.Infrastructure.Extension;
 
@@ -19,6 +20,7 @@ internal static class ServiceCollectionExtension
     {
         services.AddSingleton<HubToggleVisibility>();
         services.AddSingleton<IStorageService, LocalStorageService>();
+        services.AddTransient<IHttpInterceptorManager, HttpInterceptorManager>();
 
         return services;
     }
@@ -29,6 +31,7 @@ internal static class ServiceCollectionExtension
     internal static IServiceCollection RegisterHttpClient(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<AuthenticatedRequestMessageHandler>();
+        services.AddHttpClientInterceptor();
 
         services.AddHttpClient<AuthenticationTokenManager>((provider, client) =>
         {
@@ -37,12 +40,14 @@ internal static class ServiceCollectionExtension
 
         services.AddHttpClient<IHubUserManager, HubUserManager>((provider, client) =>
         {
+            client.EnableIntercept(provider);
             client.BaseAddress = new Uri(configuration[ConfigurationKey.API.ServerUrl]!.TrimEnd('/'));
         })
         .AddHttpMessageHandler<AuthenticatedRequestMessageHandler>();
 
         services.AddHttpClient<IFetchDataManager, FetchDataManager>((provider, client) =>
         {
+            client.EnableIntercept(provider);
             client.BaseAddress = new Uri(configuration[ConfigurationKey.API.ServerUrl]!.TrimEnd('/'));
         })
         .AddHttpMessageHandler<AuthenticatedRequestMessageHandler>();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
+using Shared.Contract.Identity;
 using System.Text.Json;
 
 namespace Blazor.Infrastructure.Authentication;
@@ -29,7 +30,7 @@ internal class HubAuthenticationStateProvider : AuthenticationStateProvider
         }
 
         // get the authentication state using the saved token
-        var authSatate = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
+        var authSatate = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(await GetClaimsFromJwtAsync(savedToken), "jwt")));
 
         // get the authentication state user value
         AuthenticationStateUser = authSatate.User;
@@ -62,7 +63,16 @@ internal class HubAuthenticationStateProvider : AuthenticationStateProvider
         base.NotifyAuthenticationStateChanged(authState);
     }
 
-    private static IEnumerable<Claim> GetClaimsFromJwt(string jwt)
+    public void MarkUserAsLoggedOut()
+    {
+        // return empty credentials
+        var authState = Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())));
+
+        // update the authentication state
+        base.NotifyAuthenticationStateChanged(authState);
+    }
+
+    private async Task<IEnumerable<Claim>> GetClaimsFromJwtAsync(string jwt)
     {
         // instantiates the list of claims to return
         var output = new List<Claim>();
@@ -131,6 +141,43 @@ internal class HubAuthenticationStateProvider : AuthenticationStateProvider
             output.AddRange(claimsDictionary.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()!)));
         }
 
+        if (TryGetUserDetails(await _storageService.GetAsync<string>(StorageKey.Local.UserDetail), out var details))
+        {
+            output.AddRange(details);
+        }
+
         return output;
+    }
+
+    private static bool TryGetUserDetails(string input, out IEnumerable<Claim> claims)
+    {
+        claims = Enumerable.Empty<Claim>();
+
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return false;
+        }
+
+        try
+        {
+            var data = JsonSerializer.Deserialize<UserDetailResponse>(input);
+            if (data is not null)
+            {
+                claims = new List<Claim>()
+                {
+                    new Claim(HubClaimTypes.Avatar, data.ProfileImage.Image.Url),
+                    new Claim(HubClaimTypes.FirstName, data.FirstName),
+                    new Claim(HubClaimTypes.LastName, data.LastName),
+                    new Claim(HubClaimTypes.UserName, data.Username),
+                    new Claim(HubClaimTypes.Email, data.Email),
+                };
+            }
+
+            return claims.Any();
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 }

@@ -42,4 +42,32 @@ public interface IHubUserManager
     /// </summary>
     /// <returns>The response message</returns>
     Task<IBlazorResponse> GetQrCodeAsync();
+
+    /// <summary>
+    /// Verifies the TOTP from the QrCode set up
+    /// </summary>
+    /// <param name="request">The token to verify with</param>
+    /// <returns>The response message</returns>
+    Task<IResponse> VerifyTOTPAsync(TOTPVerifyRequest request);
+
+    /// <summary>
+    /// Update the user's details on the API
+    /// </summary>
+    /// <param name="request">The user details to update</param>
+    /// <returns>The response message</returns>
+    Task<IResponse> UpdateDetailsAsync(UpdateUserRequest request);
+
+    /// <summary>
+    /// Upload a profile image to the API
+    /// </summary>
+    /// <param name="content">The image file to upload</param>
+    /// <param name="fileName">The image file name</param>
+    /// <returns>The response message</returns>
+    Task<IResponse> UploadImageAsync(Stream content, string fileName);
+
+    /// <summary>
+    /// Get the current user's details from the API
+    /// </summary>
+    /// <returns>An instance of <see cref="UserDetailResponse"/> with current user's details</returns>
+    Task<IResponse<UserDetailResponse>> GetUserDetailAsync();
 }

@@ -1,6 +1,4 @@
-﻿using gitViwe.Shared.Abstraction;
-
-namespace Shared.Contract.ProblemDetail;
+﻿namespace Shared.Contract.ProblemDetail;
 
 public class DefaultProblemDetails : IDefaultProblemDetails
 {

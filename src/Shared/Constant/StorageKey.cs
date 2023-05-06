@@ -12,7 +12,6 @@ public class StorageKey
     {
         public const string AuthToken = "AuthToken";
         public const string AuthRefreshToken = "AuthRefreshToken";
-        public const string AvatarImage = "AvatarImage";
-        public const string QrCodeImage = "QrCodeImage";
+        public const string UserDetail = "UserDetail";
     }
 }

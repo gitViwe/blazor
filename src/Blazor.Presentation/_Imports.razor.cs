@@ -1,10 +1,9 @@
-﻿global using Shared.Constant;
+﻿global using Blazor.Infrastructure.Configuration;
+global using Microsoft.AspNetCore.Components;
+global using MudBlazor;
+global using MudBlazor.ThemeManager;
+global using Shared.Constant;
+global using Shared.Contract;
 global using Shared.Manager;
 global using Shared.Route;
 global using Shared.Service;
-global using Blazor.Infrastructure.Configuration;
-global using MudBlazor;
-global using MudBlazor.ThemeManager;
-global using Microsoft.AspNetCore.Components;
-global using Shared.Contract;
-global using gitViwe.Shared.Extension;

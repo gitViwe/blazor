@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace Blazor.Presentation.Component;
+﻿namespace Blazor.Presentation.Component;
 
 public partial class HubFloatingBlocks
 {

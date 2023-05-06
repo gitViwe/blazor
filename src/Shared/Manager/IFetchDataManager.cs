@@ -1,5 +1,4 @@
-﻿using Shared.Contract;
-using Shared.Contract.FetchData;
+﻿using gitViwe.Shared.Model;
 
 namespace Shared.Manager;
 
@@ -13,5 +12,5 @@ public interface IFetchDataManager
     /// </summary>
     /// <param name="request">The current page and number of items being displayed</param>
     /// <returns>A <see cref="PaginatedResponse{SuperHeroResponse}"/> where the data is a collection of <see cref="SuperHeroResponse"/> objects</returns>
-    Task<PaginatedResponse<SuperHeroResponse>> GetHeroesAsync(PaginatedRequest request);
+    Task<PaginatedResponse<SuperHeroResponse>> GetHeroesAsync(IPaginatedRequest request);
 }

@@ -2,22 +2,13 @@ version: "3.9"
 
 services:
 
-  blazor-wasm:
-    image: hubviwe/blazor.wasm:1.0.0
-    container_name: blazor-wasm
-    build:
-        context: src/
-        dockerfile: Blazor/Dockerfile
-    environment:
-        ASPNETCORE_ENVIRONMENT: Docker
-    ports:
-      - 5086:80
-
   token-api:
     image: hubviwe/jwtauthentication.token.api:1.0.6
     container_name: token-api
     environment:
         ASPNETCORE_ENVIRONMENT: Docker
+    ports:
+      - 5161:80
     depends_on:
       - mongo
       - jaeger

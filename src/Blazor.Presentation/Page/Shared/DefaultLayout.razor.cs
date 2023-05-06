@@ -2,6 +2,9 @@
 
 public partial class DefaultLayout
 {
+    public string AvatarSrc { get; set; } = string.Empty;
+    public string UserName { get; set; } = "Demo User";
+
     // set custom theme defaults
     private readonly ThemeManagerTheme _themeManager = new()
     {
@@ -20,5 +23,13 @@ public partial class DefaultLayout
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = await UserManager.CurrentUserAsync();
+
+        AvatarSrc = user.FindFirst(HubClaimTypes.Avatar)?.Value ?? string.Empty;
+        UserName = user.FindFirst(HubClaimTypes.UserName)?.Value ?? "Demo User";
     }
 }

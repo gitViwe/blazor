@@ -1,4 +1,9 @@
-<Avatar Style="background-color: var(--mud-palette-drawer-background);color: var(--mud-palette-drawer-text);" />
+@inject IConfiguration configuration
+
+<Avatar
+    AvatarSrc="@AvatarSrc"
+    UserName="@UserName"
+    Style="background-color: var(--mud-palette-drawer-background);color: var(--mud-palette-drawer-text);" />
 
 <MudNavMenu Color="Color.Primary" Bordered=true>
 
@@ -9,19 +14,19 @@
     </MudText>
 
     <MudNavLink Match="NavLinkMatch.All"
-                Href="/"
+                Href="@BlazorClient.Pages.DefaultExamples.Home"
                 Icon="@Icons.Material.Filled.Home">
         Home
     </MudNavLink>
 
     <MudNavLink Match="NavLinkMatch.All"
-                Href="counter"
+                Href="@BlazorClient.Pages.DefaultExamples.Counter"
                 Icon="@Icons.Material.Filled.Watch">
         Counter
     </MudNavLink>
 
     <MudNavLink Match="NavLinkMatch.All"
-                Href="fetchdata"
+                Href="@BlazorClient.Pages.DefaultExamples.FetchData"
                 Icon="@Icons.Material.Filled.DataUsage">
         Fetch data
     </MudNavLink>
@@ -35,14 +40,15 @@
     <MudNavLink Match="NavLinkMatch.All"
                 Icon="@CustomIcon.SwaggerUI"
                 Target="_blank"
-                Href="">
+                Href="@GetSwaggerEndpoint(configuration[ConfigurationKey.API.ServerUrl])">
         Swagger
     </MudNavLink>
 
     <MudNavLink Match="NavLinkMatch.All"
                 Icon="@CustomIcon.GraphQL"
                 Target="_blank"
-                Href="">
+                Href=""
+                Disabled="true">
         GraphQL
     </MudNavLink>
 
@@ -56,41 +62,19 @@
                  Icon="@Icons.Material.Filled.AccountBox"
                  HideExpandIcon="true">
 
-        <MudNavLink Href="/authentication/register"
+        <MudNavLink Href="@BlazorClient.Pages.Authentication.Register"
                     Icon="@Icons.Material.Filled.Assignment">
             Register
         </MudNavLink>
 
-        <MudNavLink Href="/authentication/login"
+        <MudNavLink Href="@BlazorClient.Pages.Authentication.Login"
                     Icon="@Icons.Material.Filled.LockOpen">
             Login
         </MudNavLink>
 
-        <MudNavLink Href="/authentication/account"
+        <MudNavLink Href="@BlazorClient.Pages.Authentication.Account"
                     Icon="@Icons.Material.Filled.AccountCircle">
             User details
-        </MudNavLink>
-
-    </MudNavGroup>
-
-    <MudNavGroup Title="Authorization"
-                 Icon="@Icons.Material.Filled.SupervisedUserCircle"
-                 HideExpandIcon="true">
-
-        <MudNavLink Disabled=true
-                    Icon="@Icons.Material.Filled.SafetyDivider">
-            Manage Roles
-        </MudNavLink>
-
-        <MudNavLink Disabled=true
-                    Icon="@Icons.Material.Filled.ManageAccounts">
-            Manage User Roles
-        </MudNavLink>
-
-        <MudNavLink Href="#"
-                    Icon="@Icons.Material.Filled.AdminPanelSettings"
-                    Disabled="true">
-            Role permissions
         </MudNavLink>
 
     </MudNavGroup>

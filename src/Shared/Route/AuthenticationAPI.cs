@@ -7,8 +7,9 @@ public static class AuthenticationAPI
 {
     public static bool IsAuthenticatedEndpoint(string endpoint)
     {
-        bool isAnonymous = AccountEndpoint.IsAuthenticatedEndpoint(endpoint);
-        return isAnonymous;
+        if (string.IsNullOrWhiteSpace(endpoint)) return false;
+        bool isAuthenticated = AccountEndpoint.IsAuthenticatedEndpoint(endpoint);
+        return isAuthenticated;
     }
 
     /// <summary>
@@ -22,9 +23,12 @@ public static class AuthenticationAPI
         public const string RefreshToken = "api/account/refresh-token";
         public const string SuperHero = "api/superhero";
         public const string QrCode = "/api/account/qrcode";
+        public const string TOTPVerify = "api/account/totp/verify";
+        public const string Detail = "api/account/detail";
+        public const string Picture = "api/account/picture";
         internal static bool IsAuthenticatedEndpoint(string endpoint)
         {
-            string[] authenticated = new string[] { Logout, SuperHero, QrCode };
+            string[] authenticated = new string[] { Logout, SuperHero, QrCode, TOTPVerify, Detail, Picture };
             return authenticated.Any(endpoint.Contains);
         }
     }

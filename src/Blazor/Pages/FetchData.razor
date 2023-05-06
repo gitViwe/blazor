@@ -8,7 +8,7 @@
     <MudText Typo="Typo.h3" GutterBottom="true">Super Heroes</MudText>
     <MudText Class="mb-8">Let's check out some of the planet's best</MudText>
 
-    <HubSuperHeroTable />
+    <HubSuperHeroTable PaginatedDataSource="(request => FetchDataManager.GetHeroesAsync(request))" />
 
     <MudAlert Severity="Severity.Info" Class="mt-1">Pagination is cool, just get the data you need to display.</MudAlert>
 

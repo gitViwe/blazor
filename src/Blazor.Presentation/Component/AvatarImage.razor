@@ -1,0 +1,10 @@
+﻿<MudAvatar Style="@Style">
+    @if (!string.IsNullOrWhiteSpace(Avatar))
+    {
+        <MudImage Src="@Avatar" />
+    }
+    else
+    {
+        @UserName[0]
+    }
+</MudAvatar>

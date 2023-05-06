@@ -1,4 +1,5 @@
 ﻿using Shared.Contract.Identity;
+using System.Web;
 
 namespace Blazor.Presentation.Page.Authentication;
 
@@ -26,8 +27,24 @@ public partial class LoginForm
 
         if (response.Succeeded)
         {
-            // redirect user to the home page
-            NavigationManager.NavigateTo("/");
+            var url = new Uri(NavigationManager.Uri);
+            var query = HttpUtility.ParseQueryString(url.Query);
+
+            var parameters = new Dictionary<string, string>();
+            foreach (string key in query)
+            {
+                parameters[key] = query[key];
+            }
+
+            if (parameters.TryGetValue("returnUrl", out var path) && !string.IsNullOrWhiteSpace(path))
+            {
+                NavigationManager.NavigateTo(path);
+            }
+            else
+            {
+                // redirect user to the home page
+                NavigationManager.NavigateTo("/");
+            }
         }
 
         IsProcessing = false;

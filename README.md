@@ -25,5 +25,11 @@ Things you need to use the software and how to install them.
    ```
    docker compose up --build -d
    ```
+3. Build and run the API
+   ```
+   docker compose --file docker-compose.development.yml up -d
+   cd src/Blazor
+   dotnet run
+   ```
 
 Then navigate to [localhost:5086](http://localhost:5086)
