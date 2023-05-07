@@ -1,0 +1,45 @@
+﻿@page "/documentation/graphql"
+@inject IConfiguration configuration
+
+<MudContainer>
+
+    <MudGrid Justify="Justify.Center">
+
+        <MudItem xs="12" sm="12" md="12">
+            <div class="d-flex justify-center">
+                <MudIcon Icon="@CustomIcon.GraphQL" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
+            </div>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Align="Align.Center" Typo="Typo.h5">
+                A query language for your API.
+            </MudText>
+            <MudText Align="Align.Center" Typo="Typo.body2">
+                GraphQL provides a complete and understandable description of the data in your API, giving clients the power to ask for exactly what they need and nothing more.
+            </MudText>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudStack Row="true" Justify="Justify.Center">
+                <MudButton Target="_blank"
+                           Variant="Variant.Filled"
+                           Color="Color.Tertiary"
+                           StartIcon="@Icons.Custom.Brands.GitHub"
+                           Href="https://github.com/gitViwe/GraphQL">
+                    Visit GitHub repo
+                </MudButton>
+                <MudButton Target="_blank"
+                           Variant="Variant.Filled"
+                           Color="Color.Tertiary"
+                           StartIcon="@CustomIcon.GraphQL"
+                           Disabled="true"
+                           Href="@GetGraphQLEndpoint(configuration)">
+                    Open in new tab
+                </MudButton>
+            </MudStack>
+        </MudItem>
+
+    </MudGrid>
+
+</MudContainer>

@@ -39,16 +39,13 @@
 
     <MudNavLink Match="NavLinkMatch.All"
                 Icon="@CustomIcon.SwaggerUI"
-                Target="_blank"
-                Href="@GetSwaggerEndpoint(configuration[ConfigurationKey.API.ServerUrl])">
+                Href="@BlazorClient.Pages.Documentation.Swagger">
         Swagger
     </MudNavLink>
 
     <MudNavLink Match="NavLinkMatch.All"
                 Icon="@CustomIcon.GraphQL"
-                Target="_blank"
-                Href=""
-                Disabled="true">
+                Href="@BlazorClient.Pages.Documentation.GraphQL">
         GraphQL
     </MudNavLink>
 

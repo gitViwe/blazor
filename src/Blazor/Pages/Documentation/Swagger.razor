@@ -1,0 +1,44 @@
+﻿@page "/documentation/swagger"
+@inject IConfiguration configuration
+
+<MudContainer>
+
+    <MudGrid Justify="Justify.Center">
+
+        <MudItem xs="12" sm="12" md="12">
+            <div class="d-flex justify-center">
+                <MudIcon Icon="@CustomIcon.SwaggerUI" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
+            </div>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Align="Align.Center" Typo="Typo.h5">
+                API Documentation with Swagger.
+            </MudText>
+            <MudText Align="Align.Center" Typo="Typo.body2">
+                Swagger tools takes the hard work out of generating and maintaining your API docs, ensuring your documentation stays up-to-date as your API evolves.
+            </MudText>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudStack Row="true" Justify="Justify.Center">
+                <MudButton Target="_blank"
+                           Variant="Variant.Filled"
+                           Color="Color.Tertiary"
+                           StartIcon="@Icons.Custom.Brands.GitHub"
+                           Href="https://github.com/gitViwe/JWTAuthentication">
+                    Visit GitHub repo
+                </MudButton>
+                <MudButton Target="_blank"
+                           Variant="Variant.Filled"
+                           Color="Color.Tertiary"
+                           StartIcon="@CustomIcon.SwaggerUI"
+                           Href="@GetSwaggerEndpoint(configuration)">
+                    Open in new tab
+                </MudButton>
+            </MudStack>
+        </MudItem>
+
+    </MudGrid>
+
+</MudContainer>

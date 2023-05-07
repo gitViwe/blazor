@@ -21,6 +21,15 @@ public static class BlazorClient
         }
 
         /// <summary>
+        /// Endpoint routes for api documentation example pages
+        /// </summary>
+        public static class Documentation
+        {
+            public const string Swagger = "/documentation/swagger";
+            public const string GraphQL = "/documentation/graphql";
+        }
+
+        /// <summary>
         /// Endpoint routes for authentication pages
         /// </summary>
         public static class Authentication
