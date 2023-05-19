@@ -50,13 +50,11 @@ internal class HttpInterceptorManager : IHttpInterceptorManager
                     {
                         case (int)HttpStatusCode.Unauthorized:
                             await ClearAuthorizationTokensAsync();
-                            LogAndNotify(problem);
                             break;
-                        case (int)HttpStatusCode.BadRequest:
                         default:
-                            LogAndNotify(problem);
                             break;
                     }
+                    LogAndNotify(problem);
                 }
             }
         }
