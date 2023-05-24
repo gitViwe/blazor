@@ -18,6 +18,8 @@ services:
     container_name: token-api
     environment:
         ASPNETCORE_ENVIRONMENT: Docker
+    ports:
+      - 5161:80
     depends_on:
       - mongo
       - jaeger
