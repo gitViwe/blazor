@@ -5,7 +5,7 @@ public class DefaultTheme : MudTheme
     public DefaultTheme()
     {
         // customize the theme palette
-        Palette = new Palette()
+        Palette = new PaletteLight()
         {
             Primary = Colors.DeepPurple.Default,
             Background = Colors.Grey.Lighten5,
