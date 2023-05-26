@@ -50,11 +50,12 @@ internal class HttpInterceptorManager : IHttpInterceptorManager
                     {
                         case (int)HttpStatusCode.Unauthorized:
                             await ClearAuthorizationTokensAsync();
+                            LogErrorsAndNotify(problem);
                             break;
                         default:
+                            LogErrors(problem);
                             break;
                     }
-                    LogAndNotify(problem);
                 }
             }
         }
@@ -75,15 +76,11 @@ internal class HttpInterceptorManager : IHttpInterceptorManager
         _interceptor.AfterSendAsync += InterceptAfterHttpAsync;
     }
 
-    private void LogAndNotify(IValidationProblemDetails problem)
+    private void LogErrorsAndNotify(IValidationProblemDetails problem)
     {
         var stringBuilder = new StringBuilder()
             .AppendLine()
-            .AppendLine($"Type    : {problem.Type}")
-            .AppendLine($"Title   : {problem.Title}")
-            .AppendLine($"Status  : {problem.Status}")
-            .AppendLine($"Detail  : {problem.Detail}")
-            .AppendLine($"Instance: {problem.Instance}")
+            .AppendLine(problem.ToString())
             .AppendLine($"Errors  : {problem.ErrorsToDebugString()}");
 
         if (!string.IsNullOrWhiteSpace(problem?.Detail))
@@ -92,7 +89,18 @@ internal class HttpInterceptorManager : IHttpInterceptorManager
         }
 
         // log errors
-        _logger.LogError("An error occurred while making a request to the API.{response}", stringBuilder.ToString());
+        _logger.LogWarning("An error occurred while making a request to the API.{response}", stringBuilder.ToString());
+    }
+
+    private void LogErrors(IValidationProblemDetails problem)
+    {
+        var stringBuilder = new StringBuilder()
+            .AppendLine()
+            .AppendLine(problem.ToString())
+            .AppendLine($"Errors  : {problem.ErrorsToDebugString()}");
+
+        // log errors
+        _logger.LogWarning("An error occurred while making a request to the API.{response}", stringBuilder.ToString());
     }
 
     private async Task ClearAuthorizationTokensAsync()

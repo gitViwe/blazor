@@ -15,7 +15,6 @@ public partial class LoginForm
     /// <summary>
     /// Processes a login attempt when form validation passes
     /// </summary>
-    /// <returns></returns>
     private async Task SubmitAsync()
     {
         IsProcessing = true;

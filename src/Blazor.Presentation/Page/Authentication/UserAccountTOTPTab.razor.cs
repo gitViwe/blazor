@@ -14,12 +14,12 @@ public partial class UserAccountTOTPTab
         IsProcessing = true;
 
         var result = await UserManager.GetQrCodeAsync();
+        Snackbar.Add(result.Message, result.Succeeded ? Severity.Success : Severity.Warning);
+
         if (result.Succeeded)
         {
             QrCodeImage = result.Data;
         }
-
-        Snackbar.Add(result.Message, result.Succeeded ? Severity.Success : Severity.Warning);
 
         IsProcessing = false;
     }
@@ -29,12 +29,13 @@ public partial class UserAccountTOTPTab
         IsProcessing = true;
 
         var result = await UserManager.VerifyTOTPAsync(TOTPVerifyModel);
+        Snackbar.Add(result.Message, result.Succeeded ? Severity.Success : Severity.Warning);
+
         if (result.Succeeded)
         {
             QrCodeImage = Asset.Image.TwoFactorAuthentication;
+            TOTPVerifyModel = new();
         }
-
-        Snackbar.Add(result.Message, result.Succeeded ? Severity.Success : Severity.Warning);
 
         IsProcessing = false;
     }

@@ -13,7 +13,12 @@ public static class EditContextFluentValidationExtensions
     private static readonly List<AssemblyScanResult> AssemblyScanResults = new();
     public const string PendingAsyncValidation = "AsyncValidationTask";
 
-    public static void AddFluentValidation(this EditContext editContext, IServiceProvider serviceProvider, bool disableAssemblyScanning, IValidator? validator, FluentValidationValidator fluentValidationValidator)
+    public static void AddFluentValidation(
+        this EditContext editContext,
+        IServiceProvider serviceProvider,
+        bool disableAssemblyScanning,
+        IValidator? validator,
+        FluentValidationValidator fluentValidationValidator)
     {
         ArgumentNullException.ThrowIfNull(editContext, nameof(editContext));
 
@@ -26,7 +31,8 @@ public static class EditContextFluentValidationExtensions
             async (_, eventArgs) => await ValidateField(editContext, messages, eventArgs.FieldIdentifier, serviceProvider, disableAssemblyScanning, validator);
     }
 
-    private static async Task ValidateModel(EditContext editContext,
+    private static async Task ValidateModel(
+        EditContext editContext,
         ValidationMessageStore messages,
         IServiceProvider serviceProvider,
         bool disableAssemblyScanning,
@@ -67,7 +73,8 @@ public static class EditContextFluentValidationExtensions
         }
     }
 
-    private static async Task ValidateField(EditContext editContext,
+    private static async Task ValidateField(
+        EditContext editContext,
         ValidationMessageStore messages,
         FieldIdentifier fieldIdentifier,
         IServiceProvider serviceProvider,
