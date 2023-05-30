@@ -4,13 +4,15 @@ public partial class FetchData : IDisposable
 {
     public void Dispose()
     {
-        HttpInterceptorManager.DisposeEvent();
+        HttpInterceptorService.DisposeEvent();
+        LocationChangedInterceptorService.DisposeEvent();
         GC.SuppressFinalize(this);
     }
 
     protected override Task OnInitializedAsync()
     {
-        HttpInterceptorManager.RegisterEvent();
+        HttpInterceptorService.RegisterEvent();
+        LocationChangedInterceptorService.RegisterEvent();
         return Task.CompletedTask;
     }
 }
