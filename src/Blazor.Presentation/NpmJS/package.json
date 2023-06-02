@@ -1,0 +1,28 @@
+{
+  "name": "npmjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run pack:index && npm run pack:otel",
+    "pack:index": "webpack ./src/index.ts --output-path ../wwwroot/js --output-filename index.bundle.js --mode production",
+    "pack:otel": "webpack --config webpack.config.js --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^9.4.3",
+    "typescript": "^5.0.4",
+    "webpack": "^5.84.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.39.1",
+    "@opentelemetry/resources": "^1.13.0",
+    "@opentelemetry/sdk-trace-web": "^1.13.0",
+    "@opentelemetry/semantic-conventions": "^1.13.0"
+  }
+}

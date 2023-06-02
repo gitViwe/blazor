@@ -1,10 +1,9 @@
 ﻿namespace Blazor.Pages;
 
-public partial class FetchData : IDisposable
+public partial class Counter : IDisposable
 {
     public void Dispose()
     {
-        HttpInterceptorService.DisposeEvent();
         LocationChangedInterceptorService.DisposeEvent();
         GC.SuppressFinalize(this);
     }
@@ -13,7 +12,6 @@ public partial class FetchData : IDisposable
     {
         if (firstRender)
         {
-            HttpInterceptorService.RegisterEvent();
             LocationChangedInterceptorService.RegisterEvent();
         }
         return base.OnAfterRenderAsync(firstRender);

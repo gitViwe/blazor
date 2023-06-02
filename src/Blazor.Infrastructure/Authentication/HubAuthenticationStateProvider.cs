@@ -21,7 +21,7 @@ internal class HubAuthenticationStateProvider : AuthenticationStateProvider
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
         // get the saved JWT token
-        var savedToken = await _storageService.GetAsync<string>(StorageKey.Local.AuthToken);
+        var savedToken = await _storageService.GetAsync<string>(StorageKey.Identity.AuthToken);
 
         if (string.IsNullOrWhiteSpace(savedToken))
         {
@@ -141,7 +141,7 @@ internal class HubAuthenticationStateProvider : AuthenticationStateProvider
             output.AddRange(claimsDictionary.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()!)));
         }
 
-        if (TryGetUserDetails(await _storageService.GetAsync<string>(StorageKey.Local.UserDetail), out var details))
+        if (TryGetUserDetails(await _storageService.GetAsync<string>(StorageKey.Identity.UserDetail), out var details))
         {
             output.AddRange(details);
         }

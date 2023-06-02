@@ -69,7 +69,7 @@ public partial class UserAccountTab
     {
         var userResponse = await UserManager.GetUserDetailAsync();
 
-        if (userResponse.Succeeded)
+        if (userResponse?.Data is not null && userResponse.Succeeded)
         {
             AvatarImage = userResponse.Data.ProfileImage.Image.Url;
             UserName = userResponse.Data.Username;

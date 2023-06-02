@@ -32,7 +32,7 @@ public partial class LoginForm
             var parameters = new Dictionary<string, string>();
             foreach (string key in query)
             {
-                parameters[key] = query[key];
+                parameters[key] = query[key]!;
             }
 
             if (parameters.TryGetValue("returnUrl", out var path) && !string.IsNullOrWhiteSpace(path))

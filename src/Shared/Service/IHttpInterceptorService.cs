@@ -1,9 +1,9 @@
-﻿namespace Shared.Manager;
+﻿namespace Shared.Service;
 
 /// <summary>
 /// Intercepts HTTP requests
 /// </summary>
-public interface IHttpInterceptorManager
+public interface IHttpInterceptorService
 {
     /// <summary>
     /// We remove the BeforeSendAsync and AfterSendAsync event subscription from the event handler

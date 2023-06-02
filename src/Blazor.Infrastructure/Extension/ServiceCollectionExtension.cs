@@ -20,7 +20,9 @@ internal static class ServiceCollectionExtension
     {
         services.AddSingleton<HubToggleVisibility>();
         services.AddSingleton<IStorageService, LocalStorageService>();
-        services.AddTransient<IHttpInterceptorManager, HttpInterceptorManager>();
+        services.AddSingleton<IOpenTelemetryService, OpenTelemetryService>();
+        services.AddTransient<IHttpInterceptorService, HttpInterceptorService>();
+        services.AddTransient<ILocationChangedInterceptorService, LocationChangedInterceptorService>();
 
         return services;
     }

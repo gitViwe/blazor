@@ -5,7 +5,7 @@ namespace Blazor.Presentation.Page.FetchData;
 
 public partial class HubSuperHeroTable
 {
-    [Parameter, EditorRequired] public Func<IPaginatedRequest, Task<PaginatedResponse<SuperHeroResponse>>> PaginatedDataSource { get; set; }
+    [Parameter, EditorRequired] public required Func<IPaginatedRequest, Task<PaginatedResponse<SuperHeroResponse>>> PaginatedDataSource { get; set; }
 
     private bool _dense = true;
     private bool _striped = true;

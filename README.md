@@ -13,6 +13,7 @@ To get a local copy up and running follow these simple example steps.
 Things you need to use the software and how to install them.
 * [Visual Studio / Visual Studio Code](https://visualstudio.microsoft.com/)
 * [.NET 7](https://dotnet.microsoft.com/en-us/download/dotnet)
+* [Node.js v18.16.0](https://nodejs.org/en/download)
 * [Docker](https://www.docker.com/)
 
 ### Installation

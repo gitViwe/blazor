@@ -5,22 +5,22 @@ using System.Net.Http.Json;
 using System.Text;
 using Toolbelt.Blazor;
 
-namespace Blazor.Infrastructure.Manager;
+namespace Blazor.Infrastructure.Service;
 
-internal class HttpInterceptorManager : IHttpInterceptorManager
+internal class HttpInterceptorService : IHttpInterceptorService
 {
     private readonly HttpClientInterceptor _interceptor;
     private readonly HubAuthenticationStateProvider _stateProvider;
     private readonly IStorageService _storageService;
     private readonly ISnackbar _snackbar;
-    private readonly ILogger<HttpInterceptorManager> _logger;
+    private readonly ILogger<HttpInterceptorService> _logger;
 
-    public HttpInterceptorManager(
+    public HttpInterceptorService(
         HttpClientInterceptor interceptor,
         HubAuthenticationStateProvider stateProvider,
         IStorageService storageService,
         ISnackbar snackbar,
-        ILogger<HttpInterceptorManager> logger)
+        ILogger<HttpInterceptorService> logger)
     {
         _interceptor = interceptor;
         _stateProvider = stateProvider;
@@ -105,8 +105,8 @@ internal class HttpInterceptorManager : IHttpInterceptorManager
 
     private async Task ClearAuthorizationTokensAsync()
     {
-        await _storageService.RemoveAsync(StorageKey.Local.AuthToken);
-        await _storageService.RemoveAsync(StorageKey.Local.AuthRefreshToken);
+        await _storageService.RemoveAsync(StorageKey.Identity.AuthToken);
+        await _storageService.RemoveAsync(StorageKey.Identity.AuthRefreshToken);
         _stateProvider.MarkUserAsLoggedOut();
     }
 }
