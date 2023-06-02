@@ -6,15 +6,18 @@ namespace Blazor.Infrastructure.MessageHandler;
 internal class AuthenticatedRequestMessageHandler : DelegatingHandler
 {
     private readonly IStorageService _storageService;
+    private readonly IOpenTelemetryService _openTelemetry;
     private readonly HubAuthenticationStateProvider _stateProvider;
     private readonly AuthenticationTokenManager _tokenManager;
 
     public AuthenticatedRequestMessageHandler(
         IStorageService storageService,
+        IOpenTelemetryService openTelemetry,
         HubAuthenticationStateProvider stateProvider,
         AuthenticationTokenManager tokenManager)
     {
         _storageService = storageService;
+        _openTelemetry = openTelemetry;
         _stateProvider = stateProvider;
         _tokenManager = tokenManager;
     }
@@ -24,6 +27,7 @@ internal class AuthenticatedRequestMessageHandler : DelegatingHandler
             CancellationToken cancellationToken)
     {
         await RefreshAuthenticationHeaderAsync(request, cancellationToken);
+        await AddPropagationHeadersAsync(request);
 
         return await base.SendAsync(request, cancellationToken);
     }
@@ -48,13 +52,31 @@ internal class AuthenticatedRequestMessageHandler : DelegatingHandler
                 }
 
                 // get the saved JWT token
-                var savedToken = await _storageService.GetAsync<string>(StorageKey.Local.AuthToken, cancellationToken);
+                var savedToken = await _storageService.GetAsync<string>(StorageKey.Identity.AuthToken, cancellationToken);
 
                 if (!string.IsNullOrWhiteSpace(savedToken))
                 {
                     // use the saved token as the authorization header value
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
                 }
+            }
+        }
+    }
+
+    private async Task AddPropagationHeadersAsync(HttpRequestMessage request)
+    {
+        var context = await _openTelemetry.GetContextResponseAsync();
+
+        if (context?.TraceContext is not null)
+        {
+            if (!string.IsNullOrWhiteSpace(context.TraceContext.Traceparent))
+            {
+                request.Headers.Add(nameof(context.TraceContext.Traceparent), context.TraceContext.Traceparent);
+            }
+
+            if (!string.IsNullOrWhiteSpace(context.TraceContext.Tracestate))
+            {
+                request.Headers.Add(nameof(context.TraceContext.Tracestate), context.TraceContext.Tracestate);
             }
         }
     }

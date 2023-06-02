@@ -5,12 +5,17 @@ public partial class Account : IDisposable
     public void Dispose()
     {
         HttpInterceptorService.DisposeEvent();
+        LocationChangedInterceptorService.DisposeEvent();
         GC.SuppressFinalize(this);
     }
 
-    protected override Task OnInitializedAsync()
+    protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        HttpInterceptorService.RegisterEvent();
-        return Task.CompletedTask;
+        if (firstRender)
+        {
+            HttpInterceptorService.RegisterEvent();
+            LocationChangedInterceptorService.RegisterEvent();
+        }
+        return base.OnAfterRenderAsync(firstRender);
     }
 }

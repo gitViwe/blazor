@@ -4,9 +4,6 @@ namespace Shared.Contract.OpenTelemetry;
 
 public class StartSpanEventRequest
 {
-    [JsonPropertyName("isNewContext")]
-    public bool IsNewContext { get; set; }
-
     [JsonPropertyName("spanName")]
     public required string SpanName { get; set; }
     
@@ -27,6 +24,9 @@ public class StartSpanEventRequest
 
     [JsonPropertyName("parentSpanContext")]
     public SpanContext? ParentSpanContext { get; set; }
+
+    [JsonPropertyName("traceContext")]
+    public TraceContext? TraceContext { get; set; }
 }
 
 public class StartSpanExceptionRequest
@@ -51,15 +51,27 @@ public class StartSpanExceptionRequest
 
     [JsonPropertyName("parentSpanContext")]
     public SpanContext? ParentSpanContext { get; set; }
+
+    [JsonPropertyName("traceContext")]
+    public TraceContext? TraceContext { get; set; }
 }
 
-public class TraceContextPropagation
+public class ContextResponse
+{
+    [JsonPropertyName("spanContext")]
+    public SpanContext? SpanContext { get; set; }
+
+    [JsonPropertyName("traceContext")]
+    public TraceContext? TraceContext { get; set; }
+}
+
+public class TraceContext
 {
     [JsonPropertyName("traceparent")]
-    public required string Traceparent { get; set; }
+    public string Traceparent { get; set; } = string.Empty;
 
     [JsonPropertyName("tracestate")]
-    public required string Tracestate { get; set; }
+    public string Tracestate { get; set; } = string.Empty;
 }
 
 public record SpanContext

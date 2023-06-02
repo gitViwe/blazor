@@ -11,19 +11,19 @@ public interface IOpenTelemetryService
     /// Creates a new span and logs an event
     /// </summary>
     /// <param name="request">The arguments used to create the span</param>
-    /// <returns>A <see cref="SpanContext"/> representing the completed span</returns>
-    ValueTask<SpanContext> StartSpanEventAsync(StartSpanEventRequest request);
+    /// <returns>A <see cref="ContextResponse"/> representing the completed span</returns>
+    Task<ContextResponse> StartSpanEventAsync(StartSpanEventRequest request);
 
     /// <summary>
     /// Creates a new span and logs an exception
     /// </summary>
     /// <param name="request">The arguments used to create the span</param>
-    /// <returns>A <see cref="SpanContext"/> representing the completed span</returns>
-    ValueTask<SpanContext> StartSpanExceptionAsync(StartSpanExceptionRequest request);
+    /// <returns>A <see cref="ContextResponse"/> representing the completed span</returns>
+    Task<ContextResponse> StartSpanExceptionAsync(StartSpanExceptionRequest request);
 
     /// <summary>
-    /// You can then pass the trace parent and trace state data to the HTTP headers to propagate across services
+    /// Get the span and trace context
     /// </summary>
-    /// <returns>A <see cref="TraceContextPropagation"/> containing the trace propagating values</returns>
-    ValueTask<TraceContextPropagation> GetTraceContextPropagationAsync();
+    /// <returns>A <see cref="ContextResponse"/> representing the previously completed span</returns>
+    Task<ContextResponse> GetContextResponseAsync();
 }

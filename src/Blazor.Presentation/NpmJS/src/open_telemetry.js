@@ -1,60 +1,70 @@
-import opentelemetry, { propagation } from "@opentelemetry/api";
+import opentelemetry from "@opentelemetry/api";
 var tracer = opentelemetry.trace.getTracer('blazor-wasm-client');
 var startSpanEvent = function (request) {
-    // output value
-    var ctx;
+    // output values
+    var spanContext;
+    var traceContext;
     // resolve span options
     var spanOption = request.parentSpanContext
         ? { kind: request.spanKind, attributes: request.spanAttributes, links: [{ context: request.parentSpanContext }] }
         : { kind: request.spanKind, attributes: request.spanAttributes };
-    // resolve span context
-    var span = request.isNewContext
-        ? tracer.startSpan(request.spanName, spanOption)
-        : tracer.startSpan(request.spanName, spanOption, opentelemetry.context.active());
-    if (request.isNewContext) {
+    // create span
+    var span = tracer.startSpan(request.spanName, spanOption);
+    if (request.traceContext) {
+        traceContext = request.traceContext;
+    }
+    else {
         // mark the current span as the active span in the context
-        opentelemetry.trace.setSpan(opentelemetry.context.active(), span);
+        var ctx = opentelemetry.trace.setSpan(opentelemetry.context.active(), span);
+        traceContext = getTraceContext(ctx);
     }
     // start span event
     span.addEvent(request.spanEventName, request.spanEventAttributes);
     // set span status
     span.setStatus(request.spanStatus);
     // set output value
-    ctx = span.spanContext();
+    spanContext = span.spanContext();
     // ensure span is ended!
     span.end();
-    return ctx;
+    return { spanContext: spanContext, traceContext: traceContext };
 };
 var startSpanException = function (request) {
-    // output value
-    var ctx;
+    // output values
+    var spanContext;
+    var traceContext;
     // resolve span options
     var spanOption = request.parentSpanContext
         ? { kind: request.spanKind, attributes: request.spanAttributes, links: [{ context: request.parentSpanContext }] }
         : { kind: request.spanKind, attributes: request.spanAttributes };
-    // resolve span context
-    var span = request.isNewContext
-        ? tracer.startSpan(request.spanName, spanOption)
-        : tracer.startSpan(request.spanName, spanOption, opentelemetry.context.active());
-    if (request.isNewContext) {
+    // create span
+    var span = tracer.startSpan(request.spanName, spanOption);
+    if (request.traceContext) {
+        traceContext = request.traceContext;
+    }
+    else {
         // mark the current span as the active span in the context
-        opentelemetry.trace.setSpan(opentelemetry.context.active(), span);
+        var ctx = opentelemetry.trace.setSpan(opentelemetry.context.active(), span);
+        traceContext = getTraceContext(ctx);
     }
     // record span exception
     span.recordException(request.spanException);
     // set span status
     span.setStatus(request.spanStatus);
     // set output value
-    ctx = span.spanContext();
+    spanContext = span.spanContext();
     // ensure span is ended!
     span.end();
-    // return output
-    return ctx;
+    return { spanContext: spanContext, traceContext: traceContext };
 };
-var getTraceContextPropagation = function () {
+var getTraceContext = function (context) {
     var output;
     // Serialize the traceparent and tracestate from context into an output object.
-    propagation.inject(opentelemetry.context.active(), output);
+    opentelemetry.propagation.inject(context, output);
+    if (output == undefined) {
+        var span = opentelemetry.trace.getSpan(context);
+        var spanContext = span.spanContext();
+        output = { traceparent: "00-".concat(spanContext.traceId, "-").concat(spanContext.spanId, "-").concat(String(spanContext.traceFlags).padStart(2, '0')), tracestate: '' };
+    }
     // You can then pass the traceparent and tracestate
     // data to whatever mechanism you use to propagate
     // across services.
@@ -63,7 +73,6 @@ var getTraceContextPropagation = function () {
 // assign functions
 window.OpenTelemetry = {
     StartSpanEvent: startSpanEvent,
-    StartSpanException: startSpanException,
-    GetTraceContextPropagation: getTraceContextPropagation
+    StartSpanException: startSpanException
 };
 //# sourceMappingURL=open_telemetry.js.map

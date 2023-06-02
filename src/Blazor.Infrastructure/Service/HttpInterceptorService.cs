@@ -105,8 +105,8 @@ internal class HttpInterceptorService : IHttpInterceptorService
 
     private async Task ClearAuthorizationTokensAsync()
     {
-        await _storageService.RemoveAsync(StorageKey.Local.AuthToken);
-        await _storageService.RemoveAsync(StorageKey.Local.AuthRefreshToken);
+        await _storageService.RemoveAsync(StorageKey.Identity.AuthToken);
+        await _storageService.RemoveAsync(StorageKey.Identity.AuthRefreshToken);
         _stateProvider.MarkUserAsLoggedOut();
     }
 }

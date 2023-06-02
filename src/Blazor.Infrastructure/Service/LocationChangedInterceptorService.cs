@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Shared.Contract.OpenTelemetry;
+using Shared.Route;
 
 namespace Blazor.Infrastructure.Service;
 
@@ -28,19 +29,41 @@ internal class LocationChangedInterceptorService : ILocationChangedInterceptorSe
     private async void LocationChangedAsync(object? sender, LocationChangedEventArgs e)
     {
         string navigationMethod = e.IsNavigationIntercepted ? "HTML" : "code";
-        var context = await _openTelemetry.StartSpanEventAsync(new()
+        var context = await _openTelemetry.GetContextResponseAsync();
+        await _openTelemetry.StartSpanEventAsync(new()
         {
-            SpanEventName = "Client navigation event",
             SpanKind = SpanKind.CLIENT,
-            SpanName = $"Notified of navigation via {navigationMethod} to {e.Location}",
+            SpanName = GetPageRouteName(e.Location),
             SpanStatus = new(SpanStatusCode.UNSET, null),
-            IsNewContext = true,
+            SpanEventName = $"Blazor UI navigation via {navigationMethod} to [{GetPageRouteName(e.Location)}]",
             SpanEventAttributes = new()
             {
                 { nameof(e.Location), e.Location },
                 { nameof(e.IsNavigationIntercepted), e.IsNavigationIntercepted },
                 { nameof(e.HistoryEntryState), e.HistoryEntryState }
             },
+            ParentSpanContext = context.SpanContext,
         });
     }
+
+    private static string GetPageRouteName(string location)
+    {
+        var uri = new Uri(location);
+        return PageRouteMapper.TryGetValue(uri.PathAndQuery, out var route)
+            ? route : "undefined";
+    }
+
+    private static Dictionary<string, string> PageRouteMapper = new()
+    {
+        { BlazorClient.Pages.Authentication.Account, "Account"},
+        { BlazorClient.Pages.Authentication.Login, "Login"},
+        { BlazorClient.Pages.Authentication.Register, "Register"},
+
+        { BlazorClient.Pages.DefaultExamples.Counter, "Counter"},
+        { BlazorClient.Pages.DefaultExamples.FetchData, "Fetch Data"},
+        { BlazorClient.Pages.DefaultExamples.Home, "Home"},
+
+        { BlazorClient.Pages.Documentation.GraphQL, "GraphQL"},
+        { BlazorClient.Pages.Documentation.Swagger, "Swagger"},
+    };
 }

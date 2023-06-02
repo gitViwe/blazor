@@ -38,7 +38,7 @@ public interface IHubUserManager
     Task<IResponse> RegisterAsync(RegisterRequest request);
 
     /// <summary>
-    /// Gets a QR code image to set up TOTP and stores it in local storage using the key <seealso cref="Constant.StorageKey.Local.QrCodeImage"/>
+    /// Gets a QR code image to set up TOTP and stores it in local storage using the key <seealso cref="Constant.StorageKey.Identity.QrCodeImage"/>
     /// </summary>
     /// <returns>The response message</returns>
     Task<IBlazorResponse> GetQrCodeAsync();

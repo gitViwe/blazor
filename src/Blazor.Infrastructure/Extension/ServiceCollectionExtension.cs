@@ -6,7 +6,6 @@ using FluentValidation;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shared.Contract.OpenTelemetry;
 using System.Reflection;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
@@ -20,7 +19,6 @@ internal static class ServiceCollectionExtension
     internal static IServiceCollection RegisterClientServices(this IServiceCollection services)
     {
         services.AddSingleton<HubToggleVisibility>();
-        services.AddScoped<SpanContext>();
         services.AddSingleton<IStorageService, LocalStorageService>();
         services.AddSingleton<IOpenTelemetryService, OpenTelemetryService>();
         services.AddTransient<IHttpInterceptorService, HttpInterceptorService>();
