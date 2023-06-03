@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# NPM packages
+/src/Blazor.Presentation/NpmJS/src/*.js
+/src/Blazor.Presentation/NpmJS/src/*.map
