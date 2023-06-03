@@ -351,4 +351,4 @@ MigrationBackup/
 
 # NPM packages
 /src/Blazor.Presentation/NpmJS/src/*.js
-/src/Blazor.Presentation/NpmJS/src/*.map
+/src/Blazor.Presentation/NpmJS/src/*.js.map
