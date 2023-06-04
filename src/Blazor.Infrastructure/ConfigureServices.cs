@@ -13,4 +13,9 @@ public static class ConfigureServices
             .RegisterClientAuthorization()
             .RegisterFluentValidator();
     }
+
+    public static async Task UseInfrastructureServicesAsync(this IServiceProvider serviceProvider)
+    {
+        await serviceProvider.UseOpenTelemetryAsync();
+    }
 }

@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Dockerfile" />
-    <None Remove="nginx.conf" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Dockerfile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -35,6 +30,18 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\HubTest.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Shared\HubTest.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\HubTest.razor" />
   </ItemGroup>
 
 </Project>

@@ -17,4 +17,9 @@ public static class ConfigureServices
         })
         .ConfigureInfrastructureServices(configuration);
     }
+
+    public static async Task UsePresentationServicesAsync(this IServiceProvider serviceProvider)
+    {
+        await serviceProvider.UseInfrastructureServicesAsync();
+    }
 }

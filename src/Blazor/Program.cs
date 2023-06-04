@@ -9,4 +9,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.ConfigurePresentationServices(builder.Configuration);
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+await app.Services.UsePresentationServicesAsync();
+
+await app.RunAsync();
