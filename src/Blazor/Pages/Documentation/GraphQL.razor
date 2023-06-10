@@ -33,10 +33,34 @@
                            Variant="Variant.Filled"
                            Color="Color.Tertiary"
                            StartIcon="@CustomIcon.GraphQL"
-                           Disabled="true"
                            Href="@GetGraphQLEndpoint(configuration)">
                     Open in new tab
                 </MudButton>
+            </MudStack>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" md="12">
+            <MudStack Row="true" Justify="Justify.Center">
+                <MudExpansionPanels Style="width: 100%;">
+                    <MudExpansionPanel Text="What is Banana Cake Pop?">
+                        <MudText Typo="Typo.body1">
+                            Banana Cake Pop is a tool for developers that enables effortless execution of GraphQL queries and mutations, with visual schema exploration.
+                            Here is an overview of how to use the <MudLink Target="_blank" Href="https://chillicream.com/docs/bananacakepop/v2/getting-started/#your-first-query" Color="Color.Tertiary">Banana Cake Pop IDE</MudLink>.
+                        </MudText>
+                    </MudExpansionPanel>
+                    <MudExpansionPanel Text="Execute queries, mutations and subscriptions.">
+                        <MudText Typo="Typo.body1">
+                            You can find some graph queries in the folder
+                            <MudLink Target="_blank" Href="https://github.com/gitViwe/GraphQL/tree/main/graphql" Color="Color.Tertiary">graphql/query</MudLink>.
+                        </MudText>
+                    </MudExpansionPanel>
+                    <MudExpansionPanel Text="Authentication">
+                        <MudText Typo="Typo.body1">
+                            Remember to add the JWT token to the HTTP header <MudText Typo="Typo.caption">'Authorization'</MudText> for the GraphQL requests.
+                            You can get one from the <MudLink Target="_blank" Href="@GetSwaggerEndpoint(configuration)" Color="Color.Tertiary">Swagger Documentation</MudLink> for the API.
+                        </MudText>
+                    </MudExpansionPanel>
+                </MudExpansionPanels>
             </MudStack>
         </MudItem>
 

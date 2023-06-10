@@ -13,5 +13,6 @@ public static class ConfigurationKey
         public const string Secret = "APIConfiguration:Secret";
         public const string ClientUrl = "APIConfiguration:ClientUrl";
         public const string ServerUrl = "APIConfiguration:ServerUrl";
+        public const string GraphUrl = "APIConfiguration:GraphUrl";
     }
 }

@@ -20,6 +20,11 @@ public partial class GraphQL : IDisposable
     }
     private static string GetGraphQLEndpoint(IConfiguration configuration)
     {
-        return configuration[ConfigurationKey.API.ServerUrl] + "/graphql";
+        return configuration[ConfigurationKey.API.GraphUrl] + "/graphql";
+    }
+
+    private static string GetSwaggerEndpoint(IConfiguration configuration)
+    {
+        return configuration[ConfigurationKey.API.ServerUrl] + "/swagger";
     }
 }
