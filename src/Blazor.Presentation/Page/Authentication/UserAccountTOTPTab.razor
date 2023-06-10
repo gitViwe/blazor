@@ -1,26 +1,23 @@
 ﻿
 <MudItem sm="12">
-    <MudPaper Style="height: 100%">
-        <MudStack AlignItems="AlignItems.Center">
+    <MudStack AlignItems="AlignItems.Center">
 
-            <MudImage Fluid="true"
-                      Src="@QrCodeImage"
-                      Width="250"
-                      Height="250"
-                      Alt="QRCode Image"
-                      Class="rounded-lg ma-4" />
+        <MudImage Fluid="true"
+                  Src="@QrCodeImage"
+                  Width="250"
+                  Height="250"
+                  Alt="QRCode Image"
+                  Class="rounded-lg ma-4" />
 
-            <MudButton Target="_blank"
-                       Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       Class="mb-4"
-                       StartIcon="@Icons.Material.Filled.QrCode"
-                       OnClick="GetQrAsync">
-                Request New QR Code
-            </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Class="mb-4"
+                   StartIcon="@Icons.Material.Filled.QrCode"
+                   OnClick="GetQrAsync">
+            Request New QR Code
+        </MudButton>
 
-        </MudStack>
-    </MudPaper>
+    </MudStack>
 </MudItem>
 
 <MudItem sm="12">

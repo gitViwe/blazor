@@ -78,29 +78,19 @@ internal class HttpInterceptorService : IHttpInterceptorService
 
     private void LogErrorsAndNotify(IValidationProblemDetails problem)
     {
-        var stringBuilder = new StringBuilder()
-            .AppendLine()
-            .AppendLine(problem.ToString())
-            .AppendLine($"Errors  : {problem.ErrorsToDebugString()}");
-
         if (!string.IsNullOrWhiteSpace(problem?.Detail))
         {
             _snackbar.Add(problem?.Detail, Severity.Warning);
         }
 
         // log errors
-        _logger.LogWarning("An error occurred while making a request to the API.{response}", stringBuilder.ToString());
+        _logger.LogWarning("An error occurred while making a request to the API.{response}", problem?.ToString());
     }
 
     private void LogErrors(IValidationProblemDetails problem)
     {
-        var stringBuilder = new StringBuilder()
-            .AppendLine()
-            .AppendLine(problem.ToString())
-            .AppendLine($"Errors  : {problem.ErrorsToDebugString()}");
-
         // log errors
-        _logger.LogWarning("An error occurred while making a request to the API.{response}", stringBuilder.ToString());
+        _logger.LogWarning("An error occurred while making a request to the API.{response}", problem?.ToString());
     }
 
     private async Task ClearAuthorizationTokensAsync()
