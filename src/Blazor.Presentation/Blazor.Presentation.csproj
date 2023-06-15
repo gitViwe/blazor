@@ -12,10 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.5" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.0.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.8" />
   </ItemGroup>
 
@@ -23,7 +19,7 @@
     <ProjectReference Include="..\Blazor.Infrastructure\Blazor.Infrastructure.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Development' ">
     <Exec Command="npm install" WorkingDirectory="NpmJS" />
     <Exec Command="npm run build" WorkingDirectory="NpmJS" />
   </Target>
