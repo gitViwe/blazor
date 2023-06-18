@@ -30,10 +30,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          working-directory: ./src//Blazor.Presentation/NpmJS
-          run: |
-              npm install
-              npm run build
+
+      - name: Install modules
+        working-directory: ./src/Blazor.Presentation/NpmJS
+        run: npm install
+
+      - name: Run Webpack
+        working-directory: ./src/Blazor.Presentation/NpmJS
+        run: npm run build
 
       # Configure NET 7
       - name: Set up .NET Core
