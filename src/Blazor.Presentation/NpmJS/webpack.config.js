@@ -1,12 +1,16 @@
 const path = require('path');
 
-module.exports = {
-    entry : "./src/open_telemetry.ts",
-    output : {
+module.exports = (env) => {
+    return {
+      entry: {
+        index: env.IsLocal ? './src/index.local.ts' : './src/index.ts',
+        open_telemetry: './src/open_telemetry.ts',
+      },
+      output : {
         path: path.resolve(__dirname, "../wwwroot/js"),
-        filename: "open_telemetry.bundle.js"
-    },
-    module: {
+        filename: "[name].bundle.js"
+      },
+      module: {
         rules: [
           {
             test: /\.tsx?$/,
@@ -14,8 +18,9 @@ module.exports = {
             exclude: /node_modules/,
           },
         ],
-    },
-    resolve: {
+      },
+      resolve: {
         extensions: ['.tsx', '.ts', '.js'],
-    }
+      }
+  }
 };

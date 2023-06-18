@@ -25,6 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      # Configure Node
+      - name: Set up NodeJS
+        uses: actions/setup-node@v3
+        working-directory: ./src//Blazor.Presentation/NpmJS
+        with:
+          node-version: 18
+        - run: npm install
+        - run: npm run build
+
       # Configure NET 7
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v3

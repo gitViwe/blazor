@@ -19,9 +19,4 @@
     <ProjectReference Include="..\Blazor.Infrastructure\Blazor.Infrastructure.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(ASPNETCORE_ENVIRONMENT)' == 'Development' ">
-    <Exec Command="npm install" WorkingDirectory="NpmJS" />
-    <Exec Command="npm run build" WorkingDirectory="NpmJS" />
-  </Target>
-
 </Project>
