@@ -17,7 +17,7 @@ const provider = new WebTracerProvider({
     resource: resource,
 });
 const exporterOptions : OTLPExporterNodeConfigBase = {
-  url: "https://api.honeycomb.io",
+  url: "https://api.honeycomb.io/v1/traces/",
   headers: { "x-honeycomb-team": "tsxxsanWhgi3YmHQer4zSC" },
 }
 const otlpExporter = new OTLPTraceExporter(exporterOptions);
