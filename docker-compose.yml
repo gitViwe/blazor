@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   blazor-wasm:
-    image: hubviwe/blazor.wasm:1.0.0
+    image: hubviwe/blazor.wasm:1.0.1
     container_name: blazor-wasm
     build:
         context: src/

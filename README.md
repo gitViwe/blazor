@@ -28,6 +28,10 @@ Things you need to use the software and how to install them.
    ```
 3. Run via Visual Studio / Visual Studio Code
    ```
+   cd src/Blazor.Presentation/NpmJS
+   npm install
+   npm run build_local
+   
    docker compose --file docker-compose.development.yml up -d
    cd src/Blazor
    dotnet run
