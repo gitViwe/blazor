@@ -3,17 +3,15 @@ version: "3.9"
 services:
 
   graphql-api:
-    image: hubviwe/graphql.api:1.0.1
+    image: hubviwe/graphql.api:1.0.2
     restart: on-failure
     environment:
         ASPNETCORE_ENVIRONMENT: Docker
     ports:
       - 5192:80
-    depends_on:
-      - postgres
 
   token-api:
-    image: hubviwe/jwtauthentication.token.api:1.0.7
+    image: hubviwe/jwtauthentication.token.api:1.0.8
     container_name: token-api
     restart: on-failure
     environment:
@@ -23,17 +21,6 @@ services:
     depends_on:
       - mongo
       - jaeger
-
-  postgres:
-    image: postgres
-    hostname: postgres
-    container_name: postgres
-    restart: always
-    ports:
-      - 5432:5432
-    environment:
-        POSTGRES_USER: user
-        POSTGRES_PASSWORD: pass
 
   mongo:
     image: mongo
@@ -45,7 +32,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
 
   jaeger:
-    image: jaegertracing/all-in-one:1
+    image: jaegertracing/all-in-one
     hostname: jaeger
     container_name: jaeger
     environment:
