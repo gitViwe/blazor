@@ -15,18 +15,55 @@ public class OpenTelemetryService : IOpenTelemetryService
         _storage = storage;
     }
 
-    public async Task<ContextResponse> StartSpanEventAsync(StartSpanEventRequest request)
+    public async Task StartSpanEventAsync(string spanName, string eventName)
     {
+        var context = await GetContextResponseAsync();
+
+        var request = new StartSpanEventRequest()
+        {
+            SpanName = spanName,
+            SpanEventName = eventName,
+            ParentSpanContext = context.SpanContext,
+        };
+
         var response = await _runtime.InvokeAsync<ContextResponse>("OpenTelemetry.StartSpanEvent", request);
         await SetContextResponseAsync(response);
-        return response;
     }
 
-    public async Task<ContextResponse> StartSpanExceptionAsync(StartSpanExceptionRequest request)
+    public async Task StartSpanExceptionAsync(string spanName, string exceptionCode, Exception exception, string? spanStatusMessage = null)
     {
+        var context = await GetContextResponseAsync();
+
+        var request = new StartSpanExceptionRequest()
+        {
+            SpanName = spanName,
+            SpanException = new SpanException(
+                Code: exceptionCode,
+                Message: exception.Message,
+                Name: exception.Source,
+                StackTrace: exception.StackTrace),
+            SpanStatus = new(SpanStatusCode.ERROR, spanStatusMessage),
+            ParentSpanContext = context.SpanContext,
+        };
+
         var response = await _runtime.InvokeAsync<ContextResponse>("OpenTelemetry.StartSpanException", request);
         await SetContextResponseAsync(response);
-        return response;
+    }
+
+    public async Task StartSpanEventAsync(string spanName, string eventName, Dictionary<string, object?> eventTags)
+    {
+        var context = await GetContextResponseAsync();
+
+        var request = new StartSpanEventRequest()
+        {
+            SpanName = spanName,
+            SpanEventName = eventName,
+            SpanEventAttributes = eventTags,
+            ParentSpanContext = context.SpanContext,
+        };
+
+        var response = await _runtime.InvokeAsync<ContextResponse>("OpenTelemetry.StartSpanEvent", request);
+        await SetContextResponseAsync(response);
     }
 
     public async Task<ContextResponse> GetContextResponseAsync()

@@ -16,8 +16,8 @@ processors:
    timeout: 1s
  resource:
    attributes:
-     - key: test.key
-       value: "test-value"
+     - key: blazor-otlp-collector
+       value: "this value is from the otlp collector config file"
        action: insert
 
 exporters:

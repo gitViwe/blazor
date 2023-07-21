@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --mode production",
-    "build_local": "webpack --config webpack.config.js --env IsLocal --mode production"
+    "build_local": "webpack --config webpack.config.js --env IsLocal --mode development"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
-using Shared.Contract.OpenTelemetry;
 using Shared.Route;
 
 namespace Blazor.Infrastructure.Service;
@@ -29,21 +28,15 @@ internal class LocationChangedInterceptorService : ILocationChangedInterceptorSe
     private async void LocationChangedAsync(object? sender, LocationChangedEventArgs e)
     {
         string navigationMethod = e.IsNavigationIntercepted ? "HTML" : "code";
-        var context = await _openTelemetry.GetContextResponseAsync();
-        await _openTelemetry.StartSpanEventAsync(new()
-        {
-            SpanKind = SpanKind.CLIENT,
-            SpanName = GetPageRouteName(e.Location),
-            SpanStatus = new(SpanStatusCode.UNSET, null),
-            SpanEventName = $"Blazor UI navigation via {navigationMethod} to [{GetPageRouteName(e.Location)}]",
-            SpanEventAttributes = new()
+        await _openTelemetry.StartSpanEventAsync(
+            spanName: "Page Navigation",
+            eventName: $"Blazor UI navigation via {navigationMethod} to the [{GetPageRouteName(e.Location)}] page.",
+            eventTags: new()
             {
                 { nameof(e.Location), e.Location },
                 { nameof(e.IsNavigationIntercepted), e.IsNavigationIntercepted },
                 { nameof(e.HistoryEntryState), e.HistoryEntryState }
-            },
-            ParentSpanContext = context.SpanContext,
-        });
+            });
     }
 
     private static string GetPageRouteName(string location)
@@ -53,7 +46,7 @@ internal class LocationChangedInterceptorService : ILocationChangedInterceptorSe
             ? route : "undefined";
     }
 
-    private static Dictionary<string, string> PageRouteMapper = new()
+    private static readonly Dictionary<string, string> PageRouteMapper = new()
     {
         { BlazorClient.Pages.Authentication.Account, "Account"},
         { BlazorClient.Pages.Authentication.Login, "Login"},

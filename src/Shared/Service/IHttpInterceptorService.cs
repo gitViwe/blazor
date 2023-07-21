@@ -15,5 +15,7 @@ public interface IHttpInterceptorService
     /// This means, before the HTTP request is sent, it is intercepted and the an event is fired<br></br>
     /// and after the HTTP request is sent, it is intercepted and the an event is fired
     /// </summary>
-    void RegisterEvent();
+    /// <param name="interceptBeforeHttpTask">The method to invoke after intercepting the BeforeSendAsync event</param>
+    /// <param name="interceptAfterHttpTask">The method to invoke after intercepting the AfterSendAsync event</param>
+    void RegisterEvent(Func<Task>? interceptBeforeHttpTask = null, Func<IValidationProblemDetails, Task>? interceptAfterHttpTask = null);
 }

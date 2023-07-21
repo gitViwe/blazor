@@ -13,7 +13,7 @@ public partial class FetchData : IDisposable
     {
         if (firstRender)
         {
-            HttpInterceptorService.RegisterEvent();
+            HttpInterceptorService.RegisterEvent(interceptAfterHttpTask: problem => Snackbar.AddWarningAsync(problem.Detail));
             LocationChangedInterceptorService.RegisterEvent();
         }
         return base.OnAfterRenderAsync(firstRender);

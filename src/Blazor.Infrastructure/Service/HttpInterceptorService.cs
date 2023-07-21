@@ -2,7 +2,6 @@
 using Shared.Contract.ProblemDetail;
 using System.Net;
 using System.Net.Http.Json;
-using System.Text;
 using Toolbelt.Blazor;
 
 namespace Blazor.Infrastructure.Service;
@@ -12,8 +11,9 @@ internal class HttpInterceptorService : IHttpInterceptorService
     private readonly HttpClientInterceptor _interceptor;
     private readonly HubAuthenticationStateProvider _stateProvider;
     private readonly IStorageService _storageService;
-    private readonly ISnackbar _snackbar;
     private readonly ILogger<HttpInterceptorService> _logger;
+    public Func<Task>? InterceptBeforeHttpTask { get; private set; }
+    public Func<IValidationProblemDetails, Task>? InterceptAfterHttpTask { get; private set; }
 
     public HttpInterceptorService(
         HttpClientInterceptor interceptor,
@@ -25,16 +25,25 @@ internal class HttpInterceptorService : IHttpInterceptorService
         _interceptor = interceptor;
         _stateProvider = stateProvider;
         _storageService = storageService;
-        _snackbar = snackbar;
         _logger = logger;
     }
+
+    public void RegisterEvent(Func<Task>? interceptBeforeHttpTask = null, Func<IValidationProblemDetails, Task>? interceptAfterHttpTask = null)
+    {
+        InterceptBeforeHttpTask = interceptBeforeHttpTask;
+        InterceptAfterHttpTask = interceptAfterHttpTask;
+
+        _interceptor.BeforeSendAsync += InterceptBeforeHttpAsync;
+        _interceptor.AfterSendAsync += InterceptAfterHttpAsync;
+    }
+
     public void DisposeEvent()
     {
         _interceptor.BeforeSendAsync -= InterceptBeforeHttpAsync;
         _interceptor.AfterSendAsync -= InterceptAfterHttpAsync;
     }
 
-    public async Task InterceptAfterHttpAsync(object sender, HttpClientInterceptorEventArgs args)
+    private async Task InterceptAfterHttpAsync(object sender, HttpClientInterceptorEventArgs args)
     {
         try
         {
@@ -50,11 +59,16 @@ internal class HttpInterceptorService : IHttpInterceptorService
                     {
                         case (int)HttpStatusCode.Unauthorized:
                             await ClearAuthorizationTokensAsync();
-                            LogErrorsAndNotify(problem);
+                            LogErrors(problem);
                             break;
                         default:
                             LogErrors(problem);
                             break;
+                    }
+
+                    if (InterceptAfterHttpTask is not null)
+                    {
+                        await InterceptAfterHttpTask(problem);
                     }
                 }
             }
@@ -65,26 +79,9 @@ internal class HttpInterceptorService : IHttpInterceptorService
         }
     }
 
-    public Task InterceptBeforeHttpAsync(object sender, HttpClientInterceptorEventArgs args)
+    private Task InterceptBeforeHttpAsync(object sender, HttpClientInterceptorEventArgs args)
     {
-        return Task.CompletedTask;
-    }
-
-    public void RegisterEvent()
-    {
-        _interceptor.BeforeSendAsync += InterceptBeforeHttpAsync;
-        _interceptor.AfterSendAsync += InterceptAfterHttpAsync;
-    }
-
-    private void LogErrorsAndNotify(IValidationProblemDetails problem)
-    {
-        if (!string.IsNullOrWhiteSpace(problem?.Detail))
-        {
-            _snackbar.Add(problem?.Detail, Severity.Warning);
-        }
-
-        // log errors
-        _logger.LogWarning("An error occurred while making a request to the API.{response}", problem?.ToString());
+        return InterceptBeforeHttpTask is not null ? InterceptBeforeHttpTask() : Task.CompletedTask;
     }
 
     private void LogErrors(IValidationProblemDetails problem)

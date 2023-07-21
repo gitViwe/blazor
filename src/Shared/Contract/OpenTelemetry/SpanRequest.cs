@@ -6,15 +6,15 @@ public class StartSpanEventRequest
 {
     [JsonPropertyName("spanName")]
     public required string SpanName { get; set; }
-    
-    [JsonPropertyName("spanKind")]
-    public required SpanKind SpanKind { get; set; }
 
     [JsonPropertyName("spanEventName")]
     public required string SpanEventName { get; set; }
 
     [JsonPropertyName("spanStatus")]
-    public required SpanStatus SpanStatus { get; set; }
+    public SpanStatus SpanStatus { get; set; } = new(SpanStatusCode.UNSET, null);
+
+    [JsonPropertyName("spanKind")]
+    public SpanKind SpanKind { get; set; } = SpanKind.INTERNAL;
 
     [JsonPropertyName("spanAttributes")]
     public Dictionary<string, object?> SpanAttributes { get; set; } = new();
@@ -31,20 +31,17 @@ public class StartSpanEventRequest
 
 public class StartSpanExceptionRequest
 {
-    [JsonPropertyName("isNewContext")]
-    public bool IsNewContext { get; set; }
-
     [JsonPropertyName("spanName")]
     public required string SpanName { get; set; }
-    
-    [JsonPropertyName("spanKind")]
-    public required SpanKind SpanKind { get; set; }
 
     [JsonPropertyName("spanException")]
     public required SpanException SpanException { get; set; }
+    
+    [JsonPropertyName("spanKind")]
+    public SpanKind SpanKind { get; set; } = SpanKind.INTERNAL;
 
     [JsonPropertyName("spanStatus")]
-    public required SpanStatus SpanStatus { get; set; }
+    public SpanStatus SpanStatus { get; set; } = new(SpanStatusCode.UNSET, null);
 
     [JsonPropertyName("spanAttributes")]
     public Dictionary<string, object?> SpanAttributes { get; set; } = new();
@@ -98,9 +95,9 @@ public record SpanStatus(
 
 public record SpanException(
     [property: JsonPropertyName("code")] string Code,
-    [property: JsonPropertyName("name")] string Name,
+    [property: JsonPropertyName("name")] string? Name,
     [property: JsonPropertyName("message")] string Message,
-    [property: JsonPropertyName("stack")] string? Stack);
+    [property: JsonPropertyName("stack")] string? StackTrace);
 
 public enum SpanKind
 {
