@@ -7,3 +7,4 @@ global using Shared.Contract;
 global using Shared.Manager;
 global using Shared.Route;
 global using Shared.Service;
+global using gitViwe.Shared.Utility;

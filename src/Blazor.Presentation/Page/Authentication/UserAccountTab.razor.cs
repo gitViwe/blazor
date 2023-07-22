@@ -43,7 +43,7 @@ public partial class UserAccountTab
         catch (IOException)
         {
             long maxAllowedSize = 500 * 1024;
-            Snackbar.Add($"File size exceeds the maximum allowed limit of {FileSizeFormatter.FormatSize(maxAllowedSize)}", Severity.Warning);
+            Snackbar.Add($"File size exceeds the maximum allowed limit of {Formatter.FormatSize(maxAllowedSize)}", Severity.Warning);
         }
 
         IsProcessing = false;
