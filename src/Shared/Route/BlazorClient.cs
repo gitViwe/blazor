@@ -30,6 +30,14 @@ public static class BlazorClient
         }
 
         /// <summary>
+        /// Endpoint routes for design paradigm example pages
+        /// </summary>
+        public static class Paradigm
+        {
+            public const string OpenTelemetry = "/paradigm/open-telemetry";
+        }
+
+        /// <summary>
         /// Endpoint routes for authentication pages
         /// </summary>
         public static class Authentication
