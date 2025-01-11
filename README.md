@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 # Blazor
 
-.NET client library using Web Assembly to run C#
+.NET client library using Blazor Web Assembly to run C#
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -22,7 +22,12 @@ Things you need to use the software and how to install them.
    ```sh
    git clone https://github.com/gitViwe/blazor.git
    ```
-2. Run via Docker
+2. Generate certificate. [Starting a container with https support using docker compose](https://learn.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-5.0#starting-a-container-with-https-support-using-docker-compose)
+   ```
+   dotnet dev-certs https -ep .aspnet\https\blazor-wasm.pfx -p password!
+   dotnet dev-certs https --trust
+   ```
+3. Run via Docker
    ```
    docker compose up --build -d
    ```

@@ -1,0 +1,18 @@
+﻿@using Blazor.Layout.MainLayoutComponent
+@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode="true" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<PageTitle>Viwe Nkepu</PageTitle>
+
+<MudLayout>
+    <HubAppbar />
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
