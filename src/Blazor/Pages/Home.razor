@@ -1,21 +1,53 @@
 ﻿@page "/"
 
-<HubTextFadeIn
-    TitleText="Viwe Nkepu"
-    RoleText="Software Engineer"/>
-
-<HubImageHover>
+<MudGrid Justify="Justify.Center">
     
-    <HubImageHoverItem
-        ImageSrc="image/astro-mona.jpg"
-        ImageAlt="Github"
-        HoverText="Github"
-        OnClick="@(async _ => await OpenNewTabAsync("https://github.com/gitViwe/open-hubviwe"))"/>
-    
-    <HubImageHoverItem
-        ImageSrc="image/ydps-2015.png"
-        ImageAlt="Young Designer Portfolio Showcase"
-        HoverText="Young Designer Portfolio Showcase"
-        OnClick="@(async _ => await OpenNewTabAsync("https://portfolioshowcase.co.za/2015/portfolio.html"))"/>
+    <MudItem xs="12" sm="12" md="12">
+        <HubTextFadeIn
+            TitleText="Viwe Nkepu"
+            RoleText="Software Engineer"/>
+    </MudItem>
 
-</HubImageHover>
+    <MudItem xs="12" sm="12" md="12">
+        <HubImageHover>
+
+            <HubImageHoverItem
+                ImageSrc="image/astro-mona.jpg"
+                ImageAlt="Github"
+                HoverText="Github"
+                OnClick="@(async _ => await OpenNewTabAsync("https://github.com/gitViwe/open-hubviwe"))"/>
+
+            <HubImageHoverItem
+                ImageSrc="image/ydps-2015.png"
+                ImageAlt="Young Designer Portfolio Showcase"
+                HoverText="Young Designer Portfolio Showcase"
+                OnClick="@(async _ => await OpenNewTabAsync("https://portfolioshowcase.co.za/2015/portfolio.html"))"/>
+
+        </HubImageHover>
+    </MudItem>
+
+    <MudItem xs="12" sm="12" md="12">
+        <div class="d-flex justify-center">
+            <MudIcon
+                Size="Size.Large"
+                ViewBox="0 0 24 24"
+                Color="Color.Primary"
+                Icon="@CustomIcon.SwaggerUi"
+                Style="width: 50px; height: 50px;" />
+        </div>
+    </MudItem>
+
+    <MudItem xs="12" sm="12" md="12">
+        <MudText
+            Typo="Typo.h5"
+            Align="Align.Center" >
+            API Documentation with Swagger.
+        </MudText>
+        <MudText
+            Typo="Typo.body2"
+            Align="Align.Center" >
+            Swagger tools takes the hard work out of generating and maintaining your API docs, ensuring your documentation stays up-to-date as your API evolves.
+        </MudText>
+    </MudItem>
+    
+</MudGrid>
