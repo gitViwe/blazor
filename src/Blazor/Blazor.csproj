@@ -17,6 +17,18 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Update="wwwroot\index.html">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\css\font\Montserrat.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\css\font\Roboto.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\css\font\Ubuntu.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -64,6 +76,17 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+      <_ContentIncludedByDefault Remove="Component\Typography\TextFadeIn\HubTextFadeIn.razor" />
+      <_ContentIncludedByDefault Remove="Component\Card\ImageHover\HubImageDetailHover.razor" />
+      <_ContentIncludedByDefault Remove="Component\Card\ImageHover\HubImageHover.razor" />
+      <_ContentIncludedByDefault Remove="Component\Card\ImageHover\HubImageHoverItem.razor" />
+      <_ContentIncludedByDefault Remove="Layout\MainLayoutComponent\HubAppbar.razor" />
+      <_ContentIncludedByDefault Remove="Layout\MainLayoutComponent\HubSideNavigation.razor" />
+      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Blazor.Component\Blazor.Component.csproj" />
     </ItemGroup>
 
 </Project>

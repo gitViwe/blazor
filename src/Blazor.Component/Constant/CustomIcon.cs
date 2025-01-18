@@ -1,4 +1,4 @@
-namespace Blazor.Constant;
+namespace Blazor.Component.Constant;
 
 public static class CustomIcon
 {
