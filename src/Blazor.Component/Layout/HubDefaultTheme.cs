@@ -2,7 +2,7 @@ namespace Blazor.Component.Layout;
 
 public class HubDefaultTheme : MudTheme
 {
-    public static HubDefaultTheme Default => new HubDefaultTheme();
+    public static HubDefaultTheme Default => new();
     public HubDefaultTheme()
     {
         PaletteLight = new PaletteLight()
@@ -28,10 +28,18 @@ public class HubDefaultTheme : MudTheme
         {
             Default = new Default()
             {
-                FontFamily = ["Montserrat", "Helvetica", "Arial", "sans-serif"],
+                FontFamily = ["Poppins", "Montserrat", "Roboto", "sans-serif"],
+                FontSize = "0.6rem",
+                FontWeight = 300,
+            },
+            Button = new Button()
+            {
+                TextTransform = "none"
             },
         };
+        
         Shadows = new Shadow();
         ZIndex = new ZIndex();
+
     }
 }

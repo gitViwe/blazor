@@ -17,23 +17,23 @@
         LogoIcon="@CustomIcon.ViweNkepu"
         OnDrawerToggle="@(_ => ToggleDrawer())"
         OnDarkModeToggle="@(async val => await DarkModeChangedAsync(val))"/>
-    <MudDrawer
-        Elevation=1
-        Height="100%"
-        @bind-Open="IsDrawerOpen"
-        ClipMode="DrawerClipMode.Always" >
-        <HubSideNavigation />
-    </MudDrawer>
+    @* <MudDrawer *@
+    @*     Elevation=1 *@
+    @*     Height="100%" *@
+    @*     @bind-Open="IsDrawerOpen" *@
+    @*     ClipMode="DrawerClipMode.Always" > *@
+    @*     <HubSideNavigation /> *@
+    @* </MudDrawer> *@
     <MudMainContent>
-        <MudHidden Breakpoint="Breakpoint.SmAndDown">
-            <MudToolBar Gutters="false" Style="position: fixed">
-                <MudIconButton
-                    Size="Size.Small"
-                    Color="Color.Inherit"
-                    Icon="@Icons.Material.Outlined.Menu"
-                    OnClick="@(_ => ToggleDrawer())" Class="ml-3" />
-            </MudToolBar>
-        </MudHidden>
+        @* <MudHidden Breakpoint="Breakpoint.SmAndDown"> *@
+        @*     <MudToolBar Gutters="false" Style="position: fixed"> *@
+        @*         <MudIconButton *@
+        @*             Size="Size.Small" *@
+        @*             Color="Color.Inherit" *@
+        @*             Icon="@Icons.Material.Outlined.Menu" *@
+        @*             OnClick="@(_ => ToggleDrawer())" Class="ml-3" /> *@
+        @*     </MudToolBar> *@
+        @* </MudHidden> *@
         <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
             @Body
         </MudContainer>

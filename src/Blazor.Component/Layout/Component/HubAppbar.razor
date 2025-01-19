@@ -1,4 +1,4 @@
-<MudAppBar Elevation="0" Fixed="true" Color="Color.Transparent" Class="appbar-blur">
+<MudAppBar Elevation="0" Fixed="true" Color="Color.Transparent" Class="@(IsDarkMode ? "appbar-blur mix-difference" : "appbar-blur")">
     <MudHidden Breakpoint="Breakpoint.SmAndDown">
         <MudIcon
             Icon="@LogoIcon"
@@ -6,13 +6,13 @@
             Color="Color.Inherit"
             ViewBox="0 0 362.5 213" />
     </MudHidden>
-    <MudHidden Breakpoint="Breakpoint.MdAndUp">
-        <MudIconButton
-            Edge="Edge.Start"
-            Color="Color.Inherit"
-            OnClick="@OnDrawerToggle"
-            Icon="@Icons.Material.Outlined.Menu" />
-    </MudHidden>
+    @* <MudHidden Breakpoint="Breakpoint.MdAndUp"> *@
+    @*     <MudIconButton *@
+    @*         Edge="Edge.Start" *@
+    @*         Color="Color.Inherit" *@
+    @*         OnClick="@OnDrawerToggle" *@
+    @*         Icon="@Icons.Material.Outlined.Menu" /> *@
+    @* </MudHidden> *@
     <MudHidden Breakpoint="Breakpoint.Xs">
         <MudText
             Class="ml-4"

@@ -1,3 +1,15 @@
+
+/*
+Blazor.Component.Layout.Component.HubAppBar
+*/
+.appbar-blur {
+    backdrop-filter: blur(12px);
+}
+
+.mix-difference {
+    mix-blend-mode: difference;
+}
+
 /*
 Blazor.Component.Typography.TextFadeIn.HubTextFadeIn
 Credit goes to: https://codepen.io/KaioRocha/pen/YoEVvZ

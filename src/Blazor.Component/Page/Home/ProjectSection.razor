@@ -1,13 +1,31 @@
 <MudItem xs="12" sm="12" md="12">
     <MudGrid Justify="Justify.Center">
 
-        <MudItem xs="12" sm="6" md="3">
+        <MudItem sm="12" md="6" lg="3">
             <HubImageDetailHover
-                Title="Swagger"
+                Title="REST"
                 Description="API Documentation with Swagger"
                 ImageSrc="_content/Blazor.Component/image/swagger_ui.webp"
-                ButtonText="See demo"
-                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://github.com/gitViwe/open-hubviwe"))" />
+                ButtonText="demo"
+                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://hubviwe-api-gateway.azurewebsites.net/swagger"))" />
+        </MudItem>
+
+        <MudItem sm="12" md="6" lg="3">
+            <HubImageDetailHover
+                Title="GraphQl"
+                Description="API Documentation with Nitro"
+                ImageSrc="_content/Blazor.Component/image/nitro_ui.webp"
+                ButtonText="demo"
+                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://hubviwe-api-gateway.azurewebsites.net/graphql"))" />
+        </MudItem>
+
+        <MudItem sm="12" md="6" lg="3">
+            <HubImageDetailHover
+                Title="Health check"
+                Description="Monitor service availability"
+                ImageSrc="_content/Blazor.Component/image/service_unavailable.png"
+                ButtonText="demo"
+                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://hubviwe-api-gateway.azurewebsites.net/healthchecks-ui"))" />
         </MudItem>
 
     </MudGrid>
