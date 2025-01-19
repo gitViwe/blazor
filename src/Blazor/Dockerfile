@@ -1,23 +1,40 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
-WORKDIR /app
+# https://chrissainty.com/containerising-blazor-applications-with-docker-containerising-a-blazor-webassembly-app/
+
+FROM node:alpine AS nodebuild
+ADD Blazor.Presentation ./Blazor.Presentation
+WORKDIR /Blazor.Presentation/NPM
+RUN npm install
+RUN npm run build_local
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
 COPY ["Blazor/Blazor.csproj", "Blazor/"]
+COPY ["Blazor.Application/Blazor.Application.csproj", "Blazor.Application/"]
+COPY ["Blazor.Infrastructure/Blazor.Infrastructure.csproj", "Blazor.Infrastructure/"]
+COPY ["Blazor.Presentation/Blazor.Presentation.csproj", "Blazor.Presentation/"]
+COPY ["Shared/Shared.csproj", "Shared/"]
+
 RUN dotnet restore "Blazor/Blazor.csproj"
+
 COPY . .
-WORKDIR "/src/Blazor"
-RUN dotnet build "Blazor.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR /src/Blazor
+RUN dotnet build "Blazor.csproj" -c Release -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Blazor.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Blazor.csproj" --no-restore -c Release -o /published
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Blazor.dll"]
+FROM nginx:alpine AS final
+WORKDIR /usr/share/nginx/html
+COPY --from=publish /published/wwwroot .
+COPY --from=publish /published/nginx.conf /etc/nginx/nginx.conf
+COPY --from=nodebuild /Blazor.Presentation/wwwroot/js/index.bundle.js _content/Blazor.Presentation/js/index.bundle.js
+COPY --from=nodebuild /Blazor.Presentation/wwwroot/js/open_telemetry.bundle.js _content/Blazor.Presentation/wwwroot/js/open_telemetry.bundle.js
+
+# remove the default 'appsettings.json' file
+RUN rm appsettings.json
+# rename 'appsettings.Docker.json' to 'appsettings.json'
+RUN mv appsettings.Docker.json appsettings.json

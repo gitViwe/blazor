@@ -6,13 +6,13 @@
             Color="Color.Inherit"
             ViewBox="0 0 362.5 213" />
     </MudHidden>
-    @* <MudHidden Breakpoint="Breakpoint.MdAndUp"> *@
-    @*     <MudIconButton *@
-    @*         Edge="Edge.Start" *@
-    @*         Color="Color.Inherit" *@
-    @*         OnClick="@OnDrawerToggle" *@
-    @*         Icon="@Icons.Material.Outlined.Menu" /> *@
-    @* </MudHidden> *@
+    <MudHidden Breakpoint="Breakpoint.MdAndUp">
+        <MudIconButton
+            Edge="Edge.Start"
+            Color="Color.Inherit"
+            OnClick="@OnDrawerToggle"
+            Icon="@Icons.Material.Outlined.Menu" />
+    </MudHidden>
     <MudHidden Breakpoint="Breakpoint.Xs">
         <MudText
             Class="ml-4"

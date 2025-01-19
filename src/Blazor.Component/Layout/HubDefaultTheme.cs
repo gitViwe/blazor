@@ -3,7 +3,7 @@ namespace Blazor.Component.Layout;
 public class HubDefaultTheme : MudTheme
 {
     public static HubDefaultTheme Default => new();
-    public HubDefaultTheme()
+    private HubDefaultTheme()
     {
         PaletteLight = new PaletteLight()
         {
@@ -26,13 +26,12 @@ public class HubDefaultTheme : MudTheme
 
         Typography = new MudBlazor.Typography()
         {
-            Default = new Default()
+            Default = new DefaultTypography()
             {
                 FontFamily = ["Poppins", "Montserrat", "Roboto", "sans-serif"],
-                FontSize = "0.6rem",
-                FontWeight = 300,
             },
-            Button = new Button()
+            
+            Button = new DefaultTypography()
             {
                 TextTransform = "none"
             },

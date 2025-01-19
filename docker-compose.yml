@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   blazor-wasm:
-    image: hubviwe/blazor.wasm:1.0.2
+    image: hubviwe/blazor.wasm:1.0.9
     container_name: blazor-wasm
     build:
         context: src/
@@ -11,7 +11,7 @@ services:
     environment:
         ASPNETCORE_ENVIRONMENT: Docker
     ports:
-      - 5086:80
+      - 5086:8080
 
   graphql-api:
     image: hubviwe/graphql.api:1.0.2
