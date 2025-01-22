@@ -11,6 +11,7 @@ public class HubDefaultTheme : MudTheme
             Background = "#d4e1e7",
             DrawerBackground = "#d4e1e7",
             DrawerText = "rgba(0,0,0, 0.7)",
+            Surface = "#d4e1e7"
         };
 
         PaletteDark = new PaletteDark()
