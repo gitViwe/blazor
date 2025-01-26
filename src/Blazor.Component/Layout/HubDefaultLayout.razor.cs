@@ -2,7 +2,7 @@ namespace Blazor.Component.Layout;
 
 public partial class HubDefaultLayout : LayoutComponentBase
 {
-    private bool IsDrawerOpen { get; set; }
+    private bool IsDrawerOpen { get; set; } = true;
     private bool IsDarkMode { get; set; }
     private void ToggleDrawer() => IsDrawerOpen = !IsDrawerOpen;
     
@@ -13,15 +13,13 @@ public partial class HubDefaultLayout : LayoutComponentBase
         if (firstRender && MudThemeProviderReference is not null)
         {
             var isSystemDarkMode = await MudThemeProviderReference.GetSystemPreference();
-            await DarkModeChangedAsync(isSystemDarkMode);
-            StateHasChanged();
+            DarkModeChanged(isSystemDarkMode);
         }
     }
 
-    private Task DarkModeChangedAsync(bool newValue)
+    private void DarkModeChanged(bool newValue)
     {
         IsDarkMode = newValue;
         StateHasChanged();
-        return Task.CompletedTask;
     }
 }

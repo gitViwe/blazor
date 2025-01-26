@@ -1,6 +1,6 @@
-namespace Blazor.Component.Constant;
+namespace Blazor.Shared.Constant;
 
-public static class CustomIcon
+public class CustomIcon
 {
     public const string ViweNkepu = "<path d=\"M152.5 40L112 63.5V213L152.5 190V40Z\"/><path d=\"M0 48L40 25L111.5 131.5V213L0 48Z\"/><path d=\"M192.5 159.5L233.5 135.5V174.5L192.5 198V159.5Z\"/><path d=\"M192.5 150.5L233.5 126.5V83L321.5 213.5L362.5 190V0.5L321.5 24V131.5L233.5 0.5L192.5 24V150.5Z\"/>";
     

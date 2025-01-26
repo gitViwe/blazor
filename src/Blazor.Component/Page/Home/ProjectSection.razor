@@ -1,32 +1,21 @@
+@using Blazor.Component.Page.Home.Component
+
 <MudItem xs="12" sm="12" md="12">
-    <MudGrid Justify="Justify.Center">
+    
+    <section id="@BlazorPage.Documentation.Swagger" class="section-padding">
+        <SwaggerProjectSection/>
+    </section>
 
-        <MudItem sm="12" md="6" lg="3">
-            <HubImageDetailHover
-                Title="REST"
-                Description="API Documentation with Swagger"
-                ImageSrc="_content/Blazor.Component/image/swagger_ui.webp"
-                ButtonText="demo"
-                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://hubviwe-api-gateway.azurewebsites.net/swagger"))" />
-        </MudItem>
+    <section id="@BlazorPage.Documentation.GraphQl" class="section-padding">
+        <GrapQlProjectSection/>
+    </section>
 
-        <MudItem sm="12" md="6" lg="3">
-            <HubImageDetailHover
-                Title="GraphQl"
-                Description="API Documentation with Nitro"
-                ImageSrc="_content/Blazor.Component/image/nitro_ui.webp"
-                ButtonText="demo"
-                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://hubviwe-api-gateway.azurewebsites.net/graphql"))" />
-        </MudItem>
+    <section id="@BlazorPage.Paradigm.OpenTelemetry" class="section-padding">
+        <OpenTelemetryProjectSection/>
+    </section>
 
-        <MudItem sm="12" md="6" lg="3">
-            <HubImageDetailHover
-                Title="Health check"
-                Description="Monitor service availability"
-                ImageSrc="_content/Blazor.Component/image/service_unavailable.png"
-                ButtonText="demo"
-                OnButtonClick="@(async _ => await Runtime.OpenNewTabAsync("https://hubviwe-api-gateway.azurewebsites.net/healthchecks-ui"))" />
-        </MudItem>
+    <section id="@BlazorPage.Paradigm.HealthCheck" class="section-padding">
+        <HealthCheckProjectSection/>
+    </section>
 
-    </MudGrid>
 </MudItem>

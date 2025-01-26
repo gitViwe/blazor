@@ -16,13 +16,13 @@ public class HubDefaultTheme : MudTheme
 
         PaletteDark = new PaletteDark()
         {
-            Primary = Colors.DeepPurple.Darken1,
+            Primary = Colors.DeepPurple.Lighten1,
+            DrawerBackground = "#32333d"
         };
 
         LayoutProperties = new LayoutProperties()
         {
             DefaultBorderRadius = "6px",
-            DrawerWidthLeft = "400px",
         };
 
         Typography = new MudBlazor.Typography()

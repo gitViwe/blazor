@@ -19,4 +19,12 @@
       <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Remove="wwwroot\service-worker.js" />
+      <Content Remove="wwwroot\manifest.webmanifest" />
+      <Content Remove="wwwroot\css\googleapis\font\css\Ubuntu.css" />
+      <Content Remove="wwwroot\css\app.css" />
+      <Content Remove="wwwroot\appsettings.Docker.json" />
+    </ItemGroup>
+
 </Project>

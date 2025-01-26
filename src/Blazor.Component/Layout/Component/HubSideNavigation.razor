@@ -15,18 +15,18 @@
     </MudText>
 
     <MudNavLink
-        Disabled="true"
+        Disabled="false"
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.SwaggerUi"
-        Href="@BlazorPage.Documentation.Swagger" >
+        Href="@("#" + BlazorPage.Documentation.Swagger)" >
         Swagger
     </MudNavLink>
 
     <MudNavLink
-        Disabled="true"
+        Disabled="false"
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.GraphQl"
-        Href="@BlazorPage.Documentation.GraphQL">
+        Href="@("#" + BlazorPage.Documentation.GraphQl)">
         GraphQL
     </MudNavLink>
 
@@ -38,18 +38,18 @@
     </MudText>
 
     <MudNavLink
-        Disabled="true"
+        Disabled="false"
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.OpenTelemetry"
-        Href="@BlazorPage.Paradigm.OpenTelemetry" >
+        Href="@("#" + BlazorPage.Paradigm.OpenTelemetry)" >
         OpenTelemetry
     </MudNavLink>
 
     <MudNavLink
-        Disabled="true"
+        Disabled="false"
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.NetCore"
-        Href="@BlazorPage.Paradigm.HealthCheck" >
+        Href="@("#" + BlazorPage.Paradigm.HealthCheck)" >
         Health Check
     </MudNavLink>
 

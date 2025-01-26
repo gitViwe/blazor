@@ -8,7 +8,7 @@ WORKDIR /src
 
 COPY ["Blazor/Blazor.csproj", "Blazor/"]
 COPY ["Blazor.Component/Blazor.Component.csproj", "Blazor.Component/"]
-COPY ["Blazor.Blazor/Blazor.Blazor.csproj", "Blazor.Blazor/"]
+COPY ["Blazor.Shared/Blazor.Shared.csproj", "Blazor.Shared/"]
 
 RUN dotnet restore "Blazor/Blazor.csproj"
 

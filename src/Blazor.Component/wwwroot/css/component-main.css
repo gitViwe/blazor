@@ -1,7 +1,15 @@
+/*
+Shared
+*/
+
+.section-padding {
+    padding: var(--mud-appbar-height) 0;
+}
 
 /*
 Blazor.Component.Layout.Component.HubAppBar
 */
+
 .appbar-blur {
     backdrop-filter: blur(12px);
 }
