@@ -49,12 +49,12 @@ jobs:
       - name: .NET Build
         run: dotnet build src --configuration Release
 
-      - name: Publish .NET Core Project
+      - name: .NET Publish
         run: dotnet publish src/Blazor/Blazor.csproj -c:Release -p:GHPages=true -o published/blazor --nologo
 
       # changes the base-tag in index.html from '/' to 'blazor' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to blazor
-        run: sed -i 's/<base href="\/" \/>/<base href="\/blazor\/" \/>/g' release/wwwroot/index.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/blazor\/" \/>/g' published/blazor/wwwroot/index.html
 
       # Publish static files to GitHub pages
       - name: Commit wwwroot to GitHub Pages
