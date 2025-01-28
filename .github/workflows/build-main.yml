@@ -4,9 +4,7 @@ name: .NET Build Blazor
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
+  # Triggers the workflow on pull request events but only for the main branch
   pull_request:
     branches: [ main ]
 
@@ -23,27 +21,27 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Configure Node
-      - name: Set up NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+#      - name: Set up NodeJS
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: latest
+#
+#      - name: Install modules
+#        working-directory: ./src/Blazor.Presentation/NpmJS
+#        run: npm install
+#
+#      - name: Run Webpack
+#        working-directory: ./src/Blazor.Presentation/NpmJS
+#        run: npm run build
 
-      - name: Install modules
-        working-directory: ./src/Blazor.Presentation/NpmJS
-        run: npm install
-
-      - name: Run Webpack
-        working-directory: ./src/Blazor.Presentation/NpmJS
-        run: npm run build
-
-      # Configure NET 7
+      # Configure NET
       - name: Set up .NET Core
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 9.x
           
       - name: .NET Restore
         run: dotnet restore src
