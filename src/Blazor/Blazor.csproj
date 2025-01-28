@@ -1,47 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="Dockerfile">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="nginx.conf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.1" PrivateAssets="all"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.9" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.9" />
-    <PackageReference Include="MudBlazor" Version="6.7.0" />
-    <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.8" />
-  </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Blazor.Component\Blazor.Component.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Blazor.Presentation\Blazor.Presentation.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Shared\HubTest.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Shared\HubTest.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\HubTest.razor" />
-  </ItemGroup>
+    <ItemGroup>
+      <Content Remove="wwwroot\service-worker.js" />
+      <Content Remove="wwwroot\manifest.webmanifest" />
+      <Content Remove="wwwroot\css\googleapis\font\css\Ubuntu.css" />
+      <Content Remove="wwwroot\css\app.css" />
+      <Content Remove="wwwroot\appsettings.Docker.json" />
+    </ItemGroup>
 
 </Project>

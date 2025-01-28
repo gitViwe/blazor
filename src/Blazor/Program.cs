@@ -1,16 +1,14 @@
-using Blazor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Blazor.Presentation;
+using Blazor;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.ConfigurePresentationServices(builder.Configuration);
+builder.Services
+    .AddMudServices()
+    .AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-var app = builder.Build();
-
-await app.Services.UsePresentationServicesAsync();
-
-await app.RunAsync();
+await builder.Build().RunAsync();

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
+        <PackageReference Include="MudBlazor" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\ts\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="wwwroot\css\component-main.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\image\nitro_ui.webp">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\js\component-main.js">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Blazor.Shared\Blazor.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

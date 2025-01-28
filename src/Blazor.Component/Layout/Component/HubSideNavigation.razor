@@ -1,0 +1,121 @@
+<MudNavMenu Color="Color.Primary" Bordered=true Dense="true">
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@Icons.Material.Filled.Home"
+        Href="@BlazorPage.DefaultExamples.Home" >
+        Home
+    </MudNavLink>
+
+    <MudText
+        Class="ml-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        API Documentation
+    </MudText>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.SwaggerUi"
+        Href="@("#" + BlazorPage.Documentation.Swagger)" >
+        Swagger
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.GraphQl"
+        Href="@("#" + BlazorPage.Documentation.GraphQl)">
+        GraphQL
+    </MudNavLink>
+
+    <MudText
+        Class="ml-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        Paradigms
+    </MudText>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.OpenTelemetry"
+        Href="@("#" + BlazorPage.Paradigm.OpenTelemetry)" >
+        OpenTelemetry
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.NetCore"
+        Href="@("#" + BlazorPage.Paradigm.HealthCheck)" >
+        Health Check
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="true"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.SignalR"
+        Href="@BlazorPage.Paradigm.SignalR" >
+        SignalR
+    </MudNavLink>
+
+    <MudText
+        Class="mx-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        Application Security and Account
+    </MudText>
+
+    <MudNavGroup
+        Title="Authentication"
+        Icon="@Icons.Material.Filled.AccountBox"
+        HideExpandIcon="true" >
+
+        <MudNavLink
+            Disabled="true"
+            Icon="@Icons.Material.Filled.Assignment"
+            Href="@BlazorPage.Authentication.Register" >
+            Register
+        </MudNavLink>
+
+        <MudNavLink
+            Disabled="true"
+            Icon="@Icons.Material.Filled.LockOpen"
+            Href="@BlazorPage.Authentication.Login" >
+            Login
+        </MudNavLink>
+
+        <MudNavLink
+            Disabled="true"
+            Href="@BlazorPage.Authentication.Account"
+            Icon="@Icons.Material.Filled.AccountCircle" >
+            User details
+        </MudNavLink>
+
+    </MudNavGroup>
+
+    <MudNavGroup
+        HideExpandIcon="true"
+        Title="Default Examples"
+        Icon="@Icons.Material.Filled.School" >
+
+        <MudNavLink
+            Disabled="true"
+            Match="NavLinkMatch.All"
+            Icon="@Icons.Material.Filled.Watch"
+            Href="@BlazorPage.DefaultExamples.Counter" >
+            Counter
+        </MudNavLink>
+
+        <MudNavLink
+            Disabled="true"
+            Match="NavLinkMatch.All"
+            Icon="@Icons.Material.Filled.DataUsage"
+            Href="@BlazorPage.DefaultExamples.FetchData" >
+            Fetch data
+        </MudNavLink>
+
+    </MudNavGroup>
+</MudNavMenu>
