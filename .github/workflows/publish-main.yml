@@ -62,7 +62,7 @@ jobs:
 
       # copy index.html to 404.html to serve the same file when a file is not found
       - name: copy index.html to 404.html
-        run: cp published/blazor/wwwroot/index.html release/wwwroot/404.html
+        run: cp published/blazor/wwwroot/index.html published/blazor/wwwroot/404.html
 
       # Publish static files to GitHub pages
       - name: Commit wwwroot to GitHub Pages
