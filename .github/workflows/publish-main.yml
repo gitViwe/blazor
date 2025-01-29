@@ -62,4 +62,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: published/blazor/wwwroot`
+          FOLDER: published/blazor/wwwroot
