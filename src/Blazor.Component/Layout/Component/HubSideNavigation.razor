@@ -7,95 +7,6 @@
         Home
     </MudNavLink>
 
-    <MudText
-        Class="ml-4 my-3"
-        Typo="Typo.subtitle2"
-        Color="Color.Inherit" >
-        API Documentation
-    </MudText>
-
-    <MudNavLink
-        Disabled="false"
-        Match="NavLinkMatch.All"
-        Icon="@CustomIcon.SwaggerUi"
-        Href="@("#" + BlazorPage.Documentation.Swagger)" >
-        Swagger
-    </MudNavLink>
-
-    <MudNavLink
-        Disabled="false"
-        Match="NavLinkMatch.All"
-        Icon="@CustomIcon.GraphQl"
-        Href="@("#" + BlazorPage.Documentation.GraphQl)">
-        GraphQL
-    </MudNavLink>
-
-    <MudText
-        Class="ml-4 my-3"
-        Typo="Typo.subtitle2"
-        Color="Color.Inherit" >
-        Paradigms
-    </MudText>
-
-    <MudNavLink
-        Disabled="false"
-        Match="NavLinkMatch.All"
-        Icon="@CustomIcon.OpenTelemetry"
-        Href="@("#" + BlazorPage.Paradigm.OpenTelemetry)" >
-        OpenTelemetry
-    </MudNavLink>
-
-    <MudNavLink
-        Disabled="false"
-        Match="NavLinkMatch.All"
-        Icon="@CustomIcon.NetCore"
-        Href="@("#" + BlazorPage.Paradigm.HealthCheck)" >
-        Health Check
-    </MudNavLink>
-
-    <MudNavLink
-        Disabled="true"
-        Match="NavLinkMatch.All"
-        Icon="@CustomIcon.SignalR"
-        Href="@BlazorPage.Paradigm.SignalR" >
-        SignalR
-    </MudNavLink>
-
-    <MudText
-        Class="mx-4 my-3"
-        Typo="Typo.subtitle2"
-        Color="Color.Inherit" >
-        Application Security and Account
-    </MudText>
-
-    <MudNavGroup
-        Title="Authentication"
-        Icon="@Icons.Material.Filled.AccountBox"
-        HideExpandIcon="true" >
-
-        <MudNavLink
-            Disabled="true"
-            Icon="@Icons.Material.Filled.Assignment"
-            Href="@BlazorPage.Authentication.Register" >
-            Register
-        </MudNavLink>
-
-        <MudNavLink
-            Disabled="true"
-            Icon="@Icons.Material.Filled.LockOpen"
-            Href="@BlazorPage.Authentication.Login" >
-            Login
-        </MudNavLink>
-
-        <MudNavLink
-            Disabled="true"
-            Href="@BlazorPage.Authentication.Account"
-            Icon="@Icons.Material.Filled.AccountCircle" >
-            User details
-        </MudNavLink>
-
-    </MudNavGroup>
-
     <MudNavGroup
         HideExpandIcon="true"
         Title="Default Examples"
@@ -118,4 +29,105 @@
         </MudNavLink>
 
     </MudNavGroup>
+
+    <MudText
+        Class="ml-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        API Documentation
+    </MudText>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.SwaggerUi"
+        Href="@("#" + BlazorPage.Documentation.Swagger)" >
+        Swagger
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="true"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.Scalar"
+        Href="@("#" + BlazorPage.Documentation.Scalar)">
+        Scalar
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.GraphQl"
+        Href="@("#" + BlazorPage.Documentation.GraphQl)">
+        GraphQL
+    </MudNavLink>
+
+    <MudText
+        Class="ml-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        Observability
+    </MudText>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.OpenTelemetry"
+        Href="@("#" + BlazorPage.Observability.OpenTelemetry)" >
+        OpenTelemetry
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="false"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.NetCore"
+        Href="@("#" + BlazorPage.Observability.HealthCheck)" >
+        Health Check
+    </MudNavLink>
+
+    <MudText
+        Class="mx-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        Security
+    </MudText>
+
+    <MudNavLink
+        Disabled="true"
+        Match="NavLinkMatch.All"
+        Icon="@Icons.Material.Filled.Fingerprint"
+        Href="@("#" + BlazorPage.Security.WebAuthn)" >
+        WebAuthn
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="true"
+        Match="NavLinkMatch.All"
+        Icon="@Icons.Material.Filled.QrCodeScanner"
+        Href="@("#" + BlazorPage.Security.Mfa)" >
+        MFA
+    </MudNavLink>
+
+    <MudText
+        Class="mx-4 my-3"
+        Typo="Typo.subtitle2"
+        Color="Color.Inherit" >
+        Communication
+    </MudText>
+
+    <MudNavLink
+        Disabled="true"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.SignalR"
+        Href="@BlazorPage.Communication.SignalR" >
+        SignalR
+    </MudNavLink>
+
+    <MudNavLink
+        Disabled="true"
+        Match="NavLinkMatch.All"
+        Icon="@CustomIcon.Grpc"
+        Href="@BlazorPage.Communication.Grpc" >
+        Grpc
+    </MudNavLink>
+    
 </MudNavMenu>
