@@ -11,7 +11,6 @@ public class BlazorPage
     
     public static class DefaultExamples
     {
-        public const string Home = "/";
         public const string Counter = "counter";
         public const string FetchData = "fetchdata";
     }

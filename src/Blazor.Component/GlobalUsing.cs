@@ -8,3 +8,4 @@ global using Blazor.Shared.Extension;
 global using Blazor.Shared.Constant;
 global using Microsoft.AspNetCore.Components.Routing;
 global using Microsoft.Extensions.Configuration;
+global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
