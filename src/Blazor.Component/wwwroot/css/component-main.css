@@ -32,7 +32,6 @@ Credit goes to: https://codepen.io/KaioRocha/pen/YoEVvZ
     margin-top: 1rem;
 }
 .text-fade-in-container .box {
-    width: 250px;
     position: relative;
     display: flex;
     justify-content: center;

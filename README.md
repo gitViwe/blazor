@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 # Blazor
 
-.NET client library using Blazor Web Assembly to run C#
+Blazor WebAssembly is a popular framework for building interactive web applications using C# and .NET
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -11,35 +11,29 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 Things you need to use the software and how to install them.
-* [Visual Studio / Visual Studio Code](https://visualstudio.microsoft.com/)
-* [.NET 7](https://dotnet.microsoft.com/en-us/download/dotnet)
-* [Node.js v18.16.0](https://nodejs.org/en/download)
-* [Docker](https://www.docker.com/)
+* Your IDE of choice: 
+  * [Visual Studio](https://visualstudio.microsoft.com/)
+  * [Rider](https://www.jetbrains.com/rider/)
+  * [WebStorm](https://www.jetbrains.com/webstorm/)
+* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet)
+* [Docker](https://www.docker.com/) (optional)
+* [Node.js](https://nodejs.org/en/download) (optional)
 
 ### Installation
 
-1. Clone the repo
-   ```sh
+- Clone the repo
+   ```shell
    git clone https://github.com/gitViwe/blazor.git
    ```
-2. Generate certificate. [Starting a container with https support using docker compose](https://learn.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-5.0#starting-a-container-with-https-support-using-docker-compose)
-   ```
-   dotnet dev-certs https -ep .aspnet\https\blazor-wasm.pfx -p password!
-   dotnet dev-certs https --trust
-   ```
-3. Run via Docker
-   ```
+- Run with Docker: navigate to the root directory `blazor`
+   ```shell
    docker compose up --build -d
    ```
-3. Run via Visual Studio / Visual Studio Code
-   ```
-   cd src/Blazor.Presentation/NpmJS
-   npm install
-   npm run build_local
-   
-   docker compose --file docker-compose.development.yml up -d
-   cd src/Blazor
-   dotnet run
-   ```
+  - Then navigate to [localhost:5249](http://localhost:5249)
+  
 
-Then navigate to [localhost:5086](http://localhost:5086)
+- Run with IDE: navigate to the root directory `blazor`
+   ```shell
+   dotnet run --project src\Blazor\Blazor.csproj
+   ```
+  - Then navigate to [localhost:5249](http://localhost:5249)
