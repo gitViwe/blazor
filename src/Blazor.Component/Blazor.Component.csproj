@@ -18,10 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\ts\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Content Update="wwwroot\css\component-main.css">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
