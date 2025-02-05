@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Shared", "Blazor.Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csproj", "{B013CC8D-C8AC-4CBC-907B-9B097D38DB70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Component.WebAuthn", "Blazor.Component.WebAuthn\Blazor.Component.WebAuthn.csproj", "{8069F2AF-1D7B-45B6-8AFF-BA5ACFB4EF80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B013CC8D-C8AC-4CBC-907B-9B097D38DB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B013CC8D-C8AC-4CBC-907B-9B097D38DB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B013CC8D-C8AC-4CBC-907B-9B097D38DB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8069F2AF-1D7B-45B6-8AFF-BA5ACFB4EF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8069F2AF-1D7B-45B6-8AFF-BA5ACFB4EF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8069F2AF-1D7B-45B6-8AFF-BA5ACFB4EF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8069F2AF-1D7B-45B6-8AFF-BA5ACFB4EF80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

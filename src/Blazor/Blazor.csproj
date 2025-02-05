@@ -12,7 +12,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Blazor.Component.WebAuthn\Blazor.Component.WebAuthn.csproj" />
       <ProjectReference Include="..\Blazor.Component\Blazor.Component.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <BlazorWebAssemblyLazyLoad Include="Blazor.Component.WebAuthn.dll" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,11 +25,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="wwwroot\service-worker.js" />
-      <Content Remove="wwwroot\manifest.webmanifest" />
-      <Content Remove="wwwroot\css\googleapis\font\css\Ubuntu.css" />
-      <Content Remove="wwwroot\css\app.css" />
-      <Content Remove="wwwroot\appsettings.Docker.json" />
       <Content Update="wwwroot\favicon.ico">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>

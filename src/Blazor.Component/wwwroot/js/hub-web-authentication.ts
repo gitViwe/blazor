@@ -1,5 +1,5 @@
-window.scrollToElement = function scrollToElement(elementId) {
-    const element = document.getElementById(elementId);
+export function scrollToElement(elementId: string): void {
+    const element: HTMLElement = document.getElementById(elementId);
     if (element instanceof HTMLElement) {
         element.scrollIntoView({
             behavior: "smooth",
@@ -7,4 +7,4 @@ window.scrollToElement = function scrollToElement(elementId) {
             inline: "nearest"
         });
     }
-};
+}
