@@ -8,3 +8,8 @@ global using Microsoft.AspNetCore.Components.WebAssembly.Services;
 global using Microsoft.AspNetCore.Components;
 global using Microsoft.AspNetCore.Components.Routing;
 global using System.Reflection;
+global using Blazor.Shared.Constant;
+global using Blazor.Shared.Interface;
+global using Microsoft.JSInterop;
+global using Blazor.Shared.Extension;
+global using Blazor.Component.Manager;

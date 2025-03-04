@@ -1,9 +1,8 @@
 namespace Blazor.Component.Navigation.AnchorNavigation;
 
 public sealed class HubAnchorNavigation
-    : ComponentBase, IComponentCancellationTokenSource, IAsyncDisposable
+    : ComponentBase, IComponentCancellationTokenSource
 {
-    private IJSObjectReference? _jsObjectReference;
     public CancellationTokenSource Cts { get; } = new();
     
     [Inject]
@@ -18,15 +17,13 @@ public sealed class HubAnchorNavigation
     {
         if (firstRender)
         {
-            _jsObjectReference = await Runtime.InvokeAsync<IJSObjectReference>("import", "./_content/Blazor.Component/js/hub-web-authentication.js");
-            ArgumentNullException.ThrowIfNull(_jsObjectReference);
+            await ScrollToFragmentAsync();
         }
-        await ScrollToFragment();
     }
     
-    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e) => await ScrollToFragment();
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e) => _ = ScrollToFragmentAsync();
     
-    private async Task ScrollToFragment()
+    private async Task ScrollToFragmentAsync()
     {
         var uri = new Uri(Navigation.Uri, UriKind.Absolute);
         
@@ -43,16 +40,15 @@ public sealed class HubAnchorNavigation
 
             if (false == string.IsNullOrEmpty(elementId))
             {
-                await _jsObjectReference!.InvokeVoidAsync("scrollToElement", elementId);
+                await Runtime.InvokeVoidAsync("HubComponent.ScrollToElement", elementId);
             }
         }
     }
     
-    public async ValueTask DisposeAsync()
+    public void Dispose()
     {
         Navigation.LocationChanged -= OnLocationChanged;
-        await Cts.CancelAsync();
+        Cts.Cancel();
         Cts.Dispose();
-        if (_jsObjectReference is not null) await _jsObjectReference.DisposeAsync();
     }
 }

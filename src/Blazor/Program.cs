@@ -1,3 +1,6 @@
+using Blazor.Client;
+using Blazor.Component;
+using Blazor.Component.WebAuthn;
 using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -6,6 +9,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services
     .AddMudServices()
-    .AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+    .AddHubComponentServices()
+    .AddHubWebAuthenticationServices()
+    .AddGatewayClient();
 
 await builder.Build().RunAsync();

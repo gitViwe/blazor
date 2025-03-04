@@ -24,18 +24,18 @@ jobs:
       - uses: actions/checkout@v4
 
       # Configure Node
-#      - name: Set up NodeJS
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: latest
-#
-#      - name: Install modules
-#        working-directory: ./src/Blazor.Presentation/NpmJS
-#        run: npm install
-#
-#      - name: Run Webpack
-#        working-directory: ./src/Blazor.Presentation/NpmJS
-#        run: npm run build
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Install modules
+        working-directory: ./npm
+        run: npm install
+
+      - name: Run Webpack
+        working-directory: ./npm
+        run: npm run build
 
       # Configure NET
       - name: Set up .NET Core

@@ -10,3 +10,8 @@ global using Microsoft.AspNetCore.Components.Routing;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 global using Blazor.Shared.Interface;
+global using System.Net.Http.Json;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Blazor.Component.Manager;
+global using Blazor.Component.Manager.FeatureManager;

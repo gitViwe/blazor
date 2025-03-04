@@ -2,7 +2,7 @@
     <div class="content">
         <h2 class="title">@Title</h2>
         <p class="description">@Description</p>
-        @if (false == string.IsNullOrWhiteSpace(ButtonText))
+        @if (string.IsNullOrWhiteSpace(ButtonText) is false)
         {
             <MudButton
                 Class="mt-2 p-2"

@@ -24,18 +24,18 @@ jobs:
       - uses: actions/checkout@v4
 
       # Configure Node
-      #      - name: Set up NodeJS
-      #        uses: actions/setup-node@v4
-      #        with:
-      #          node-version: latest
-      #
-      #      - name: Install modules
-      #        working-directory: ./src/Blazor.Presentation/NpmJS
-      #        run: npm install
-      #
-      #      - name: Run Webpack
-      #        working-directory: ./src/Blazor.Presentation/NpmJS
-      #        run: npm run build
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Install modules
+        working-directory: ./npm
+        run: npm install
+
+      - name: Run Webpack
+        working-directory: ./npm
+        run: npm run build
 
       # Configure NET
       - name: Set up .NET Core
@@ -51,6 +51,10 @@ jobs:
 
       - name: .NET Publish
         run: dotnet publish src/Blazor/Blazor.csproj -c:Release -p:GHPages=true -o published/blazor --nologo
+        
+      # replace the GatewayApi value in app-settings.json
+      - name: Change the GatewayApi value in app-settings.json
+        RUN: sed -i 's~<gateway-api-endpoint>~https://hubviwe-api-gateway.azurewebsites.net~g' published/blazor/wwwroot/appsettings.json
 
       # changes the base-tag in index.html from '/' to 'blazor' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to blazor

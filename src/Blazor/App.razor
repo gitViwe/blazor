@@ -1,13 +1,21 @@
-﻿<Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="_lazyLoadedAssemblies" OnNavigateAsync="OnNavigateAsync">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(HubDefaultLayout)"/>
-        <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
-    </Found>
-    <NotFound>
-        <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(HubDefaultLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+﻿<HubCascadingRouter>
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Navigating>
+            <LayoutView Layout="@typeof(HubDefaultLayout)">
+                <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true"/>
+            </LayoutView>
+        </Navigating>
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(HubDefaultLayout)"/>
+            <FocusOnNavigate RouteData="@routeData" Selector="div" />
+        </Found>
+        <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(HubDefaultLayout)">
+                <p role="alert">Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</HubCascadingRouter>
 
+<HubAnchorNavigation />

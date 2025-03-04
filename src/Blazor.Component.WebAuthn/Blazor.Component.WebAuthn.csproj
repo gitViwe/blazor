@@ -15,10 +15,6 @@
         <PackageReference Include="Fido2.Models" Version="3.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.1" />
-        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.7.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
