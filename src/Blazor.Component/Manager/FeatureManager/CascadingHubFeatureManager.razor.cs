@@ -45,12 +45,9 @@ public partial class CascadingHubFeatureManager
 
             if (response.IsSuccessStatusCode)
             {
-                var featureFlags = await response.Content.ReadFromJsonAsync<IEnumerable<string>>(cancellationToken) ?? [];
+                var featureResponse = await response.Content.ReadFromJsonAsync<CascadingHubFeatureManagerContext>(cancellationToken);
 
-                _context = new CascadingHubFeatureManagerContext
-                {
-                    Features = featureFlags,
-                };
+                _context = featureResponse ?? new CascadingHubFeatureManagerContext();
             }
         }
         catch (Exception exception)
