@@ -1,12 +1,12 @@
 {
   "mainAssemblyName": "Blazor",
   "resources": {
-    "hash": "sha256-LhhRmGFyMnstoKCYIZu5bZ0+RXe8Dsgubtcz2aMgClU=",
+    "hash": "sha256-O2IO4mqGgSG+InWoGQNsAMBUgGeSb2EIAF/kma/9Czo=",
     "fingerprinting": {
-      "Blazor.Component.i89phghl64.wasm": "Blazor.Component.wasm",
-      "Blazor.Component.WebAuthn.1hphktj6sj.wasm": "Blazor.Component.WebAuthn.wasm",
-      "Blazor.Shared.a1u5p1mh25.wasm": "Blazor.Shared.wasm",
-      "Blazor.rolwgfojuw.wasm": "Blazor.wasm",
+      "Blazor.Component.4vb62de5hy.wasm": "Blazor.Component.wasm",
+      "Blazor.Component.WebAuthn.bh6wgbsruk.wasm": "Blazor.Component.WebAuthn.wasm",
+      "Blazor.Shared.44abzihe94.wasm": "Blazor.Shared.wasm",
+      "Blazor.9oqftos2kk.wasm": "Blazor.wasm",
       "Fido2.Models.uq3lanft4u.wasm": "Fido2.Models.wasm",
       "gitViwe.Shared.zjh03vpl39.wasm": "gitViwe.Shared.wasm",
       "Microsoft.AspNetCore.Components.mqmp7iqpoo.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -93,10 +93,10 @@
       "System.Runtime.InteropServices.JavaScript.f4ln4hfftw.wasm": "sha256-r+LQmgoVdHgFKWJvUNAR7HQZAtSw+xvBIQ6siSPsBNM="
     },
     "assembly": {
-      "Blazor.Component.i89phghl64.wasm": "sha256-AjzBjDBfloNCyQxJIVx4WgRdc0AFeU7DE0V+SV2T41U=",
-      "Blazor.Component.WebAuthn.1hphktj6sj.wasm": "sha256-NXOth8SjkblvZGT0+e+c7ccgH+ekYiqvDAj4EnT/jQ8=",
-      "Blazor.Shared.a1u5p1mh25.wasm": "sha256-TiQzZ2VbQQsvdXTVFIkceCUAK7G28DSUSFpKTSRs5fg=",
-      "Blazor.rolwgfojuw.wasm": "sha256-yyEHO39sH9ok6ihvF5s63ruFCthF+X6i332s4fqmgWU=",
+      "Blazor.Component.4vb62de5hy.wasm": "sha256-kDfV5jPs7N99F62XgHYyLjoKOVhFx5+fX2pv0SekbeA=",
+      "Blazor.Component.WebAuthn.bh6wgbsruk.wasm": "sha256-MXuVFSss32S08/DYH2lKS5nghQlJxBMUO9g2+xWTpUM=",
+      "Blazor.Shared.44abzihe94.wasm": "sha256-DN1mW7Jvlx/nuiksGf+QQq2QwTLH8EZ1zt7urYtnqKk=",
+      "Blazor.9oqftos2kk.wasm": "sha256-yRH486eqbaQunpd89Xa1Q2JrtOxgI72mS6OLCDe3Uq8=",
       "Fido2.Models.uq3lanft4u.wasm": "sha256-Njzf9maX1rFXczr1QIk315AhC/7x2K79ZFrqEX78Iwo=",
       "gitViwe.Shared.zjh03vpl39.wasm": "sha256-3+fRwRfVXAcso43JQ5q9078LWxjznflpUS9Lfd7vaL0=",
       "Microsoft.AspNetCore.Components.mqmp7iqpoo.wasm": "sha256-Xg653C6MeuNguuvXgRVURqblcjECQFMJcrF7rGdjiW8=",
