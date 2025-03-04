@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.Extensions.Http.Resilience;
 using Polly;
 
@@ -14,7 +15,7 @@ internal static class GatewayClientExtensions
     internal static IServiceCollection AddGatewayClient(this IServiceCollection services)
     {
         services
-            .AddHttpClient<IGatewayClient, GatewayClient>(options => options.Timeout = TimeSpan.FromSeconds(25))
+            .AddHttpClient<IGatewayClient, GatewayClient>(options => options.Timeout = TimeSpan.FromSeconds(60))
             .AddResilienceHandler(GatewayClient.ResilienceHandlerName, resilienceBuilder =>
             {
                 // Retry Strategy configuration
@@ -24,6 +25,8 @@ internal static class GatewayClientExtensions
                     BackoffType = DelayBackoffType.Exponential,
                     ShouldHandle = new PredicateBuilder<HttpResponseMessage>()
                         .Handle<HttpRequestException>()
+                        .Handle<TaskCanceledException>()
+                        .HandleResult(response => response.StatusCode == HttpStatusCode.GatewayTimeout)
                 });
             });
         
