@@ -48,6 +48,8 @@ public partial class CascadingHubFeatureManager
                 var featureResponse = await response.Content.ReadFromJsonAsync<CascadingHubFeatureManagerContext>(cancellationToken);
 
                 _context = featureResponse ?? new CascadingHubFeatureManagerContext();
+                
+                StateHasChanged();
             }
         }
         catch (Exception exception)
