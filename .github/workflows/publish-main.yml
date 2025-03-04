@@ -54,7 +54,7 @@ jobs:
         
       # replace the GatewayApi value in app-settings.json
       - name: Change the GatewayApi value in app-settings.json
-        RUN: sed -i 's~<gateway-api-endpoint>~https://hubviwe-api-gateway.azurewebsites.net~g' published/blazor/wwwroot/appsettings.json
+        run: sed -i 's~<gateway-api-endpoint>~https://hubviwe-api-gateway.azurewebsites.net~g' published/blazor/wwwroot/appsettings.json
 
       # changes the base-tag in index.html from '/' to 'blazor' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to blazor
