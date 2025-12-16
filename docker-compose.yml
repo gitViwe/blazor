@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   blazor-wasm:
@@ -7,7 +5,12 @@ services:
     build:
         context: src/
         dockerfile: Blazor/Dockerfile
+        args:
+          GATEWAY_API_URI: "http://localhost:5128"
+          SEQ_UI_URI: ""
+          JAEGER_UI_URI: ""
+          GRAFANA_DASHBOARD_URI: ""
     environment:
-        ASPNETCORE_ENVIRONMENT: Docker
+        ASPNETCORE_ENVIRONMENT: Development
     ports:
       - 5249:8080

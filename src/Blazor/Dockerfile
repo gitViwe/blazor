@@ -31,5 +31,16 @@ WORKDIR /usr/share/nginx/html
 COPY --from=publish /published/wwwroot .
 COPY --from=publish /published/nginx.conf /etc/nginx/nginx.conf
 
-# Use sed to replace the GatewayApi value
-RUN sed -i 's~<gateway-api-endpoint>~https://hubviwe-api-gateway.azurewebsites.net~g' appsettings.json
+# Define Build Arguments for Configuration
+ARG GATEWAY_API_URI
+ARG SEQ_UI_URI
+ARG JAEGER_UI_URI
+ARG GRAFANA_DASHBOARD_URI
+
+# Use sed to replace the placeholders in appsettings.json
+RUN sed -i \
+  -e "s|<gateway-api-endpoint>|${GATEWAY_API_URI}|g" \
+  -e "s|<seq-ui-endpoint>|${SEQ_UI_URI}|g" \
+  -e "s|<jaeger-ui-endpoint>|${JAEGER_UI_URI}|g" \
+  -e "s|<grafana-dashboard-endpoint>|${GRAFANA_DASHBOARD_URI}|g" \
+  appsettings.json

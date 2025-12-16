@@ -12,7 +12,7 @@ public partial class App : ComponentBase
     
     private async Task OnNavigateAsync(NavigationContext context)
     {
-        if (context.Path.StartsWith("test", StringComparison.InvariantCultureIgnoreCase))
+        if (context.Path.StartsWith(HubLazyAssembly.WebAuthentication.Path, StringComparison.InvariantCultureIgnoreCase))
         {
             var assemblies = await AssemblyLoader.LoadAssembliesAsync(HubLazyAssembly.WebAuthentication.Assemblies);
             _lazyLoadedAssemblies.AddRange(assemblies);
