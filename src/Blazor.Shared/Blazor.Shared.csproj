@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LangVersion>14</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="gitViwe.Shared" Version="4.0.0-alpha.1" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.1" />
-      <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="9.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.1" />
+      <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="10.0.1" />
     </ItemGroup>
 
 </Project>

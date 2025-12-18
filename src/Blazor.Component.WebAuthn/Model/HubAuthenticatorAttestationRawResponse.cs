@@ -14,7 +14,7 @@ public sealed class HubAuthenticatorAttestationRawResponse
     public PublicKeyCredentialType? Type { get; init; }
 
     [JsonPropertyName("response")]
-    public required AuthenticatorAttestationRawResponse.ResponseData Response { get; init; }
+    public required AuthenticatorAttestationRawResponse.AttestationResponse Response { get; init; }
 
     [JsonPropertyName("extensions")]
     public required AuthenticationExtensionsClientOutputs Extensions { get; init; }

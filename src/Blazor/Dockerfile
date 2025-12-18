@@ -6,7 +6,7 @@ WORKDIR /npm
 RUN npm install
 RUN npm run build
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 EXPOSE 8080
 EXPOSE 8081
 
@@ -31,16 +31,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=publish /published/wwwroot .
 COPY --from=publish /published/nginx.conf /etc/nginx/nginx.conf
 
-# Define Build Arguments for Configuration
-ARG GATEWAY_API_URI
-ARG SEQ_UI_URI
-ARG JAEGER_UI_URI
-ARG GRAFANA_DASHBOARD_URI
-
-# Use sed to replace the placeholders in appsettings.json
-RUN sed -i \
-  -e "s|<gateway-api-endpoint>|${GATEWAY_API_URI}|g" \
-  -e "s|<seq-ui-endpoint>|${SEQ_UI_URI}|g" \
-  -e "s|<jaeger-ui-endpoint>|${JAEGER_UI_URI}|g" \
-  -e "s|<grafana-dashboard-endpoint>|${GRAFANA_DASHBOARD_URI}|g" \
-  appsettings.json
+# 1. Copy the startup script to the Nginx entrypoint directory
+COPY Blazor/blazor-startup.sh /docker-entrypoint.d/01-blazor-startup.sh
+# 2. Ensure the script is executable
+RUN chmod +x /docker-entrypoint.d/01-blazor-startup.sh

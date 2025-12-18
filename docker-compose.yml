@@ -5,12 +5,11 @@ services:
     build:
         context: src/
         dockerfile: Blazor/Dockerfile
-        args:
-          GATEWAY_API_URI: "http://localhost:5128"
-          SEQ_UI_URI: ""
-          JAEGER_UI_URI: ""
-          GRAFANA_DASHBOARD_URI: ""
     environment:
         ASPNETCORE_ENVIRONMENT: Development
+        GATEWAY_API_URI: "http://localhost:5249"
+        SEQ_UI_URI: ""
+        JAEGER_UI_URI: ""
+        GRAFANA_DASHBOARD_URI: ""
     ports:
       - 5249:8080
