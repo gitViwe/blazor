@@ -48,9 +48,11 @@ async function createCredentials(options: PublicKeyCredentialCreationOptions): P
         options.user.id = fromBase64Url(options.user.id);
     if (options.rp.id === null)
         options.rp.id = undefined;
-    for (let cred of options.excludeCredentials) {
-        if (typeof cred.id === 'string')
-            cred.id = fromBase64Url(cred.id);
+    if (options.excludeCredentials) {
+        for (let cred of options.excludeCredentials) {
+            if (typeof cred.id === 'string')
+                cred.id = fromBase64Url(cred.id);
+        }
     }
     const newCredentials = await navigator.credentials.create({publicKey: options}) as PublicKeyCredential;
     const response = newCredentials.response as AuthenticatorAttestationResponse;
