@@ -34,8 +34,8 @@ function isWebAuthnPossible() {
 function toBase64Url(arrayBuffer: ArrayBuffer): string {
     return btoa(String.fromCharCode(...new Uint8Array(arrayBuffer))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=*$/g, "");
 }
-function fromBase64Url(value: string): Uint8Array {
-    return Uint8Array.from(atob(value.replace(/-/g, "+").replace(/_/g, "/")), c => c.charCodeAt(0));
+function fromBase64Url(value: string): ArrayBuffer {
+    return Uint8Array.from(atob(value.replace(/-/g, "+").replace(/_/g, "/")), c => c.charCodeAt(0)).buffer;
 }
 function base64StringToUrl(base64String: string): string {
     return base64String.replace(/\+/g, "-").replace(/\//g, "_").replace(/=*$/g, "");
