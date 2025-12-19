@@ -24,7 +24,7 @@ interface AssertionResponse {
     authenticatorData: string;
     signature: string;
     clientDataJSON: string;
-    userHandle: string;
+    userHandle?: string;
 }
 
 function isWebAuthnPossible() {
