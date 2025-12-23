@@ -32,9 +32,7 @@
                 </MudItem>
             </MudStack>
 
-            <MudStack
-                Spacing="1"
-                Style="width: 600px;">
+            <MudStack Spacing="1">
                 @foreach (var item in ItemProgressDetail)
                 {
                     <MudStack
@@ -43,8 +41,7 @@
                         AlignItems="AlignItems.Center">
                         <MudText
                             Class="font-bold"
-                            Typo="Typo.caption"
-                            Style="width: 50px;">
+                            Typo="Typo.caption">
                             @item.Key
                         </MudText>
                         <MudProgressLinear
