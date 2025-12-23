@@ -2,9 +2,10 @@ namespace Blazor.Shared.Constant;
 
 public static class BlazorPage
 {
-    public static class DefaultExamples
+    public static class Playground
     {
         public const string Counter = "counter";
+        public const string Chore = "chore";
         public const string FetchData = "fetchdata";
     }
     

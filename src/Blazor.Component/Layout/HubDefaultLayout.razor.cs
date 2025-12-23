@@ -12,7 +12,7 @@ public partial class HubDefaultLayout : LayoutComponentBase
     {
         if (firstRender && MudThemeProviderReference is not null)
         {
-            var isSystemDarkMode = await MudThemeProviderReference.GetSystemPreference();
+            var isSystemDarkMode = await MudThemeProviderReference.GetSystemDarkModeAsync();
             DarkModeChanged(isSystemDarkMode);
         }
     }

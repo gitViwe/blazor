@@ -18,18 +18,4 @@ public sealed class HubAuthenticatorAttestationRawResponse
 
     [JsonPropertyName("extensions")]
     public required AuthenticationExtensionsClientOutputs Extensions { get; init; }
-
-    public sealed class ResponseData
-    {
-        [JsonConverter(typeof(Base64UrlConverter))]
-        [JsonPropertyName("attestationObject")]
-        public required byte[] AttestationObject { get; init; }
-
-        [JsonConverter(typeof(Base64UrlConverter))]
-        [JsonPropertyName("clientDataJSON")]
-        public required byte[] ClientDataJson { get; init; }
-        
-        [JsonPropertyName("transports")]
-        public required AuthenticatorTransport[] Transports { get; init; }
-    }
 }

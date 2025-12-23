@@ -31,4 +31,12 @@
       <ProjectReference Include="..\Blazor.Shared\Blazor.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Dialog\TaskList\HubAddTaskItem.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Card\TaskListOverview\Dialog\TaskList\HubAddTaskItem.razor" />
+    </ItemGroup>
+
 </Project>
