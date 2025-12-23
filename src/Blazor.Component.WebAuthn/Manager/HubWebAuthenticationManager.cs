@@ -34,7 +34,6 @@ internal sealed class HubWebAuthenticationManager(
         {
             // Present options to user and get response
             var credential = await jsRuntime.InvokeAsync<HubAuthenticatorAttestationRawResponse>("HubWebAuthentication.CreateCredentials", cancellationToken, options);
-            var b = JsonSerializer.Serialize(credential, JsonOptions);
             // Send response to server
             var createCredentialsResponse = await httpClient.PutAsJsonAsync(configuration.GetWebAuthnCreateCredentialsUri(options.User.Name), credential, JsonOptions, cancellationToken);
             

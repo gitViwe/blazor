@@ -1,5 +1,5 @@
 ﻿<HubCascadingRouter>
-    <Router AppAssembly="@typeof(App).Assembly">
+    <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="_lazyLoadedAssemblies" OnNavigateAsync="OnNavigateAsync">
         <Navigating>
             <LayoutView Layout="@typeof(HubDefaultLayout)">
                 <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true"/>

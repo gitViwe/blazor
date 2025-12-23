@@ -18,8 +18,7 @@ internal static class GatewayClientExtensions
             .AddHttpClient<IGatewayClient, GatewayClient>(options => options.Timeout = TimeSpan.FromSeconds(60))
             .AddResilienceHandler(GatewayClient.ResilienceHandlerName, resilienceBuilder =>
             {
-                // Retry Strategy configuration
-                resilienceBuilder.AddRetry(new HttpRetryStrategyOptions // Configures retry behavior
+                resilienceBuilder.AddRetry(new HttpRetryStrategyOptions
                 {
                     Delay = TimeSpan.FromSeconds(5),
                     BackoffType = DelayBackoffType.Exponential,

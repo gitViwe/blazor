@@ -1,5 +1,5 @@
 const scrollToElement = (elementId: string): void => {
-    const element: HTMLElement = document.getElementById(elementId);
+    const element: HTMLElement | null = document.getElementById(elementId);
     if (element instanceof HTMLElement) {
         element.scrollIntoView({
             behavior: "smooth",

@@ -10,9 +10,15 @@ public static class JsRuntimeExtension
     
     public static ValueTask<IJSObjectReference> ImportJsModuleReferenceAsync(this IJSRuntime jsRuntime, string modulePath, CancellationToken cancellationToken)
         => jsRuntime.InvokeAsync<IJSObjectReference>("import", cancellationToken, modulePath);
-    
-    public static ValueTask<T> LocalStorageGetAsync<T>(this IJSRuntime jsRuntime, string key, CancellationToken cancellationToken)
-        => jsRuntime.InvokeAsync<T>("localStorage.getItem", cancellationToken, key);
+
+    public static async ValueTask<T> LocalStorageGetAsync<T>(this IJSRuntime jsRuntime, string key, CancellationToken cancellationToken)
+    {
+        var json = await jsRuntime.InvokeAsync<string?>("localStorage.getItem", cancellationToken, key);
+        
+        if (string.IsNullOrWhiteSpace(json)) return default!;
+
+        return System.Text.Json.JsonSerializer.Deserialize<T>(json)!;
+    }
     
     public static ValueTask LocalStorageRemoveAsync(this IJSRuntime jsRuntime, string key, CancellationToken cancellationToken)
         => jsRuntime.InvokeVoidAsync("localStorage.removeItem", cancellationToken, key);

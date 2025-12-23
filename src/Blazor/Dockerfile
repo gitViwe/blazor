@@ -6,7 +6,7 @@ WORKDIR /npm
 RUN npm install
 RUN npm run build
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 EXPOSE 8080
 EXPOSE 8081
 
@@ -31,5 +31,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=publish /published/wwwroot .
 COPY --from=publish /published/nginx.conf /etc/nginx/nginx.conf
 
-# Use sed to replace the GatewayApi value
-RUN sed -i 's~<gateway-api-endpoint>~https://hubviwe-api-gateway.azurewebsites.net~g' appsettings.json
+# 1. Copy the startup script to the Nginx entrypoint directory
+COPY Blazor/blazor-startup.sh /docker-entrypoint.d/01-blazor-startup.sh
+# 2. Ensure the script is executable
+RUN chmod +x /docker-entrypoint.d/01-blazor-startup.sh

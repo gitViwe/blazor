@@ -1,0 +1,18 @@
+<MudDialog>
+    <TitleContent>Add New Task</TitleContent>
+    <DialogContent>
+        <MudTextField @bind-Value="_taskName" Label="Task Name" Required="true" />
+        <MudTextField @bind-Value="_room" Label="Room" Required="true" />
+        <MudTextField @bind-Value="_assignee" Label="Assignee" Required="true" />
+        <MudSelect @bind-Value="_frequency" Label="Frequency">
+            @foreach (Frequency item in Enum.GetValues<Frequency>())
+            {
+                <MudSelectItem Value="@item">@item</MudSelectItem>
+            }
+        </MudSelect>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="@Cancel">Cancel</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@Submit">Add Task</MudButton>
+    </DialogActions>
+</MudDialog>

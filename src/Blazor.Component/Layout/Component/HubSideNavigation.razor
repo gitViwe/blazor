@@ -9,22 +9,30 @@
 
     <MudNavGroup
         HideExpandIcon="true"
-        Title="Default Examples"
+        Title="Playground"
         Icon="@Icons.Material.Filled.School" >
 
         <MudNavLink
             Disabled="true"
             Match="NavLinkMatch.All"
             Icon="@Icons.Material.Filled.Watch"
-            Href="@BlazorPage.DefaultExamples.Counter" >
+            Href="@BlazorPage.Playground.Counter" >
             Counter
+        </MudNavLink>
+        
+        <MudNavLink
+            Disabled="false"
+            Match="NavLinkMatch.All"
+            Icon="@Icons.Material.Filled.CleanHands"
+            Href="@BlazorPage.Playground.Chore" >
+            Chore
         </MudNavLink>
 
         <MudNavLink
             Disabled="true"
             Match="NavLinkMatch.All"
             Icon="@Icons.Material.Filled.DataUsage"
-            Href="@BlazorPage.DefaultExamples.FetchData" >
+            Href="@BlazorPage.Playground.FetchData" >
             Fetch data
         </MudNavLink>
 
