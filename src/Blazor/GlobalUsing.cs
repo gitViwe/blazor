@@ -1,5 +1,3 @@
-// Global using directives
-
 global using System.Net.Http;
 global using Blazor;
 global using Microsoft.AspNetCore.Components.Web;
@@ -13,3 +11,6 @@ global using Blazor.Shared.Interface;
 global using Microsoft.JSInterop;
 global using Blazor.Shared.Extension;
 global using Blazor.Component.Manager;
+global using Blazor.Component;
+global using Blazor.Component.WebAuthn;
+global using System.Text.Json;

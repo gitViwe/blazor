@@ -1,21 +1,26 @@
-﻿<HubCascadingRouter>
-    <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="_lazyLoadedAssemblies" OnNavigateAsync="OnNavigateAsync">
-        <Navigating>
-            <LayoutView Layout="@typeof(HubDefaultLayout)">
-                <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true"/>
-            </LayoutView>
-        </Navigating>
-        <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(HubDefaultLayout)"/>
-            <FocusOnNavigate RouteData="@routeData" Selector="div" />
-        </Found>
-        <NotFound>
-            <PageTitle>Not found</PageTitle>
-            <LayoutView Layout="@typeof(HubDefaultLayout)">
-                <p role="alert">Sorry, there's nothing at this address.</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
-</HubCascadingRouter>
-
-<HubAnchorNavigation />
+﻿<CascadingAuthenticationState>
+    <CascadingHubFeatureManager>
+        <Router AppAssembly="@typeof(App).Assembly" NotFoundPage="typeof(Pages.NotFound)">
+            <Navigating>
+                <LayoutView Layout="@typeof(HubDefaultLayout)">
+                    <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true"/>
+                </LayoutView>
+            </Navigating>
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(HubDefaultLayout)">
+                    <NotAuthorized>
+                        @if (context.User.Identity?.IsAuthenticated != true)
+                        {
+                            <RedirectToLogin/>
+                        }
+                        else
+                        {
+                            <p role="alert">You are not authorized to access this resource.</p>
+                        }
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+            </Found>
+        </Router>
+    </CascadingHubFeatureManager>
+</CascadingAuthenticationState>

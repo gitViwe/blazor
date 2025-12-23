@@ -33,6 +33,7 @@
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Dialog\TaskList\HubAddTaskItem.razor" />
+      <UpToDateCheckInput Remove="Navigation\CascadingRouter\HubCascadingRouter.razor" />
     </ItemGroup>
 
     <ItemGroup>

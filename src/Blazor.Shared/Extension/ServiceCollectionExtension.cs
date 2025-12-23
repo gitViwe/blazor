@@ -1,18 +1,14 @@
 using System.Net;
+using Blazor.Shared.Interface;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Http.Resilience;
 using Polly;
 
-namespace Blazor.Client;
+namespace Blazor.Shared.Extension;
 
-internal class GatewayClient(HttpClient client) : IGatewayClient
+public static class ServiceCollectionExtension
 {
-    public const string ResilienceHandlerName = "GatewayClientResilienceHandler";
-    public HttpClient HttpClient => client;
-}
-
-internal static class GatewayClientExtensions
-{
-    internal static IServiceCollection AddGatewayClient(this IServiceCollection services)
+    public static IServiceCollection AddGatewayClient(this IServiceCollection services)
     {
         services
             .AddHttpClient<IGatewayClient, GatewayClient>(options => options.Timeout = TimeSpan.FromSeconds(60))

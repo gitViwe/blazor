@@ -7,30 +7,44 @@
     <title>Viwe Nkepu</title>
     <base href="/" />
     <link rel="preload" id="webassembly" />
-    <link rel="stylesheet" href="css/home-loader.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="Blazor.styles.css" rel="stylesheet" />
+    <!-- Important: Increment the version parameter whenever you update MudBlazor to prevent caching issues -->
+    <link href="_content/MudBlazor/MudBlazor.min.css?v=1" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="_content/Blazor.Component/css/component-main.css" />
-    <!-- Style sheets for MudBlazor -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
-    <link rel="stylesheet" href="_content/MudBlazor/MudBlazor.min.css" />
     <script type="importmap"></script>
 </head>
 
 <body>
     <div id="app">
-        <div class="loader-container">
-            <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="pl-grad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="hsl(193,90%,55%)" />
-                        <stop offset="100%" stop-color="hsl(223,90%,55%)" />
-                    </linearGradient>
-                </defs>
-                <circle class="pl__ring" r="56" cx="64" cy="64" fill="none" stroke="hsla(0,10%,10%,0.1)" stroke-width="16" stroke-linecap="round" />
-                <path class="pl__worm" d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z" fill="none" stroke="url(#pl-grad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="44 1111" stroke-dashoffset="10" />
-            </svg>
-            <div><h2>One moment, getting things ready for you...</h2></div>
+        <style>
+            .hub-loader-container {
+                left: 50%;
+                padding: 10vmin;
+                position: fixed;
+                text-align: center;
+                top: 50%;
+                transform: translate(-50%,-50%)
+            }
+        </style>
+        
+        <div style="height:100%;width:100%;margin:0;position:fixed;">
+            <div class="hub-loader-container">
+                <div class="hub-card">
+                    <div class="hub-loader">
+                        <p>loading</p>
+                        <div class="hub-words">
+                            <span class="hub-word">blocks</span>
+                            <span class="hub-word">modals</span>
+                            <span class="hub-word">switches</span>
+                            <span class="hub-word">cards</span>
+                            <span class="hub-word">buttons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -39,10 +53,12 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
+    <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+    <!-- Important: Increment the version parameter whenever you update MudBlazor to prevent caching issues -->
+    <script src="_content/MudBlazor/MudBlazor.min.js?v=1"></script>
     <script src="js/index.bundle.js"></script>
-    <!-- Scripts for MudBlazor -->
-    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+
 </body>
 
 </html>

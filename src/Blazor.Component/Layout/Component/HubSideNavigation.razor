@@ -47,6 +47,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubSwagger) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.SwaggerUi"
         Href="@("#" + BlazorPage.Documentation.Swagger)" >
@@ -55,6 +56,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubScalar) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.Scalar"
         Href="@("#" + BlazorPage.Documentation.Scalar)">
@@ -63,6 +65,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubGraphQl) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.GraphQl"
         Href="@("#" + BlazorPage.Documentation.GraphQl)">
@@ -78,6 +81,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubOpenTelemetry) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.OpenTelemetry"
         Href="@("#" + BlazorPage.Observability.OpenTelemetry)" >
@@ -86,6 +90,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubHealthCheck) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.NetCore"
         Href="@("#" + BlazorPage.Observability.HealthCheck)" >
@@ -101,6 +106,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubWebAuthentication) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.Fingerprint"
         Href="@("#" + BlazorPage.Security.WebAuthn)" >
@@ -109,6 +115,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubMfa) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.QrCodeScanner"
         Href="@("#" + BlazorPage.Security.Mfa)" >
@@ -124,6 +131,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubSignalR) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.SignalR"
         Href="@BlazorPage.Communication.SignalR" >
@@ -132,6 +140,7 @@
 
     <MudNavLink
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubGrpc) is false)"
+        ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.Grpc"
         Href="@BlazorPage.Communication.Grpc" >
