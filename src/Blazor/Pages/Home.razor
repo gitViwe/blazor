@@ -30,4 +30,16 @@
 
     </MudItem>
     
+    <HubProgressOverview
+        Title="Chore Plan"
+        Description="Family chore task list"
+        OnResetButtonClick="@ResetButtonClicked"
+        ItemProgressDetail="@ItemProgressDetail"/>
+    
+    <HubTaskListOverview
+        TaskItemCollection="@TaskItems"
+        OnAddButtonClick="@AddButtonClicked"
+        OnDeleteButtonClick="@DeleteButtonClicked"
+        OnToggleButtonClick="@ToggleButtonClicked"/>
+    
 </MudGrid>
