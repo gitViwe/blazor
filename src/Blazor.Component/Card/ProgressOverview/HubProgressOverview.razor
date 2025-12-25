@@ -3,14 +3,15 @@
         <MudStack
             Row="true"
             Spacing="5"
-            Wrap="Wrap.Wrap"
             AlignItems="AlignItems.Center"
             Justify="Justify.SpaceBetween"
-            StretchItems="StretchItems.End">
+            StretchItems="StretchItems.End"
+            Breakpoint="Breakpoint.MdAndDown">
             
             <MudStack
                 Row="true"
                 Spacing="4"
+                Style="min-width: 450px"
                 AlignItems="AlignItems.Center">
                 <MudAvatar
                     Size="Size.Large"
@@ -32,7 +33,7 @@
                 </MudItem>
             </MudStack>
 
-            <MudStack Spacing="1">
+            <MudStack Spacing="1" Style="width: 100%; min-width: 300px">
                 @foreach (var item in ItemProgressDetail)
                 {
                     <MudStack
@@ -41,7 +42,8 @@
                         AlignItems="AlignItems.Center">
                         <MudText
                             Class="font-bold"
-                            Typo="Typo.caption">
+                            Typo="Typo.caption"
+                            Style="width: 60px">
                             @item.Key
                         </MudText>
                         <MudProgressLinear

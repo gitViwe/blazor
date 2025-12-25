@@ -15,9 +15,8 @@ Things you need to use the software and how to install them.
   * [Visual Studio](https://visualstudio.microsoft.com/)
   * [Rider](https://www.jetbrains.com/rider/)
   * [WebStorm](https://www.jetbrains.com/webstorm/)
-* [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet)
-* [Docker](https://www.docker.com/) (optional)
-* [Node.js](https://nodejs.org/en/download) (optional)
+* [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet)
+* [Docker](https://www.docker.com/)
 
 ### Installation
 
@@ -29,11 +28,4 @@ Things you need to use the software and how to install them.
    ```shell
    docker compose up --build -d
    ```
-  - Then navigate to [localhost:5249](http://localhost:5249)
-  
-
-- Run with IDE: navigate to the root directory `blazor`
-   ```shell
-   dotnet run --project src\Blazor\Blazor.csproj
-   ```
-  - Then navigate to [localhost:5249](http://localhost:5249)
+  - Then navigate to [localhost:5109](http://localhost:5109)

@@ -41,7 +41,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.x
+          dotnet-version: 10.x
 
       - name: .NET Restore
         run: dotnet restore src
@@ -52,9 +52,20 @@ jobs:
       - name: .NET Publish
         run: dotnet publish src/Blazor/Blazor.csproj -c:Release -p:GHPages=true -o published/blazor --nologo
         
-      # replace the GatewayApi value in app-settings.json
-      - name: Change the GatewayApi value in app-settings.json
-        run: sed -i 's~<gateway-api-endpoint>~https://hubviwe-api-gateway.azurewebsites.net~g' published/blazor/wwwroot/appsettings.json
+      # replace the endpoint value in app-settings.json
+      - name: Change the endpoint values in app-settings.json
+        env:
+          GATEWAY_URL: ${{ secrets.GATEWAY_API_ENDPOINT }}
+          SEQ_URL: ""
+          JAEGER_URL: ""
+          GRAFANA_URL: ""
+        run: |
+          FILE_PATH="published/blazor/wwwroot/appsettings.json"
+          
+          sed -i "s|<gateway-api-endpoint>|$GATEWAY_URL|g" "$FILE_PATH"
+          sed -i "s|<seq-ui-endpoint>|$SEQ_URL|g" "$FILE_PATH"
+          sed -i "s|<jaeger-ui-endpoint>|$JAEGER_URL|g" "$FILE_PATH"
+          sed -i "s|<grafana-dashboard-endpoint>|$GRAFANA_URL|g" "$FILE_PATH"
 
       # changes the base-tag in index.html from '/' to 'blazor' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to blazor
