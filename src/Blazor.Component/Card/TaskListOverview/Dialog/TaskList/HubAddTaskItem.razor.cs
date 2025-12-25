@@ -3,19 +3,54 @@ namespace Blazor.Component.Card.TaskListOverview.Dialog.TaskList;
 public partial class HubAddTaskItem : ComponentBase
 {
     [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; }
+    public required IMudDialogInstance MudDialog { get; init; }
+
+    [Parameter] public IEnumerable<string> ExistingRooms { get; set; } = [];
+    [Parameter] public IEnumerable<string> ExistingAssignees { get; set; } = [];
+    [Parameter] public TaskItem? TaskItemToEdit { get; set; }
 
     private string _taskName = "";
     private string _room = "";
     private string _assignee = "";
     private Frequency _frequency = Frequency.Daily;
 
+    protected override void OnInitialized()
+    {
+        if (TaskItemToEdit is null) return;
+        
+        _taskName = TaskItemToEdit.Name;
+        _room = TaskItemToEdit.Room;
+        _assignee = TaskItemToEdit.Assignee;
+        _frequency = TaskItemToEdit.Frequency;
+    }
+
+    private Task<IEnumerable<string>> SearchRooms(string value, CancellationToken token)
+    {
+        return Task.FromResult(string.IsNullOrEmpty(value)
+            ? ExistingRooms
+            : ExistingRooms.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase)));
+    }
+
+    private Task<IEnumerable<string>> SearchAssignees(string value, CancellationToken token)
+    {
+        return Task.FromResult(string.IsNullOrEmpty(value)
+            ? ExistingAssignees
+            : ExistingAssignees.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase)));
+    }
+
     private void Cancel() => MudDialog.Cancel();
 
     private void Submit()
     {
-        // Return a new TaskItem record to the caller
-        var newItem = new TaskItem(0, _taskName, _room, _assignee, _frequency);
+        // If editing, keep ID. If new, ID is 0 (will be set by parent).
+        var id = TaskItemToEdit?.Id ?? 0;
+        
+        var newItem = new TaskItem(id, _taskName, _room, _assignee, _frequency)
+        {
+            // Preserve completed status if editing
+            Completed = TaskItemToEdit?.Completed ?? false 
+        };
+        
         MudDialog.Close(DialogResult.Ok(newItem));
     }
 }

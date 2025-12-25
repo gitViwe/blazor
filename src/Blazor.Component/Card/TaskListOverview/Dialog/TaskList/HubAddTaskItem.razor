@@ -1,18 +1,54 @@
 <MudDialog>
-    <TitleContent>Add New Task</TitleContent>
+    <TitleContent>
+        @(TaskItemToEdit is null ? "Add New Task" : "Edit Task")
+    </TitleContent>
     <DialogContent>
-        <MudTextField @bind-Value="_taskName" Label="Task Name" Required="true" />
-        <MudTextField @bind-Value="_room" Label="Room" Required="true" />
-        <MudTextField @bind-Value="_assignee" Label="Assignee" Required="true" />
-        <MudSelect @bind-Value="_frequency" Label="Frequency">
-            @foreach (Frequency item in Enum.GetValues<Frequency>())
-            {
-                <MudSelectItem Value="@item">@item</MudSelectItem>
-            }
-        </MudSelect>
+        <MudStack Spacing="4" Class="my-4">
+            <MudTextField
+                Required="true"
+                Label="Task Name"
+                @bind-Value="_taskName"
+                Variant="Variant.Outlined"/>
+
+            <MudAutocomplete T="string"
+                             Label="Room"
+                             Required="true"
+                             CoerceValue="true"
+                             @bind-Value="_room"
+                             SearchFunc="@SearchRooms"
+                             Variant="Variant.Outlined"
+                             ResetValueOnEmptyText="true"/>
+
+            <MudAutocomplete T="string"
+                             Required="true"
+                             Label="Assignee"
+                             CoerceValue="true"
+                             @bind-Value="_assignee"
+                             Variant="Variant.Outlined"
+                             ResetValueOnEmptyText="true"
+                             SearchFunc="@SearchAssignees"/>
+
+            <MudSelect @bind-Value="_frequency" Label="Frequency" Variant="Variant.Outlined">
+                @foreach (Frequency item in Enum.GetValues<Frequency>())
+                {
+                    <MudSelectItem Value="@item">@item</MudSelectItem>
+                }
+            </MudSelect>
+        </MudStack>
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="@Cancel">Cancel</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@Submit">Add Task</MudButton>
+        <MudButton
+            FullWidth="true"
+            OnClick="@Cancel"
+            Variant="Variant.Text">
+            Cancel
+        </MudButton>
+        <MudButton
+            FullWidth="true"
+            OnClick="@Submit"
+            Color="Color.Primary"
+            Variant="Variant.Filled">
+            @(TaskItemToEdit is null ? "Add Task" : "Save Changes")
+        </MudButton>
     </DialogActions>
 </MudDialog>

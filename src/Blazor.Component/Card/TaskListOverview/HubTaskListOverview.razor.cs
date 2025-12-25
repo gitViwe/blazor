@@ -29,7 +29,8 @@ internal record GroupedTaskItem(
 
 public partial class HubTaskListOverview : ComponentBase
 {
-    [Inject] private IDialogService DialogService { get; set; }
+    [Inject]
+    public required IDialogService DialogService { get; init; }
     
     /// <summary>
     /// The task items
@@ -45,6 +46,9 @@ public partial class HubTaskListOverview : ComponentBase
     
     [Parameter, EditorRequired]
     public EventCallback OnAddButtonClick { get; init; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback OnEditButtonClick { get; init; }
     
     private int _selectedPanelFrequency = 0;
     
@@ -90,23 +94,56 @@ public partial class HubTaskListOverview : ComponentBase
         TaskItemCollection.Remove(item);
         await OnDeleteButtonClick.InvokeAsync();
     }
+    
+    // Helper to get unique lists for the Autocomplete
+    private IEnumerable<string> GetUniqueRooms() => 
+        TaskItemCollection.Select(i => i.Room).Distinct().OrderBy(x => x);
 
-    private async Task AddTaskItemAsync()
+    private IEnumerable<string> GetUniqueAssignees() => 
+        TaskItemCollection.Select(i => i.Assignee).Distinct().OrderBy(x => x);
+
+    private async Task OpenTaskDialogAsync(TaskItem? itemToEdit = null)
     {
-        var options = new DialogOptions { CloseOnEscapeKey = true, FullWidth = true };
-        var dialog = await DialogService.ShowAsync<HubAddTaskItem>("Add New Task", options);
-        var result = await dialog.Result;
-        
-        if (result is { Canceled: false, Data: TaskItem newTask })
+        var parameters = new DialogParameters<HubAddTaskItem>
         {
-            // 1. Generate a simple ID (in a real app, the DB would do this)
-            int newId = TaskItemCollection.Any() ? TaskItemCollection.Max(t => t.Id) + 1 : 1;
+            { x => x.ExistingRooms, GetUniqueRooms() },
+            { x => x.ExistingAssignees, GetUniqueAssignees() },
+            { x => x.TaskItemToEdit, itemToEdit }
+        };
 
-            var finalTask = newTask with { Id = newId };
+        var options = new DialogOptions { CloseOnEscapeKey = true, FullWidth = true };
+        string title = itemToEdit == null ? "Add New Task" : "Edit Task";
+        
+        var dialog = await DialogService.ShowAsync<HubAddTaskItem>(title, parameters, options);
+        var result = await dialog.Result;
 
-            TaskItemCollection.Add(finalTask);
-
-            await OnAddButtonClick.InvokeAsync(); 
+        if (result is { Canceled: false, Data: TaskItem returnedItem })
+        {
+            if (itemToEdit == null)
+            {
+                // CREATE Logic
+                int newId = TaskItemCollection.Any()
+                    ? TaskItemCollection.Max(t => t.Id) + 1
+                    : 1;
+                var finalTask = returnedItem with { Id = newId };
+                TaskItemCollection.Add(finalTask);
+                await OnAddButtonClick.InvokeAsync();
+            }
+            else
+            {
+                // UPDATE Logic
+                // Since TaskItem is a record (immutable properties), we must replace it in the list
+                var index = TaskItemCollection.IndexOf(itemToEdit);
+                if (index != -1)
+                {
+                    TaskItemCollection[index] = returnedItem;
+                    await OnEditButtonClick.InvokeAsync();
+                }
+            }
         }
     }
+
+    private async Task AddTaskItemAsync() => await OpenTaskDialogAsync(null);
+
+    private async Task EditTaskItemAsync(TaskItem item) => await OpenTaskDialogAsync(item);
 }

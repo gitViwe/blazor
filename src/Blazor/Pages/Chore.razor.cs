@@ -63,6 +63,11 @@ public partial class Chore : ComponentBase
         await PersistToStorage();
     }
     
+    private async Task EditButtonClicked()
+    {
+        await PersistToStorage();
+    }
+    
     private async Task DeleteButtonClicked()
     {
         await PersistToStorage();
