@@ -45,7 +45,7 @@
                 </CardHeaderActions>
             </MudCardHeader>
             <MudCardContent>
-                <MudList T="string" Clickable="true">
+                <MudList T="string">
                     @foreach (var task in group.TaskItems)
                     {
                         <MudListItem Icon="@(task.Completed ? Icons.Material.Filled.CheckCircle : Icons.Material.Filled.RadioButtonUnchecked)"

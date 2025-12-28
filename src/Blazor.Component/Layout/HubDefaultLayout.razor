@@ -31,7 +31,16 @@
         <HubSideNavigation />
     </MudDrawer>
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-4">
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudToolBar Gutters="false" Style="position: fixed; z-index: 1;">
+                <MudIconButton
+                    Class="ml-3"
+                    Color="Color.Inherit"
+                    OnClick="@(_ => ToggleDrawer())"
+                    Icon="@Icons.Material.Outlined.Menu"/>
+            </MudToolBar>
+        </MudHidden>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-6">
             @Body
         </MudContainer>
     </MudMainContent>

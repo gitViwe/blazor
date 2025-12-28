@@ -2,7 +2,13 @@ namespace Blazor.Shared.Extension;
 
 public static class ConfigurationExtension
 {
-    private static string GetGatewayApiUri(this IConfiguration configuration)
+    public static string GetServiceName(this IConfiguration configuration)
+        => configuration["BlazorConfiguration:ServiceName"] ?? string.Empty;
+    
+    public static string GetServiceVersion(this IConfiguration configuration)
+        => configuration["BlazorConfiguration:ServiceVersion"] ?? string.Empty;
+    
+    public static string GetGatewayApiUri(this IConfiguration configuration)
         => configuration["BlazorConfiguration:Uri:GatewayApi"] ?? string.Empty;
     
     public static string GetSwaggerUri(this IConfiguration configuration)

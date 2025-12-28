@@ -45,9 +45,13 @@ public partial class HubAddTaskItem : ComponentBase
         // If editing, keep ID. If new, ID is 0 (will be set by parent).
         var id = TaskItemToEdit?.Id ?? 0;
         
-        var newItem = new TaskItem(id, _taskName, _room, _assignee, _frequency)
+        var newItem = new TaskItem
         {
-            // Preserve completed status if editing
+            Id = id,
+            Name = _taskName,
+            Room = _room,
+            Assignee = _assignee,
+            Frequency = _frequency,
             Completed = TaskItemToEdit?.Completed ?? false 
         };
         

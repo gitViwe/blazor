@@ -2,6 +2,9 @@ namespace Blazor.Component.Layout.Component;
 
 public partial class HubSideNavigation : ComponentBase, IComponentCancellationTokenSource
 {
+    [Inject]
+    public required IScrollManager ScrollManager { get; init; }
+    
     public CancellationTokenSource Cts => new();
     
     [CascadingParameter]

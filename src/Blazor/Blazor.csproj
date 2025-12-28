@@ -17,4 +17,11 @@
       <ProjectReference Include="..\Blazor.Component.WebAuthn\Blazor.Component.WebAuthn.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Layout\LoginDisplay.razor" />
+      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Layout\RedirectToLogin.razor" />
+    </ItemGroup>
+
 </Project>

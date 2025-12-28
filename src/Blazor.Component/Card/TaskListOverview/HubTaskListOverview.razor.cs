@@ -2,13 +2,14 @@ using Blazor.Component.Card.TaskListOverview.Dialog.TaskList;
 
 namespace Blazor.Component.Card.TaskListOverview;
 
-public record TaskItem(
-    int Id,
-    string Name,
-    string Room,
-    string Assignee,
-    Frequency Frequency)
+
+public class TaskItem
 {
+    public required int Id { get; set; }
+    public required string Name { get; init; } = string.Empty;
+    public required string Room { get; init; } = string.Empty;
+    public required string Assignee { get; init; }  = string.Empty;
+    public required Frequency Frequency { get; init; } = Frequency.Daily;
     public bool Completed { get; set; }
 }
 
@@ -125,8 +126,8 @@ public partial class HubTaskListOverview : ComponentBase
                 int newId = TaskItemCollection.Any()
                     ? TaskItemCollection.Max(t => t.Id) + 1
                     : 1;
-                var finalTask = returnedItem with { Id = newId };
-                TaskItemCollection.Add(finalTask);
+                returnedItem.Id = newId;
+                TaskItemCollection.Add(returnedItem);
                 await OnAddButtonClick.InvokeAsync();
             }
             else

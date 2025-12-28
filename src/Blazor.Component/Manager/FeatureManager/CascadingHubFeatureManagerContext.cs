@@ -1,4 +1,4 @@
-namespace Blazor.Component.Manager;
+namespace Blazor.Component.Manager.FeatureManager;
 
 public sealed class CascadingHubFeatureManagerContext
 {

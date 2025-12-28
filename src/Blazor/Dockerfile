@@ -2,6 +2,7 @@
 
 FROM node:alpine AS nodebuild
 COPY npm ./npm
+RUN mkdir -p src/Blazor/wwwroot/js
 WORKDIR /npm
 RUN npm install
 RUN npm run build
@@ -18,6 +19,9 @@ COPY ["src/Blazor.Shared/Blazor.Shared.csproj", "Blazor.Shared/"]
 RUN dotnet restore "Blazor/Blazor.csproj"
 
 COPY . .
+
+COPY --from=nodebuild /src/Blazor/wwwroot/js/index.bundle.js ./src/Blazor/wwwroot/js/
+
 WORKDIR /src/Blazor
 RUN dotnet build "Blazor.csproj" -c Release -o /app/build
 

@@ -7,36 +7,13 @@
         Home
     </MudNavLink>
 
-    <MudNavGroup
-        HideExpandIcon="true"
-        Title="Playground"
-        Icon="@Icons.Material.Filled.School" >
-
-        <MudNavLink
-            Disabled="true"
-            Match="NavLinkMatch.All"
-            Icon="@Icons.Material.Filled.Watch"
-            Href="@BlazorPage.Playground.Counter" >
-            Counter
-        </MudNavLink>
-        
-        <MudNavLink
-            Disabled="false"
-            Match="NavLinkMatch.All"
-            Icon="@Icons.Material.Filled.CleanHands"
-            Href="@BlazorPage.Playground.Chore" >
-            Chore
-        </MudNavLink>
-
-        <MudNavLink
-            Disabled="true"
-            Match="NavLinkMatch.All"
-            Icon="@Icons.Material.Filled.DataUsage"
-            Href="@BlazorPage.Playground.FetchData" >
-            Fetch data
-        </MudNavLink>
-
-    </MudNavGroup>
+    <MudNavLink
+        ActiveClass=""
+        Match="NavLinkMatch.All"
+        Icon="@Icons.Material.Filled.School"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Playground.Section, ScrollBehavior.Smooth))">
+        Playground
+    </MudNavLink>
 
     <MudText
         Class="ml-4 my-3"
@@ -46,29 +23,26 @@
     </MudText>
 
     <MudNavLink
-        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubSwagger) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.SwaggerUi"
-        Href="@("#" + BlazorPage.Documentation.Swagger)" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Documentation.Swagger, ScrollBehavior.Smooth))">
         Swagger
     </MudNavLink>
 
     <MudNavLink
-        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubScalar) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.Scalar"
-        Href="@("#" + BlazorPage.Documentation.Scalar)">
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Documentation.Scalar, ScrollBehavior.Smooth))">
         Scalar
     </MudNavLink>
 
     <MudNavLink
-        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubGraphQl) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.GraphQl"
-        Href="@("#" + BlazorPage.Documentation.GraphQl)">
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Documentation.GraphQl, ScrollBehavior.Smooth))">
         GraphQL
     </MudNavLink>
 
@@ -80,20 +54,18 @@
     </MudText>
 
     <MudNavLink
-        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubOpenTelemetry) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.OpenTelemetry"
-        Href="@("#" + BlazorPage.Observability.OpenTelemetry)" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Observability.OpenTelemetry, ScrollBehavior.Smooth))">
         OpenTelemetry
     </MudNavLink>
 
     <MudNavLink
-        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubHealthCheck) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.NetCore"
-        Href="@("#" + BlazorPage.Observability.HealthCheck)" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Observability.HealthCheck, ScrollBehavior.Smooth))">
         Health Check
     </MudNavLink>
 
@@ -109,7 +81,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.Fingerprint"
-        Href="@("#" + BlazorPage.Security.WebAuthn)" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Security.WebAuthn, ScrollBehavior.Smooth))">
         WebAuthn
     </MudNavLink>
 
@@ -118,7 +90,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.QrCodeScanner"
-        Href="@("#" + BlazorPage.Security.Mfa)" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Security.Mfa, ScrollBehavior.Smooth))">
         MFA
     </MudNavLink>
 
@@ -134,7 +106,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.SignalR"
-        Href="@BlazorPage.Communication.SignalR" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Communication.SignalR, ScrollBehavior.Smooth))">
         SignalR
     </MudNavLink>
 
@@ -143,7 +115,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@CustomIcon.Grpc"
-        Href="@BlazorPage.Communication.Grpc" >
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Communication.Grpc, ScrollBehavior.Smooth))">
         Grpc
     </MudNavLink>
     

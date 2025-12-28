@@ -13,5 +13,6 @@ global using Blazor.Shared.Interface;
 global using System.Net.Http.Json;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
-global using Blazor.Component.Manager;
+global using Blazor.Shared.OpenTelemetry;
 global using Blazor.Component.Manager.FeatureManager;
+global using System.Text.Json;

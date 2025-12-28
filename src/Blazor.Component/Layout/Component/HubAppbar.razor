@@ -1,10 +1,16 @@
-<MudAppBar Elevation="0" Fixed="true" Color="Color.Transparent" Class="@(IsDarkMode ? "appbar-blur mix-difference" : "appbar-blur")">
-    <MudIconButton
-        Edge="Edge.Start"
-        Size="Size.Large"
-        Color="Color.Inherit"
-        OnClick="@OnDrawerToggle"
-        Icon="@Icons.Material.Outlined.Menu" />
+<MudAppBar
+    Fixed="true"
+    Elevation="0"
+    Color="Color.Transparent"
+    Class="@(IsDarkMode ? "appbar-blur mix-difference" : "appbar-blur")">
+    <MudHidden Breakpoint="Breakpoint.MdAndUp">
+        <MudIconButton
+            Edge="Edge.Start"
+            Size="Size.Large"
+            Color="Color.Inherit"
+            OnClick="@OnDrawerToggle"
+            Icon="@Icons.Material.Outlined.Menu"/>
+    </MudHidden>
     <MudIcon
         Icon="@LogoIcon"
         Size="Size.Large"

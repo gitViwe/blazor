@@ -14,3 +14,5 @@ global using Blazor.Component.Manager;
 global using Blazor.Component;
 global using Blazor.Component.WebAuthn;
 global using System.Text.Json;
+global using Blazor.Component.Card.TaskListOverview;
+global using Blazor.Component.Manager.OpenTelemetry;

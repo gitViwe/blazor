@@ -3,6 +3,8 @@ const path = require('path');
 
 module.exports = (env) => {
     return {
+        mode: 'production',
+        devtool: 'source-map',
         // The entry point(s) of the application, where webpack starts bundling
         entry: {
             // An array of entry points for the 'index' bundle
