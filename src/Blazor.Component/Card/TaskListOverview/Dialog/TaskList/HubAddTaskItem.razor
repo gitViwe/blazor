@@ -1,6 +1,11 @@
 <MudDialog>
     <TitleContent>
-        @(TaskItemToEdit is null ? "Add New Task" : "Edit Task")
+        <MudText
+            Typo="Typo.h5"
+            Align="Align.Center"
+            Color="Color.Tertiary">
+            @(TaskItemToEdit is null ? "Add New Task" : "Edit Task")
+        </MudText>
     </TitleContent>
     <DialogContent>
         <MudStack Spacing="4" Class="my-4">
@@ -38,13 +43,17 @@
     </DialogContent>
     <DialogActions>
         <MudButton
+            Class="ma-5"
             FullWidth="true"
+            Size="Size.Large"
             OnClick="@Cancel"
             Variant="Variant.Text">
             Cancel
         </MudButton>
         <MudButton
+            Class="ma-5"
             FullWidth="true"
+            Size="Size.Large"
             OnClick="@Submit"
             Color="Color.Primary"
             Variant="Variant.Filled">
