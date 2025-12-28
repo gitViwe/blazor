@@ -478,3 +478,85 @@ HubImageDetailHover
         transition-duration: 0s;
     }
 }
+
+/*
+HubFloatingBlocks
+*/
+
+.floating-blocks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+        border-radius: 0;
+    }
+    20% {
+        transform: translateY(-200px) rotate(90deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-1200px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+.floating-blocks li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(115, 59, 255, 0.15);
+    animation: floating 25s linear infinite;
+    bottom: -150px;
+    opacity: 0;
+}
+
+/* --- GROUP 1: Primary 10 (Covers 0-100% evenly) --- */
+.floating-blocks li:nth-child(1)  { left: 0%;   width: 80px;  height: 80px;  animation-delay: 0s; }
+.floating-blocks li:nth-child(2)  { left: 10%;  width: 30px;  height: 30px;  animation-delay: 2s;  animation-duration: 12s; }
+.floating-blocks li:nth-child(3)  { left: 20%;  width: 20px;  height: 20px;  animation-delay: 4s; }
+.floating-blocks li:nth-child(4)  { left: 30%;  width: 60px;  height: 60px;  animation-delay: 1s;  animation-duration: 18s; }
+.floating-blocks li:nth-child(5)  { left: 40%;  width: 20px;  height: 20px;  animation-delay: 6s; }
+.floating-blocks li:nth-child(6)  { left: 50%;  width: 110px; height: 110px; animation-delay: 3s; }
+.floating-blocks li:nth-child(7)  { left: 60%;  width: 150px; height: 150px; animation-delay: 8s; }
+.floating-blocks li:nth-child(8)  { left: 70%;  width: 25px;  height: 25px;  animation-delay: 12s; animation-duration: 35s; }
+.floating-blocks li:nth-child(9)  { left: 80%;  width: 15px;  height: 15px;  animation-delay: 5s; }
+.floating-blocks li:nth-child(10) { left: 90%;  width: 100px; height: 100px; animation-delay: 0s;  animation-duration: 11s; }
+
+/* --- GROUP 2: The "Fillers" (Offsets of 5%) --- */
+.floating-blocks li:nth-child(11) { left: 5%;   animation-delay: 7s; }
+.floating-blocks li:nth-child(12) { left: 15%;  animation-delay: 2s; }
+.floating-blocks li:nth-child(13) { left: 25%;  animation-delay: 9s; }
+.floating-blocks li:nth-child(14) { left: 35%;  animation-delay: 4s; }
+.floating-blocks li:nth-child(15) { left: 45%;  animation-delay: 11s; }
+.floating-blocks li:nth-child(16) { left: 55%;  animation-delay: 1s; }
+.floating-blocks li:nth-child(17) { left: 65%;  animation-delay: 15s; }
+.floating-blocks li:nth-child(18) { left: 75%;  animation-delay: 3s; }
+.floating-blocks li:nth-child(19) { left: 85%;  animation-delay: 8s; }
+.floating-blocks li:nth-child(20) { left: 95%;  animation-delay: 14s; }
+
+/* --- GROUP 3: High Density (Additional gaps) --- */
+.floating-blocks li:nth-child(21) { left: 2.5%;  animation-delay: 6s; }
+.floating-blocks li:nth-child(22) { left: 12.5%; animation-delay: 10s; }
+.floating-blocks li:nth-child(23) { left: 22.5%; animation-delay: 2s; }
+.floating-blocks li:nth-child(24) { left: 32.5%; animation-delay: 18s; }
+.floating-blocks li:nth-child(25) { left: 42.5%; animation-delay: 5s; }
+.floating-blocks li:nth-child(26) { left: 52.5%; animation-delay: 13s; }
+.floating-blocks li:nth-child(27) { left: 62.5%; animation-delay: 7s; }
+.floating-blocks li:nth-child(28) { left: 72.5%; animation-delay: 0s; }
+.floating-blocks li:nth-child(29) { left: 82.5%; animation-delay: 16s; }
+.floating-blocks li:nth-child(30) { left: 92.5%; animation-delay: 4s; }
