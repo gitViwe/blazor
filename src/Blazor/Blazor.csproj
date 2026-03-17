@@ -14,7 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Blazor.Component.ChoreTracker\Blazor.Component.ChoreTracker.csproj" />
       <ProjectReference Include="..\Blazor.Component.WebAuthn\Blazor.Component.WebAuthn.csproj" />
+      <ProjectReference Include="..\Blazor.Infrastructure\Blazor.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

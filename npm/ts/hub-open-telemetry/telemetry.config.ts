@@ -1,4 +1,3 @@
-import { getDeviceName } from "./telemetry.util";
 import * as opentelemetry from '@opentelemetry/api';
 import { resourceFromAttributes } from "@opentelemetry/resources";
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
@@ -8,6 +7,14 @@ import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
 import { MeterProvider, PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
+import {
+    getDeviceName,
+    getStorageData,
+    getDeviceMemory,
+    getOnlineStatus,
+    getDevicePosture,
+    getPreferredLanguages,
+} from "./telemetry.util";
 import {
     ATTR_SERVICE_NAME,
     ATTR_SERVICE_VERSION

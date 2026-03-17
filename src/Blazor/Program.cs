@@ -5,13 +5,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services
     .AddHubComponentServices()
     .AddHubWebAuthenticationServices()
-    .AddGatewayClient();
-
-builder.Services.AddOidcAuthentication(options =>
-{
-    // Configure your authentication provider options here.
-    // For more information, see https://aka.ms/blazor-standalone-auth
-    builder.Configuration.Bind("Local", options.ProviderOptions);
-});
+    .AddGatewayClient()
+    .RegisterClientAuthorization();
 
 await builder.Build().RunAsync();

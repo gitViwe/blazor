@@ -11,7 +11,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.School"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Playground.Section, ScrollBehavior.Smooth))">
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Playground.Section, ScrollBehavior.Smooth))">
         Playground
     </MudNavLink>
 
@@ -25,24 +25,24 @@
     <MudNavLink
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.SwaggerUi"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Documentation.Swagger, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.SwaggerUi"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Documentation.Swagger, ScrollBehavior.Smooth))">
         Swagger
     </MudNavLink>
 
     <MudNavLink
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.Scalar"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Documentation.Scalar, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.Scalar"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Documentation.Scalar, ScrollBehavior.Smooth))">
         Scalar
     </MudNavLink>
 
     <MudNavLink
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.GraphQl"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Documentation.GraphQl, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.GraphQl"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Documentation.GraphQl, ScrollBehavior.Smooth))">
         GraphQL
     </MudNavLink>
 
@@ -56,16 +56,16 @@
     <MudNavLink
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.OpenTelemetry"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Observability.OpenTelemetry, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.OpenTelemetry"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Observability.OpenTelemetry, ScrollBehavior.Smooth))">
         OpenTelemetry
     </MudNavLink>
 
     <MudNavLink
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.NetCore"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Observability.HealthCheck, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.NetCore"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Observability.HealthCheck, ScrollBehavior.Smooth))">
         Health Check
     </MudNavLink>
 
@@ -81,7 +81,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.Fingerprint"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Security.WebAuthn, ScrollBehavior.Smooth))">
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Security.WebAuthn, ScrollBehavior.Smooth))">
         WebAuthn
     </MudNavLink>
 
@@ -90,7 +90,7 @@
         ActiveClass=""
         Match="NavLinkMatch.All"
         Icon="@Icons.Material.Filled.QrCodeScanner"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Security.Mfa, ScrollBehavior.Smooth))">
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Security.Mfa, ScrollBehavior.Smooth))">
         MFA
     </MudNavLink>
 
@@ -105,8 +105,8 @@
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubSignalR) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.SignalR"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Communication.SignalR, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.SignalR"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Communication.SignalR, ScrollBehavior.Smooth))">
         SignalR
     </MudNavLink>
 
@@ -114,8 +114,8 @@
         Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubGrpc) is false)"
         ActiveClass=""
         Match="NavLinkMatch.All"
-        Icon="@CustomIcon.Grpc"
-        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + BlazorPage.Communication.Grpc, ScrollBehavior.Smooth))">
+        Icon="@HubCustomIcon.Grpc"
+        OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Communication.Grpc, ScrollBehavior.Smooth))">
         Grpc
     </MudNavLink>
     

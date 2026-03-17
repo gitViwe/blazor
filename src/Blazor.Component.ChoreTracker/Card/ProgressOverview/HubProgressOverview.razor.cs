@@ -1,4 +1,4 @@
-namespace Blazor.Component.Card.ProgressOverview;
+namespace Blazor.Component.ChoreTracker.Card.ProgressOverview;
 
 public partial class HubProgressOverview : ComponentBase
 {

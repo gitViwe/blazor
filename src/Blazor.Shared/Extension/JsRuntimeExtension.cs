@@ -1,5 +1,3 @@
-using System.Text.Json;
-
 namespace Blazor.Shared.Extension;
 
 public static class JsRuntimeExtension

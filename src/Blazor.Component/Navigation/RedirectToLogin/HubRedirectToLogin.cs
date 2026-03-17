@@ -7,6 +7,6 @@ public sealed class HubRedirectToLogin : ComponentBase
 
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo($"{BlazorPage.Authentication.Login}?returnUrl={Uri.EscapeDataString(new Uri(Navigation.Uri).PathAndQuery)}");
+        Navigation.NavigateTo($"{HubBlazorPage.Authentication.Login}?returnUrl={Uri.EscapeDataString(new Uri(Navigation.Uri).PathAndQuery)}");
     }
 }

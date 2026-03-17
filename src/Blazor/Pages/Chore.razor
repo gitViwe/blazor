@@ -1,18 +1,3 @@
 @page "/chore"
 
-<MudGrid Justify="Justify.Center">
-    
-    <HubProgressOverview
-        Title="Chore Plan"
-        Description="Family chore task list"
-        OnResetButtonClick="@ResetButtonClicked"
-        ItemProgressDetail="@ItemProgressDetail"/>
-    
-    <HubTaskListOverview
-        TaskItemCollection="@TaskItems"
-        OnAddButtonClick="@AddButtonClicked"
-        OnEditButtonClick="@EditButtonClicked"
-        OnDeleteButtonClick="@DeleteButtonClicked"
-        OnToggleButtonClick="@ToggleButtonClicked"/>
-    
-</MudGrid>
+<HubChoreTracker />

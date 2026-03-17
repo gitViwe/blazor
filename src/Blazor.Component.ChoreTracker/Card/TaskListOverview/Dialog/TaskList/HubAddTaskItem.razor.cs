@@ -1,4 +1,4 @@
-namespace Blazor.Component.Card.TaskListOverview.Dialog.TaskList;
+namespace Blazor.Component.ChoreTracker.Card.TaskListOverview.Dialog.TaskList;
 
 public partial class HubAddTaskItem : ComponentBase
 {

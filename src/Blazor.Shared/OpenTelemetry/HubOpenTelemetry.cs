@@ -1,7 +1,5 @@
 namespace Blazor.Shared.OpenTelemetry;
 
-using System.Text.Json.Serialization;
-
 public record TelemetryConfig(
     string ServiceName,
     string ServiceVersion,

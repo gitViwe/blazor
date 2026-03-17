@@ -2,7 +2,7 @@
 
             <MudItem xs="12" sm="12" md="12">
                 <div class="d-flex justify-center">
-                    <MudIcon Icon="@CustomIcon.OpenTelemetry" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
+                    <MudIcon Icon="@HubCustomIcon.OpenTelemetry" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
                 </div>
             </MudItem>
 
@@ -31,7 +31,7 @@
                         <MudButton Target="_blank"
                                    Color="Color.Tertiary"
                                    Variant="Variant.Filled"
-                                   StartIcon="@CustomIcon.Jaeger"
+                                   StartIcon="@HubCustomIcon.Jaeger"
                                    Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubOpenTelemetry) is false)"
                                    Href="@Configuration.GetJaegerUiUri()">
                             Traces
@@ -40,7 +40,7 @@
                             <MudButton Target="_blank"
                                        Color="Color.Tertiary"
                                        Variant="Variant.Filled"
-                                       StartIcon="@CustomIcon.Grafana"
+                                       StartIcon="@HubCustomIcon.Grafana"
                                        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubOpenTelemetry) is false)"
                                        Href="@Configuration.GetGrafanaDashboardUri()">
                                 Metrics
@@ -49,7 +49,7 @@
                         <MudButton Target="_blank"
                                    Color="Color.Tertiary"
                                    Variant="Variant.Filled"
-                                   StartIcon="@CustomIcon.Seq"
+                                   StartIcon="@HubCustomIcon.Seq"
                                    Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubOpenTelemetry) is false)"
                                    Href="@Configuration.GetSeqUiUri()" >
                             Logs

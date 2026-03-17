@@ -2,7 +2,7 @@
     
     <MudItem xs="12" sm="12" md="12">
         <div class="d-flex justify-center">
-            <MudIcon Icon="@CustomIcon.SwaggerUi" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
+            <MudIcon Icon="@HubCustomIcon.SwaggerUi" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
         </div>
     </MudItem>
 
@@ -28,7 +28,7 @@
                        Href="@Configuration.GetSwaggerUri()"
                        Color="Color.Tertiary"
                        Variant="Variant.Filled"
-                       StartIcon="@CustomIcon.SwaggerUi"
+                       StartIcon="@HubCustomIcon.SwaggerUi"
                        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubSwagger) is false)" >
                 Demo
             </MudButton>

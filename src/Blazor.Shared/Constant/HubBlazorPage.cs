@@ -1,6 +1,6 @@
 namespace Blazor.Shared.Constant;
 
-public static class BlazorPage
+public static class HubBlazorPage
 {
     public static class Playground
     {

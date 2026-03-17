@@ -13,7 +13,9 @@ EXPOSE 8081
 
 COPY ["src/Blazor/Blazor.csproj", "Blazor/"]
 COPY ["src/Blazor.Component/Blazor.Component.csproj", "Blazor.Component/"]
+COPY ["src/Blazor.Component.ChoreTracker/Blazor.Component.ChoreTracker.csproj", "Blazor.Component.ChoreTracker/"]
 COPY ["src/Blazor.Component.WebAuthn/Blazor.Component.WebAuthn.csproj", "Blazor.Component.WebAuthn/"]
+COPY ["src/Blazor.Infrastructure/Blazor.Infrastructure.csproj", "Blazor.Infrastructure/"]
 COPY ["src/Blazor.Shared/Blazor.Shared.csproj", "Blazor.Shared/"]
 
 RUN dotnet restore "Blazor/Blazor.csproj"

@@ -2,7 +2,7 @@
     
     <MudItem xs="12" sm="12" md="12">
                 <div class="d-flex justify-center">
-                    <MudIcon Icon="@CustomIcon.Scalar" Color="Color.Default" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
+                    <MudIcon Icon="@HubCustomIcon.Scalar" Color="Color.Default" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;" />
                 </div>
             </MudItem>
 
@@ -28,7 +28,7 @@
                                Href="@Configuration.GetScalarUri()"
                                Color="Color.Tertiary"
                                Variant="Variant.Filled"
-                               StartIcon="@CustomIcon.Scalar"
+                               StartIcon="@HubCustomIcon.Scalar"
                                Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubScalar) is false)" >
                         Demo
                     </MudButton>

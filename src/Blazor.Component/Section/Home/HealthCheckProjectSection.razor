@@ -2,7 +2,7 @@
     
     <MudItem xs="12" sm="12" md="12">
         <div class="d-flex justify-center">
-            <MudIcon Icon="@CustomIcon.NetCore" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;"/>
+            <MudIcon Icon="@HubCustomIcon.NetCore" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 24 24" Style="width: 250px; height: 250px;"/>
         </div>
     </MudItem>
 
@@ -27,7 +27,7 @@
             <MudButton Target="_blank"
                        Color="Color.Tertiary"
                        Variant="Variant.Filled"
-                       StartIcon="@CustomIcon.NetCore"
+                       StartIcon="@HubCustomIcon.NetCore"
                        Href="@Configuration.GetHealthCheckUri()"
                        Disabled="@(HubFeatureManagerContext.IsFeatureEnabled(HubFeatureName.HubHealthCheck) is false)" >
                 Demo

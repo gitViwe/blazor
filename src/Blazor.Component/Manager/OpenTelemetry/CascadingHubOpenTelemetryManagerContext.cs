@@ -7,7 +7,7 @@ public sealed class CascadingHubOpenTelemetryManagerContext(IJSRuntime jsRuntime
     private ValueTask PersistTraceContextAsync(TraceContextResponse traceContext, CancellationToken cancellation)
         => jsRuntime.SessionStorageSetAsync(HubOpenTelemetryTraceContextKey, traceContext, cancellation);
 
-    public ValueTask<TraceContextResponse?> GetTraceContextAsync(CancellationToken cancellation)
+    private ValueTask<TraceContextResponse?> GetTraceContextAsync(CancellationToken cancellation)
         => jsRuntime.SessionStorageGetAsync<TraceContextResponse>(HubOpenTelemetryTraceContextKey, cancellation);
 
     public async Task TrackEventAsync(

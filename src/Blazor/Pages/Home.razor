@@ -10,29 +10,31 @@
 
     <MudItem xs="12" sm="12" md="12">
         
-        <section id="@BlazorPage.Playground.Section" class="section-padding">
+        <section id="@HubBlazorPage.Playground.Section" class="section-padding">
             <PlaygroundSection/>
         </section>
 
-        <section id="@BlazorPage.Documentation.Swagger" class="section-padding">
+        <section id="@HubBlazorPage.Documentation.Swagger" class="section-padding">
             <SwaggerProjectSection/>
         </section>
 
-        <section id="@BlazorPage.Documentation.Scalar" class="section-padding">
+        <section id="@HubBlazorPage.Documentation.Scalar" class="section-padding">
             <ScalarProjectSection/>
         </section>
 
-        <section id="@BlazorPage.Documentation.GraphQl" class="section-padding">
+        <section id="@HubBlazorPage.Documentation.GraphQl" class="section-padding">
             <GrapQlProjectSection/>
         </section>
 
-        <section id="@BlazorPage.Observability.OpenTelemetry" class="section-padding">
+        <section id="@HubBlazorPage.Observability.OpenTelemetry" class="section-padding">
             <OpenTelemetryProjectSection/>
         </section>
 
-        <section id="@BlazorPage.Observability.HealthCheck" class="section-padding">
+        <section id="@HubBlazorPage.Observability.HealthCheck" class="section-padding">
             <HealthCheckProjectSection/>
         </section>
+        
+        <HubWebAuthentication />
 
     </MudItem>
     

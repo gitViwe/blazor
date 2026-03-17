@@ -2,6 +2,7 @@ services:
 
   blazor-wasm:
     container_name: blazor-wasm
+    image: hubviwe/thebase.blazor.wasm:0.9.14
     build:
         context: .
         dockerfile: src/Blazor/Dockerfile

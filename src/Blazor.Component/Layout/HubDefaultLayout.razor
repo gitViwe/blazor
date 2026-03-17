@@ -20,7 +20,7 @@
     <HubAppbar
         IsDarkMode="@IsDarkMode"
         LogoDescription="Viwe Nkepu"
-        LogoIcon="@CustomIcon.ViweNkepu"
+        LogoIcon="@HubCustomIcon.ViweNkepu"
         OnDrawerToggle="@(_ => ToggleDrawer())"
         OnDarkModeToggle="@(val => DarkModeChanged(val))"/>
     <MudDrawer
@@ -40,7 +40,7 @@
                     Icon="@Icons.Material.Outlined.Menu"/>
             </MudToolBar>
         </MudHidden>
-        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-6">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-11">
             @Body
         </MudContainer>
     </MudMainContent>

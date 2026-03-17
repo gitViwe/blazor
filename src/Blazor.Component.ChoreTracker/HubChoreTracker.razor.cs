@@ -1,8 +1,6 @@
-using Blazor.Shared.OpenTelemetry;
+namespace Blazor.Component.ChoreTracker;
 
-namespace Blazor.Pages;
-
-public partial class Chore : ComponentBase, IComponentCancellationTokenSource
+public partial class HubChoreTracker : ComponentBase, IComponentCancellationTokenSource
 {
     private const string StorageKey = "ChoreTaskItems";
     private const string ChoreTelemetryName = "Chore.Telemetry";
