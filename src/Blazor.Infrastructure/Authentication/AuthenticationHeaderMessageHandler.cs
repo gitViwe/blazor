@@ -14,7 +14,9 @@ internal class AuthenticationHeaderMessageHandler(
         
         try
         {
-            return await base.SendAsync(request, cancellationToken);
+            var response = await base.SendAsync(request, cancellationToken);
+            await HandleTokenExpiredAsync(response, cancellationToken);
+            return response;
         }
         catch (Exception ex)
         {
@@ -33,12 +35,12 @@ internal class AuthenticationHeaderMessageHandler(
         {
             var claims = await stateProvider.GetAuthenticationStateUserAsync();
             
-            if (claims.HasExpiredClaims(2))
+            if (claims.HasExpiredClaims(1))
             {
                 // TODO: implement refresh on auth api
             }
             
-            var savedToken = await jsRuntime.SessionStorageGetAsync<string>(HubStorageKey.Identity.AuthToken, CancellationToken.None);
+            var savedToken = await jsRuntime.SessionStorageGetAsync(HubStorageKey.Identity.AuthToken, cancellationToken);
 
             if (false == string.IsNullOrWhiteSpace(savedToken))
             {
@@ -55,6 +57,22 @@ internal class AuthenticationHeaderMessageHandler(
         {
             request.Headers.Add(nameof(context.TraceContext.TraceState), context.TraceContext.TraceState);
             request.Headers.Add(nameof(context.TraceContext.TraceParent), context.TraceContext.TraceParent);
+        }
+    }
+
+    private async Task HandleTokenExpiredAsync(HttpResponseMessage message, CancellationToken cancellationToken)
+    {
+        if (message.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            // Buffer the content so it can be read multiple times
+            await message.Content.LoadIntoBufferAsync(cancellationToken);
+            
+            var response = await message.ToResponseAsync<ProblemDetail>(token: cancellationToken);
+
+            if (response is { Detail: "Token expired" })
+            {
+                await stateProvider.MarkUserAsLoggedOutAsync();
+            }
         }
     }
 }

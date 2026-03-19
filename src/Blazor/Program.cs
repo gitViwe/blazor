@@ -5,7 +5,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services
     .AddHubComponentServices()
     .AddHubWebAuthenticationServices()
-    .AddGatewayClient()
+    .AddGatewayClient(builder.Configuration)
     .RegisterClientAuthorization();
 
 await builder.Build().RunAsync();

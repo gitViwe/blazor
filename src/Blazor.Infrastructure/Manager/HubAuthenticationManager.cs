@@ -1,17 +1,13 @@
-using System.Net.Http.Json;
-using Blazor.Shared.Contract;
-using gitViwe.Shared;
-
 namespace Blazor.Infrastructure.Manager;
 
-internal class AuthenticationManager(
+internal class HubAuthenticationManager(
     IJSRuntime jsRuntime,
     IGatewayClient gateway,
-    HubAuthenticationStateProvider stateProvider)
+    HubAuthenticationStateProvider stateProvider) : IAuthenticationManager
 {
     public async Task<IResponse> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken)
     {
-        var result = await gateway.HttpClient.PostAsJsonAsync("auth/account/register", request, cancellationToken);
+        var result = await gateway.HttpClient.PostAsJsonAsync("account/register", request, cancellationToken);
 
         if (result.IsSuccessStatusCode)
         {
@@ -36,7 +32,7 @@ internal class AuthenticationManager(
     
     public async Task<IResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken)
     {
-        var result = await gateway.HttpClient.PostAsJsonAsync("auth/account/login", request, cancellationToken);
+        var result = await gateway.HttpClient.PostAsJsonAsync("account/login", request, cancellationToken);
 
         if (result.IsSuccessStatusCode)
         {
@@ -61,7 +57,7 @@ internal class AuthenticationManager(
     
     public async Task<ITypedResponse<UserDetailResponse>> GetUserDetailAsync(CancellationToken cancellationToken)
     {
-        var result = await gateway.HttpClient.GetAsync("auth/account/detail", cancellationToken);
+        var result = await gateway.HttpClient.GetAsync("account/detail", cancellationToken);
 
         if (false == result.IsSuccessStatusCode)
         {
@@ -76,5 +72,17 @@ internal class AuthenticationManager(
         }
         
         return TypedResponse<UserDetailResponse>.Success("User details retrieved.", response);
+    }
+
+    public async Task<IResponse> UpdateDetailsAsync(UpdateUserRequest request, CancellationToken cancellationToken)
+    {
+        var result = await gateway.HttpClient.PutAsJsonAsync("account/detail", request, cancellationToken);
+
+        if (result.IsSuccessStatusCode)
+        {
+            return Response.Success("Update successful.");
+        }
+
+        return Response.Fail("Update failed.");
     }
 }

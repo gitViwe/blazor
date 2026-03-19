@@ -33,17 +33,14 @@ public static class ConfigurationExtension
         => configuration["BlazorConfiguration:Uri:GrafanaDashboard"] ?? string.Empty;
     
     public static string GetWebAuthnCredentialOptionsUri(this IConfiguration configuration, string displayName)
-        => GetGatewayApiUri(configuration) + $"/auth/web-authentication/credential-options?displayName={displayName}";
+        => $"/auth/web-authentication/credential-options?displayName={displayName}";
     
     public static string GetWebAuthnCreateCredentialsUri(this IConfiguration configuration, string name)
-        => GetGatewayApiUri(configuration) + $"/auth/web-authentication/credential/{Convert.ToBase64String(Encoding.UTF8.GetBytes(name))}";
+        => $"/auth/web-authentication/credential/{Convert.ToBase64String(Encoding.UTF8.GetBytes(name))}";
     
     public static string GetWebAuthnAssertionOptionsUri(this IConfiguration configuration)
-        => GetGatewayApiUri(configuration) + "/auth/web-authentication/assertion-options";
+        => "/auth/web-authentication/assertion-options";
     
     public static string GetWebAuthnAssertionUri(this IConfiguration configuration)
-        => GetGatewayApiUri(configuration) + "/auth/web-authentication/assertion";
-    
-    public static string GetFeatureFlagsUri(this IConfiguration configuration)
-        => GetGatewayApiUri(configuration) + "/feature/feature-flags";
+        => "/auth/web-authentication/assertion";
 }

@@ -39,7 +39,7 @@ public partial class CascadingHubFeatureManager
     {
         try
         {
-            var response = await GatewayClient.HttpClient.GetAsync(Configuration.GetFeatureFlagsUri(), cancellationToken);
+            var response = await GatewayClient.HttpClient.GetAsync("/feature/feature-flags", cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {

@@ -1,4 +1,6 @@
-﻿namespace Blazor.Infrastructure.Authentication;
+﻿using Microsoft.AspNetCore.WebUtilities;
+
+namespace Blazor.Infrastructure.Authentication;
 
 internal sealed class HubAuthenticationStateProvider(IJSRuntime jsRuntime) : AuthenticationStateProvider
 {
@@ -10,7 +12,7 @@ internal sealed class HubAuthenticationStateProvider(IJSRuntime jsRuntime) : Aut
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
         // get the saved JWT token
-        var savedToken = await jsRuntime.SessionStorageGetAsync<string>(HubStorageKey.Identity.AuthToken, CancellationToken.None);
+        var savedToken = await jsRuntime.SessionStorageGetAsync(HubStorageKey.Identity.AuthToken, CancellationToken.None);
 
         if (string.IsNullOrWhiteSpace(savedToken))
         {
@@ -52,10 +54,13 @@ internal sealed class HubAuthenticationStateProvider(IJSRuntime jsRuntime) : Aut
         NotifyAuthenticationStateChanged(authState);
     }
 
-    public void MarkUserAsLoggedOut()
+    public async Task MarkUserAsLoggedOutAsync()
     {
         // return empty credentials
         var authState = Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())));
+        
+        await jsRuntime.SessionStorageRemoveAsync(HubStorageKey.Identity.AuthToken, CancellationToken.None);
+        await jsRuntime.SessionStorageRemoveAsync(HubStorageKey.Identity.AuthRefreshToken, CancellationToken.None);
 
         // update the authentication state
         NotifyAuthenticationStateChanged(authState);
@@ -70,7 +75,7 @@ internal sealed class HubAuthenticationStateProvider(IJSRuntime jsRuntime) : Aut
         var payload = jwt.Split('.')[1];
 
         // get the byte array from the token string
-        var jsonBytes = Convert.FromBase64String(payload);
+        var jsonBytes = WebEncoders.Base64UrlDecode(payload);
 
         // get the key value pairs for claims from the byte array
         var claimsDictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);

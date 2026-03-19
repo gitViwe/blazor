@@ -46,6 +46,9 @@ public static class JsRuntimeExtension
             : JsonSerializer.Deserialize<T>(jsonString, SerializerOptions);
     }
     
+    public static async ValueTask<string?> SessionStorageGetAsync(this IJSRuntime jsRuntime, string key, CancellationToken cancellationToken)
+        => await jsRuntime.InvokeAsync<string?>("sessionStorage.getItem", cancellationToken, key);
+    
     public static ValueTask SessionStorageRemoveAsync(this IJSRuntime jsRuntime, string key, CancellationToken cancellationToken)
         => jsRuntime.InvokeVoidAsync("sessionStorage.removeItem", cancellationToken, key);
     

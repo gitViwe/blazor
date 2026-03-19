@@ -10,3 +10,5 @@ global using Microsoft.Extensions.Http.Resilience;
 global using Polly;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
+global using Blazor.Shared.Contract;
+global using gitViwe.Shared;

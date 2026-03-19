@@ -2,7 +2,7 @@ namespace Blazor.Component.WebAuthn.Manager;
 
 internal sealed class HubWebAuthenticationManager(
     IJSRuntime jsRuntime,
-    HttpClient httpClient,
+    IGatewayClient gatewayClient,
     IConfiguration configuration,
     ILogger<HubWebAuthenticationManager> logger) : IHubWebAuthenticationManager
 {
@@ -16,7 +16,7 @@ internal sealed class HubWebAuthenticationManager(
         CancellationToken cancellationToken)
     {
         // Get options from server
-        var credentialOptionsResponse = await httpClient.GetAsync(configuration.GetWebAuthnCredentialOptionsUri(displayName), cancellationToken);
+        var credentialOptionsResponse = await gatewayClient.HttpClient.GetAsync(configuration.GetWebAuthnCredentialOptionsUri(displayName), cancellationToken);
 
         if (credentialOptionsResponse.IsSuccessStatusCode is false)
         {
@@ -35,7 +35,7 @@ internal sealed class HubWebAuthenticationManager(
             // Present options to user and get response
             var credential = await jsRuntime.InvokeAsync<HubAuthenticatorAttestationRawResponse>("HubWebAuthentication.CreateCredentials", cancellationToken, options);
             // Send response to server
-            var createCredentialsResponse = await httpClient.PutAsJsonAsync(configuration.GetWebAuthnCreateCredentialsUri(options.User.Name), credential, JsonOptions, cancellationToken);
+            var createCredentialsResponse = await gatewayClient.HttpClient.PutAsJsonAsync(configuration.GetWebAuthnCreateCredentialsUri(options.User.Name), credential, JsonOptions, cancellationToken);
             
             return createCredentialsResponse.IsSuccessStatusCode
                 ? Response.Success("Successfully created credentials")
@@ -44,14 +44,14 @@ internal sealed class HubWebAuthenticationManager(
         catch (Exception exception)
         {
             logger.LogError(exception, "Failed to create credentials");
-            var message = "Failed to create credentials." + (options.ExcludeCredentials?.Count > 0 ? " (You may have already registered this device)" : string.Empty);
+            var message = "Failed to create credentials." + (options.ExcludeCredentials.Count > 0 ? " (You may have already registered this device)" : string.Empty);
             return Response.Fail(message);
         }
     }
 
     public async Task<IResponse> LoginAsync(CancellationToken cancellationToken)
     {
-        var assertionOptionsResponse = await httpClient.GetAsync(configuration.GetWebAuthnAssertionOptionsUri(), cancellationToken);
+        var assertionOptionsResponse = await gatewayClient.HttpClient.GetAsync(configuration.GetWebAuthnAssertionOptionsUri(), cancellationToken);
 
         if (assertionOptionsResponse.IsSuccessStatusCode is false)
         {
@@ -71,7 +71,7 @@ internal sealed class HubWebAuthenticationManager(
             var assertion = await jsRuntime.InvokeAsync<AuthenticatorAssertionRawResponse>("HubWebAuthentication.Verify", cancellationToken, options);
             
             // Send response to server
-            var assertionResponse = await httpClient.PostAsJsonAsync(configuration.GetWebAuthnAssertionUri(), assertion, JsonOptions, cancellationToken);
+            var assertionResponse = await gatewayClient.HttpClient.PostAsJsonAsync(configuration.GetWebAuthnAssertionUri(), assertion, JsonOptions, cancellationToken);
 
             return assertionResponse.IsSuccessStatusCode
                 ? Response.Success("Successfully created token")

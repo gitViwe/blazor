@@ -1,6 +1,9 @@
 @inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@HubDefaultTheme.Default"/>
+<MudThemeProvider
+    IsDarkMode="@IsDarkMode"
+    Theme="@HubDefaultTheme.Default"
+    @ref="@MudThemeProviderReference" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />

@@ -93,6 +93,21 @@
         OnClick="@(() => ScrollManager.ScrollIntoViewAsync("#" + HubBlazorPage.Security.Mfa, ScrollBehavior.Smooth))">
         MFA
     </MudNavLink>
+    
+    <MudNavLink Href="@HubBlazorPage.Authentication.Register"
+                Icon="@Icons.Material.Filled.Assignment">
+        Register
+    </MudNavLink>
+
+    <MudNavLink Href="@HubBlazorPage.Authentication.Login"
+                Icon="@Icons.Material.Filled.LockOpen">
+        Login
+    </MudNavLink>
+
+    <MudNavLink Href="@HubBlazorPage.Authentication.Account"
+                Icon="@Icons.Material.Filled.AccountCircle">
+        User details
+    </MudNavLink>
 
     <MudText
         Class="mx-4 my-3"

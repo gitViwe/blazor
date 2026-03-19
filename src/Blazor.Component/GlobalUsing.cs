@@ -16,3 +16,6 @@ global using Microsoft.Extensions.Logging;
 global using Blazor.Shared.OpenTelemetry;
 global using Blazor.Component.Manager.FeatureManager;
 global using System.Text.Json;
+global using System.Web;
+global using Blazor.Shared.Contract;
+global using MudBlazor.Services;

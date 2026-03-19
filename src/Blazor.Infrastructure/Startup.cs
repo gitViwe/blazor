@@ -1,4 +1,4 @@
-using Blazor.Infrastructure.Client;
+using Microsoft.Extensions.Configuration;
 
 namespace Blazor.Infrastructure;
 
@@ -6,19 +6,25 @@ public static class Startup
 {
     public static IServiceCollection RegisterClientAuthorization(this IServiceCollection services)
     {
-        services.AddOptions();
-        services.AddAuthorizationCore();
-
-        services.AddScoped<HubAuthenticationStateProvider>();
-        services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<HubAuthenticationStateProvider>());
+        services
+            .AddOptions()
+            .AddAuthorizationCore()
+            .AddScoped<HubAuthenticationStateProvider>()
+            .AddScoped<IAuthenticationManager, HubAuthenticationManager>()
+            .AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<HubAuthenticationStateProvider>());
 
         return services;
     }
     
-    public static IServiceCollection AddGatewayClient(this IServiceCollection services)
+    public static IServiceCollection AddGatewayClient(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddHttpClient<IGatewayClient, GatewayClient>(options => options.Timeout = TimeSpan.FromSeconds(60))
+            .AddScoped<AuthenticationHeaderMessageHandler>()
+            .AddHttpClient<IGatewayClient, GatewayClient>(options =>
+            {
+                options.Timeout = TimeSpan.FromSeconds(60);
+                options.BaseAddress = new Uri(configuration["BlazorConfiguration:Uri:GatewayApi"]!);
+            })
             .AddHttpMessageHandler<AuthenticationHeaderMessageHandler>()
             .AddResilienceHandler(GatewayClient.ResilienceHandlerName, resilienceBuilder =>
             {

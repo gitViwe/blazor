@@ -1,5 +1,3 @@
-using MudBlazor.Services;
-
 namespace Blazor.Component;
 
 public static class Startup
